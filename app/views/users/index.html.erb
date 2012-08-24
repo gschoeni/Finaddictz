@@ -1,0 +1,102 @@
+<h1>User Management</h1>
+
+<table>
+
+<br />
+
+<div class="row">
+  <div class="span6">
+<table class="table table-bordered table-striped">
+  <colgroup>
+    <col class="span3">
+    <col class="span3">
+  </colgroup>
+
+  <tbody>
+    <tr>
+      <td><b>Name</b></td>
+      <td><b>Email Address</b></td>
+      <td><b>State</b></td>
+      <td><b>Enabled</b></td>
+      <td><b>Action</b></td>
+    </tr>
+    <% @users.each do |user| %>
+    <tr>
+      <td><%= user.first_name %> <%= user.last_name %></td>
+      <td><a href="mailto:<%= user.email %>"><%= user.email %></a></td>
+      <td><%= user.state %></td>
+      <td><%= user.confirmed %></td>
+      <td>         
+        <div class="btn-group">
+            <button class="btn btn-primary" align="center">More</button>
+            <button class="btn btn-primary" data-toggle="dropdown">
+              <span class="caret"></span>
+            </button>
+
+            <ul class="dropdown-menu">
+              <li><%= link_to 'Show', user %></li>  <!-- show user profile-->
+              <li><%= link_to 'Edit', edit_user_path(user) %></li>
+              <% if user.confirmed = "true" %>
+                  <li><%= link_to 'Disable'  %></li> 
+                <% else %>
+                  <li><%= link_to 'Enable' %></li>
+                <% end %>  
+              <li class="divider"></li>
+              <li><%= link_to 'Destroy', user, confirm: 'Are you sure?', method: :delete%>
+              </li>
+            </ul>
+          </div>
+       </td>    
+      </tr>       
+      <% end %>
+  </tbody>
+</table>
+  </div>
+</div>
+
+
+
+
+<%= link_to 'New User', new_user_path %>
+
+<%= form_for request.path, :method => 'get' do |f|%>
+    <%= f.label 'User Search' %>
+    <%= text_field_tag :search, params[:search] %>
+    <br>
+
+    <%= f.submit 'Search Users'%>
+<% end %>
+
+<table class="table">
+  <tr>
+    <th>First name</th>
+    <th>Last name</th>
+    <th>Email</th>
+    <th>State</th>
+    <th>Birthdate</th>
+<!--     <th>Fishing license</th>
+    <th>About</th> -->
+    <th>Actions</th>
+    <th></th>
+  </tr>
+
+<% @users.each do |user| %>
+  <tr>
+    <td><%= user.first_name %></td>
+    <td><%= user.last_name %></td>
+    <td><%= user.email %></td>
+    <td><%= user.state %></td>
+    <td><%= user.birthdate %></td>
+<!--     <td><%= link_to 'Show', user %></td>
+    <td><%= link_to 'Edit', edit_user_path(user) %></td> -->
+    <% if user.disabled? %>
+        <td><%= link_to 'Activate', toggle_enabled_user_path(user), confirm: 'Are you sure?', method: :put, :class => 'btn btn-small btn-success' %></td>
+    <% else %>
+        <td><%= link_to 'Deactivate', toggle_enabled_user_path(user), confirm: 'Are you sure?', method: :put, :class => 'btn btn-small btn-warning' %></td>
+    <% end %>
+    <td><%= link_to 'Delete', user, confirm: 'Are you sure?', method: :delete, :class => 'btn btn-small btn-danger'  %></td>
+  </tr>
+<% end %>
+</table>
+
+

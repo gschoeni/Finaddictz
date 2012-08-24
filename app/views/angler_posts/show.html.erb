@@ -1,0 +1,60 @@
+<p id="notice"><%= notice %></p>
+
+<div class="row">
+  <div class="span8">
+<table class="table table-bordered table-striped">
+  <colgroup>
+    <col class="span1">
+    <col class="span7">
+  </colgroup>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th><span class="post_title"><%= @angler_post.title %></span></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Posted By:</td>
+      <td><%= @angler_post.user %></td>
+    </tr>  
+    <tr>
+      <td>Description</td>
+      <td><%= @angler_post.description %></td>
+    </tr>
+    <tr>
+      <td>Number of People</td>
+      <td><%= @angler_post.num_people %></td>
+    </tr>
+    <tr>
+      <td>Price Range</td>
+      <td>$<%= @angler_post.price_min %> - $<%= @angler_post.price_max %></td>
+    </tr>
+    <tr>
+      <td>Trip Date</td>
+      <td><%= @angler_post.date %></td>
+    </tr> 
+    <tr>
+      <td colspan=2>         
+        <div class="btn-group">
+            <button class="btn btn-primary" align="center">More</button>
+            <button class="btn btn-primary" data-toggle="dropdown">
+              <span class="caret"></span>
+            </button>
+
+            <ul class="dropdown-menu">
+              <li><%= link_to 'Ask Guide', @angler_post %></li>
+              <li><%= link_to 'Hold', @angler_post %></li>
+              <li><%= link_to 'Wait List', @angler_post %></li>
+              <li class="divider"></li>
+              <li><%= link_to 'Book this trip!', @angler_post %></li>
+            </ul>
+          </div></td>    </tr>       
+
+  </tbody>
+</table>
+  </div>
+</div>
+
+
+<%= link_to 'Back', angler_posts_path %>

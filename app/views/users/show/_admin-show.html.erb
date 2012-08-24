@@ -1,0 +1,41 @@
+
+
+<h1>FinAddictz Site Management</h1>
+<br>
+<div class="row">
+	<div class="span4 well">
+		<h3>Site Stats</h3>
+		<table class="table">
+			<thead>
+				<th></th>
+				<th></th>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Number of Users:</td><td><%= User.count %></td>
+				</tr>
+				<tr>
+					<td>Number of Posts: </td><td><%= GuidePost.count + AnglerPost.count %></td>
+				</tr>
+				<tr>
+					<td>Top Ten Keywords: </td><td><%= top_ten_keywords %></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<div class="span4 well">
+		<h3>Manage:</h3>
+		<br>
+		<ul>
+			<li><%= link_to 'Users', users_path %></li>
+			<li><%= link_to 'Fishing Methods', fishing_methods_path %></li>
+			<li><%= link_to 'Fishing Species', fish_species_path %></li>
+			<li><%= link_to 'Environment Preferences', env_prefs_path %></li>
+
+		</ul>
+	</div>
+
+
+</div>
+

@@ -1,0 +1,78 @@
+<%= form_for @user, :html => {:class => 'form-horizontal'} do |f| %>
+    <% if @user.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+          <ul>
+            <% @user.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div class="control-group">
+      <%= f.label :first_name, :class => "control-label"  %>
+      <div class="controls">
+        <%= f.text_field :first_name, :class => "text_field"  %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :last_name, :class => "control-label"  %>
+      <div class="controls">
+        <%= f.text_field :last_name, :class => "text_field"  %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :email, :class => "control-label"  %>
+      <div class="controls">
+        <%= f.text_field :email, :class => "text_field"  %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :password, :class => "control-label"  %>
+      <div class="controls">
+        <%= f.password_field :password, :class => "text_field"  %>
+      </div>
+    </div>
+    <div class="control-group">
+      <%= f.label :password_confirmation, :class => "control-label"  %>
+      <div class="controls">
+        <%= f.password_field :password_confirmation, :class => "text_field"  %>
+      </div>
+    </div>
+    <div class="control-group">
+      <%= f.label :role, :class => "control-label"  %>
+      <div class="controls">
+        <% {'guide' => 'Guide', 'angler' => 'Angler', 'property_owner' => 'Property Owner'}.each do |key, val| %>
+        <br><%= check_box_tag 'user[role_ids][]', Role.find_by_name(key).id, current_user.roles.include?(Role.find_by_name(key))%> <%= val %>
+        <% end %>
+      </div>
+    </div>
+    <div class="control-group">
+      <%= f.label :state, :class => "control-label"  %>
+      <div class="controls">
+        <%= f.text_field :state, :class => "text_field"  %>
+      </div>
+    </div>
+    <div class="control-group">
+      <%= f.label :birthdate, :class => "control-label"  %>
+      <div class="controls">
+        <%= f.text_field :birthdate, :class => "text_field"  %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :photo, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.file_field :photo %>
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <%= f.submit 'Update', :class => 'btn btn-primary' %>
+    </div>
+<% end %>

@@ -1,0 +1,53 @@
+<h1><font color="red">FinAddictz</font> Trips Wanted</h1>
+<br>
+<%= form_for request.path, :method => 'get' do |f|%>
+    <%= f.label :search_text %>
+    <%= text_field_tag :search, params[:search] %>
+    <br>
+    
+    <%= f.label 'Minimum Price' %>
+    <%= text_field_tag :price_min, params[:price_min] %>
+    <br>
+
+    <%= f.label 'Maximum Price' %>
+    <%= text_field_tag :price_max, params[:price_max] %>
+    
+    <%= f.label :start_date %>
+    <%= text_field_tag :start_date, params[:start_date] %>
+
+    <%= f.label :end_date %>
+    <%= text_field_tag :end_date, params[:end_date] %>
+    <br>
+    <%= f.submit 'Search trips'%>
+<% end %>
+
+<%= will_paginate @angler_posts, :renderer => BootstrapPagination::Rails %>
+<% @angler_posts.each do |angler_post|%>
+  
+    <div class="row">
+      <div class="span8 post_row" <% if angler_post ==  @angler_posts.last %> style="border-bottom:solid 1px #d3d3d3;" <% end %>>
+        <span class="post_created">Posted: <%= angler_post.created_at.strftime("%m/%d/%Y") %></span><br>
+        <span class="post_title"><%= angler_post.title %></span>
+        <span class="post_price">$<%= angler_post.price_min %> - $<%= angler_post.price_max %></span><br>
+        <span class="post_tripDate"><b>Desired Trip Date: <%=  angler_post.date %></span></b>
+        <br>
+        <div><%=angler_post.description%></div>
+        <br>
+
+        <div class="btn-group">
+          <button class="btn btn-primary">Learn More</button>
+          <button class="btn btn-primary" data-toggle="dropdown">
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu">
+            <li><%= link_to 'Details', angler_post %></li>
+            <li><%= link_to 'Contact Angler', angler_post %></li>
+            <li class="divider"></li>
+            <li><%= link_to 'Book this trip!', angler_post %></li>
+          </ul>
+        </div>
+        <br>
+      </div>
+    </div>
+<% end %>
+<%= will_paginate @angler_posts, :renderer => BootstrapPagination::Rails %>

@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Center lat:</b>
+  <%= @location.center_lat %>
+</p>
+
+<p>
+  <b>Center long:</b>
+  <%= @location.center_long %>
+</p>
+
+<p>
+  <b>Radius:</b>
+  <%= @location.radius %>
+</p>
+
+<p>
+  <b>Name:</b>
+  <%= @location.name %>
+</p>
+
+
+<%= link_to 'Edit', edit_location_path(@location) %> |
+<%= link_to 'Back', locations_path %>

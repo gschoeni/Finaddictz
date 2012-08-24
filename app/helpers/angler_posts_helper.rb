@@ -1,0 +1,2 @@
+module AnglerPostsHelper
+end

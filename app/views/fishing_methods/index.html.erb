@@ -1,0 +1,23 @@
+<h1>Fishing Methods</h1>
+
+<table class="table">
+  <tr>
+    <th>Name</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @fishing_methods.each do |fishing_method| %>
+  <tr>
+    <td><%= fishing_method.name %></td>
+    <td><%= link_to 'Show', fishing_method %></td>
+    <td><%= link_to 'Edit', edit_fishing_method_path(fishing_method) %></td>
+    <td><%= link_to 'Destroy', fishing_method, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Fishing method', new_fishing_method_path %>

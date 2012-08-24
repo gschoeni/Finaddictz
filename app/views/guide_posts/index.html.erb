@@ -1,0 +1,52 @@
+<h1>Available <font color="red">FinAddictz</font> Trips</h1>
+<br>
+<%= form_for request.path, :method => 'get' do |f|%>
+    <%= f.label :search_text %>
+    <%= text_field_tag :search, params[:search] %>
+    <br>
+    
+    <%= f.label 'Minimum Price' %>
+    <%= text_field_tag :price_min, params[:price_min] %>
+    <br>
+
+    <%= f.label 'Maximum Price' %>
+    <%= text_field_tag :price_max, params[:price_max] %>
+    
+    <%= f.label :start_date %>
+    <%= text_field_tag :start_date, params[:start_date] %>
+
+    <%= f.label :end_date %>
+    <%= text_field_tag :end_date, params[:end_date] %>
+    <br>
+    <%= f.submit 'Search trips'%>
+<% end %>
+
+<%= will_paginate @guide_posts, :renderer => BootstrapPagination::Rails %>
+<% @guide_posts.each do |guide_post| %>
+    <div class="row">
+        <div class="span8 post_row" <% if guide_post ==  @guide_posts.last %> style="border-bottom:solid 1px #d3d3d3;" <% end %>>
+          <span class="post_created">Posted: <%=  guide_post.created_at.strftime("%m/%d/%Y") %></span><br>
+          <span class="post_title"><%= guide_post.title %></span>
+          <span class="post_price">$<%= guide_post.price_per %></span><br>
+          <span class="post_tripDate"><b>Trip Date: <%=  guide_post.date.strftime("%m/%d/%Y") %></span></b><br>
+          <%=h truncate(guide_post.description, :length => 80) %> <% if guide_post.description.length > 80 %>...<% end%>
+          <br>
+          <div class="btn-group">
+            <button class="btn btn-primary">Learn More</button>
+            <button class="btn btn-primary" data-toggle="dropdown">
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+              <li><%= link_to 'Details', guide_post %></li>
+              <li><%= link_to 'Hold', guide_post %></li>
+              <li><%= link_to 'Wait List', guide_post %></li>
+              <li class="divider"></li>
+              <li><%= link_to 'Book this trip!', guide_post %></li>
+            </ul>
+          </div>
+
+            <br>
+        </div>
+    </div>
+<% end %>
+<%= will_paginate @guide_posts, :renderer => BootstrapPagination::Rails %>

@@ -1,0 +1,76 @@
+<%= form_for(@angler_post, :html => {:class => 'form-horizontal'}) do |f| %>
+  <% if @angler_post.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@angler_post.errors.count, "error") %> prohibited this angler_post from being saved:</h2>
+
+      <ul>
+      <% @angler_post.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+   <%= f.hidden_field :user_id, :value => current_user.id %>
+
+    <div class="control-group">
+    <%= f.label :title, :class => "control-label"%>
+    <div class="controls">
+      <%= f.text_field :title, :class => "text_field"  %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :description, :class => "control-label" %>
+    <div class="controls">
+      <%= f.text_area :description, :class => "text_field" %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :num_people, :class => "control-label" %>
+    <div class="controls">
+      <%= f.number_field :num_people, :class => "text_field" %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :price_min, :class => "control-label" %>
+    <div class="controls">
+      <%= f.number_field :price_min, :class => "text_field" %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :price_max, :class => "control-label" %>
+    <div class="controls">
+      <%= f.number_field :price_max, :class => "text_field" %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :date, :class => "control-label" %>
+    <div class="controls">
+      <%= f.date_select :date, :class => "text_field" %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :time, :class => "control-label" %>
+    <div class="controls">
+      <%= f.text_field :time, :class => "text_field" %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :search_guide, :class => "control-label" %>
+    <div class="controls">
+      <%= f.check_box :search_guide %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :search_angler, :class => "control-label" %>
+    <div class="controls">
+      <%= f.check_box :search_angler %>
+      </div>
+  </div>
+  
+  <div class="form-actions">
+    <%= f.submit %>
+  </div>
+<% end %>

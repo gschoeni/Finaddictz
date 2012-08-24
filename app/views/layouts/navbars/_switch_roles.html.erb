@@ -1,0 +1,9 @@
+<% if current_user.roles.count > 1 %>
+	<li class="divider"></li>
+	<li class="nav-header">Switch Role</li>
+<% end %>
+<% current_user.roles.each do |role| %>
+  <% if role.name != current_user.active_role %>
+    <li><%= link_to "#{role.readable_name}", "/users/#{current_user.id}/change_role/#{role.name}" %></li>
+  <% end %>
+<% end %>

@@ -1,0 +1,23 @@
+<h1>Environmental Preferences</h1>
+
+<table class="table">
+  <tr>
+    <th>Name</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @env_prefs.each do |env_pref| %>
+  <tr>
+    <td><%= env_pref.name %></td>
+    <td><%= link_to 'Show', env_pref %></td>
+    <td><%= link_to 'Edit', edit_env_pref_path(env_pref) %></td>
+    <td><%= link_to 'Destroy', env_pref, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Env pref', new_env_pref_path %>

@@ -1,0 +1,18 @@
+// Place all the styles related to the users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.profile_picture{
+	float:left;
+	margin-right:10px;
+	border:2px solid white;
+	background: black;
+	-moz-box-shadow: 0 0 2px 2px #999;
+	-webkit-box-shadow: 0 0 2px 2px #999;
+}
+
+.prof_info {
+	#edit_profile {
+		float:right;
+	}
+}

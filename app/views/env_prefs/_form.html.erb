@@ -1,0 +1,21 @@
+<%= form_for(@env_pref) do |f| %>
+  <% if @env_pref.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@env_pref.errors.count, "error") %> prohibited this env_pref from being saved:</h2>
+
+      <ul>
+      <% @env_pref.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

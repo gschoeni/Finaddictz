@@ -1,0 +1,23 @@
+<h1>Fish Species</h1>
+
+<table class="table">
+  <tr>
+    <th>Name</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @fish_species.each do |fish_specy| %>
+  <tr>
+    <td><%= fish_specy.name %></td>
+    <td><%= link_to 'Show', fish_specy %></td>
+    <td><%= link_to 'Edit', edit_fish_specy_path(fish_specy) %></td>
+    <td><%= link_to 'Destroy', fish_specy, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Fish specy', new_fish_specy_path %>

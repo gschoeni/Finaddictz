@@ -44,14 +44,13 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
     @user.roles << Role.find_by_name("angler")
+    @user.active_role = "angler"
     respond_to do |format|
       if @user.save
         UserMailer.welcome_email(@user).deliver
-        format.html { redirect_to @user, notice: 'Registration Successful.' }
-        format.json { render json: @user, status: :created, location: @user }
+        format.html { redirect_to login_path, notice: 'Check your email for to confirm your account.' }
       else
         format.html { render action: "new" }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
   end

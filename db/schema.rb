@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120822011103) do
+ActiveRecord::Schema.define(:version => 20120826173817) do
 
   create_table "angler_exts", :force => true do |t|
     t.date     "fishing_license_exp"
@@ -141,6 +141,7 @@ ActiveRecord::Schema.define(:version => 20120822011103) do
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
+    t.text     "info"
   end
 
 end

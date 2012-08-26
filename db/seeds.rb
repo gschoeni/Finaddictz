@@ -31,8 +31,8 @@ if(User.count == 0)
   u = User.create(
     first_name: 'Steve',
     last_name: 'Lynch',
-    password: 'password1',
-    password_confirmation: 'password1',
+    password: 'password',
+    password_confirmation: 'password',
     email: 'slynch00@gmail.com',
     active_role: 'admin',
     confirmed: true

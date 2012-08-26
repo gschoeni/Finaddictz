@@ -10,3 +10,7 @@
 .clear{
 	clear: both;
 }
+
+.small_table {
+	border-spacing: 30px;
+}

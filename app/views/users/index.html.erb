@@ -1,5 +1,7 @@
 
-  <h2>User Management</h2>
+<img align="right" src="images/cast.jpg" style="width: 40%; height: 40%;" alt="scalable image" /> 
+<br><br>
+<h2>User Management</h2>
 
     <%= form_for request.path, :method => 'get' do |f|%>
     <!-- <%= f.label 'User Search' %> -->
@@ -7,13 +9,10 @@
     <% end %>
    <button type="submit" class="btn btn-inverse">Search Users</button>
 
-   <br><br>
-
-
 <table>
 <div class="row">
   <div class="span6">
-<table class="table table-bordered table-striped">
+<table class="table table-bordered">
   <colgroup>
     <col class="span3">
     <col class="span3">
@@ -66,6 +65,5 @@
 
 
 <%= link_to 'Add New User', new_user_path %>
-
 
 

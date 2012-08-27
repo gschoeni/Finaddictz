@@ -82,4 +82,8 @@ class GuidePostsController < ApplicationController
       format.json { head :ok }
     end
   end
+
+  def abuse_email
+    AbuseMailer.abuse_email.deliver
+  end      
 end

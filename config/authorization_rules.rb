@@ -17,7 +17,7 @@ authorization do
     has_permission_on [:guide_posts, :angler_posts], :to => :update do
       if_attribute :user_id => is { user.id }
     end
-    has_permission_on [:guide_posts, :angler_posts], :to => :create
+    has_permission_on [:guide_posts, :angler_posts], :to => [:create, :flag_as_abused]
   end
 
   role :angler do
@@ -30,7 +30,8 @@ authorization do
     has_permission_on [:guide_posts, :angler_posts], :to => :update do
       if_attribute :user_id => is { user.id }
     end
-    has_permission_on [:guide_posts, :angler_posts], :to => :create
+    has_permission_on [:guide_posts, :angler_posts], :to => [:create, :flag_as_abused]
+
   end
 
   role :property_owner do

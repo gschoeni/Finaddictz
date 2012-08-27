@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120822011103) do
+ActiveRecord::Schema.define(:version => 20120827032100) do
 
   create_table "angler_exts", :force => true do |t|
     t.date     "fishing_license_exp"
@@ -75,6 +75,7 @@ ActiveRecord::Schema.define(:version => 20120822011103) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "title"
+    t.boolean  "abusive_flag", :default => false
   end
 
   create_table "locations", :force => true do |t|
@@ -141,6 +142,7 @@ ActiveRecord::Schema.define(:version => 20120822011103) do
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
+    t.text     "info"
   end
 
 end

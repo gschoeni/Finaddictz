@@ -82,4 +82,17 @@ class GuidePostsController < ApplicationController
       format.json { head :ok }
     end
   end
+
+  def flag_as_abused
+    @guide_post = GuidePost.find(params[:id])
+    @guide_post.abusive_flag = true;
+    if @guide_post.save
+      AbuseMailer.abuse_email.deliver
+      redirect_to @guide_post, notice: 'Guide post was flagged as abusive'
+    else
+      redirect_to @guide_post, notice: 'Something went wrong..'
+    end
+
+    
+  end      
 end

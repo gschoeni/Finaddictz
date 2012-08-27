@@ -28,6 +28,8 @@ Finaddictz::Application.routes.draw do
   #enabling and disabling a user
   put "users/:id/toggle_enabled" => 'users#toggle_enabled', :as => 'toggle_enabled_user'
 
+  put "guide_posts/:id/flag_as_abused" => 'guide_posts#flag_as_abused', :as => 'flag_as_abused'
+
   resources :users
 
   root :to => "user_sessions#new"

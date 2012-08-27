@@ -24,22 +24,20 @@ if(User.count == 0)
   )
   u.roles << Role.find_by_name("admin")
   u.roles << Role.find_by_name("guide")
-  u.roles << Role.find_by_name("angler")
   u.roles << Role.find_by_name("property_owner")
   u.save
 
   u = User.create(
     first_name: 'Steve',
     last_name: 'Lynch',
-    password: 'password1',
-    password_confirmation: 'password1',
+    password: 'password',
+    password_confirmation: 'password',
     email: 'slynch00@gmail.com',
     active_role: 'admin',
     confirmed: true
   )
   u.roles << Role.find_by_name("admin")
   u.roles << Role.find_by_name("guide")
-  u.roles << Role.find_by_name("angler")
   u.roles << Role.find_by_name("property_owner")
   u.save
 
@@ -54,7 +52,6 @@ if(User.count == 0)
   )
   u.roles << Role.find_by_name("admin")
   u.roles << Role.find_by_name("guide")
-  u.roles << Role.find_by_name("angler")
   u.roles << Role.find_by_name("property_owner")
   u.save
 
@@ -67,7 +64,6 @@ if(User.count == 0)
     active_role: 'angler',
     confirmed: true
   )
-  u.roles <<  Role.find_by_name("angler")
   u.save
 
   u = User.create(

@@ -43,7 +43,7 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(params[:user])
-    @user.roles << Role.find_by_name("angler")
+    @user.roles << Role.find_by_name("angler") unless @user.roles.include? Role.find_by_name("angler")
     @user.active_role = "angler"
     respond_to do |format|
       if @user.save
@@ -150,5 +150,4 @@ class UsersController < ApplicationController
       redirect_to users_path
     end
   end
-
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120827032100) do
+ActiveRecord::Schema.define(:version => 20120829015921) do
 
   create_table "angler_exts", :force => true do |t|
     t.date     "fishing_license_exp"
@@ -35,6 +35,14 @@ ActiveRecord::Schema.define(:version => 20120827032100) do
     t.datetime "updated_at"
     t.string   "title"
     t.integer  "user_id"
+  end
+
+  create_table "conversations", :force => true do |t|
+    t.string   "title"
+    t.integer  "user_id1"
+    t.integer  "user_id2"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "env_prefs", :force => true do |t|
@@ -83,6 +91,15 @@ ActiveRecord::Schema.define(:version => 20120827032100) do
     t.decimal  "center_long"
     t.decimal  "radius"
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "messages", :force => true do |t|
+    t.text     "text"
+    t.boolean  "read"
+    t.integer  "user_id"
+    t.integer  "conversation_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

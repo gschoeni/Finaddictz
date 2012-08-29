@@ -1,4 +1,7 @@
 Finaddictz::Application.routes.draw do
+  
+  resources :conversations
+
   resources :ratings
 
   resources :env_prefs
@@ -12,6 +15,7 @@ Finaddictz::Application.routes.draw do
   resources :fishing_methods
 
   resources :fish_species
+
 
   resources :user_sessions
   match "/logout" => "user_sessions#destroy"

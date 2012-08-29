@@ -27,7 +27,7 @@ class User < ActiveRecord::Base
     begin
       search = User.search do
         #the full text search
-        fulltext params[:search]
+        fulltext params[:term]
         
         paginate :page => params[:page] || 1, :per_page => 10
         order_by :created_at, :desc

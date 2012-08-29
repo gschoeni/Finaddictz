@@ -32,12 +32,21 @@
       </div>
     </div>
 
-    <div class="control-group">
-      <%= f.label :info, :class => "control-label"  %>
-      <div class="controls">
-        <%= f.text_area :info, :class => "text_area"  %>
+    <%= f.fields_for :guide_ext do |builder| %>
+
+      <div class="control-group">
+        <%= builder.label :about, :class => "control-label"  %>
+        <div class="controls">
+          <%= builder.text_area :about, :class => "text_field"  %>
+        </div>
       </div>
-    </div>
+      <div class="control-group">
+        <%= builder.label :experience, :class => "control-label"  %>
+        <div class="controls">
+          <%= builder.text_field :experience, :class => "text_field"  %>
+        </div>
+      </div>
+    <% end %>
 
     <div class="control-group">
       <%= f.label :password, :class => "control-label"  %>
@@ -54,7 +63,9 @@
     <div class="control-group">
       <%= f.label :role, :class => "control-label"  %>
       <div class="controls">
-        <%= select("user", "active_role", Role.all.collect {|r| [ r.name, r.name ] }, {:include_blank => '--Select a Role--'}) %>
+        <% {'guide' => 'Guide', 'angler' => 'Angler', 'property_owner' => 'Property Owner'}.each do |key, val| %>
+        <br><%= check_box_tag 'user[role_ids][]', Role.find_by_name(key).id, current_user.roles.include?(Role.find_by_name(key))%> <%= val %>
+        <% end %>
       </div>
     </div>
     <div class="control-group">

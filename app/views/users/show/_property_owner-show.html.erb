@@ -1,11 +1,13 @@
-<span class="welcome">Welcome Property Owner <%= @user.first_name %></span>   <br><br>
-<span class="messages">Messages:</span><br><br>
+<span class="welcome">Welcome Property Owner <%= @user.first_name %></span>
 
-<h2>Manage Trips</h2>    <br><br>
-Cancel trip<br>
-
-<%= link_to 'Manage Profile', edit_user_path %><br><br>
-
-<br><br>
-
-<p id="notice"><%= notice %></p>
+<div class="profile_picture">
+	<%= image_tag @user.photo.url(:medium), :class => "img-polaroid" %>
+</div>
+<div class="span7">
+<%= @user.about %>
+</div>	
+<div class="prof_info"> 
+	<div id="edit_profile"><%= link_to 'Manage Profile', edit_user_path%> <i class="icon-pencil"></i></div>
+	
+	
+<div class="clear"></div>

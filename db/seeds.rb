@@ -16,12 +16,15 @@ if(User.count == 0)
   u = User.create(
     first_name: 'Greg',
     last_name: 'Schoeninger',
-    password: 'password3',
-    password_confirmation: 'password3',
+    password: 'password',
+    password_confirmation: 'password',
     email: 'greg.schoeninger@gmail.com',
     active_role: 'admin',
     confirmed: true
   )
+  GuideExt.create({:about => "Edit profile to change your guide about section..", :experience => 'Novice', :user_id => u.id})
+  AnglerExt.create({:about => "Edit profile to change your angler about section..", :experience => 'Novice', :user_id => u.id})
+  PropExt.create({:about => "Edit profile to change your property_owner about section..", :user_id => u.id})
   u.roles << Role.find_by_name("admin")
   u.roles << Role.find_by_name("guide")
   u.roles << Role.find_by_name("property_owner")
@@ -36,6 +39,9 @@ if(User.count == 0)
     active_role: 'admin',
     confirmed: true
   )
+  GuideExt.create({:about => "Edit profile to change your guide about section..", :experience => 'Novice', :user_id => u.id})
+  AnglerExt.create({:about => "Edit profile to change your angler about section..", :experience => 'Novice', :user_id => u.id})
+  PropExt.create({:about => "Edit profile to change your property_owner about section..", :user_id => u.id})
   u.roles << Role.find_by_name("admin")
   u.roles << Role.find_by_name("guide")
   u.roles << Role.find_by_name("property_owner")
@@ -50,6 +56,9 @@ if(User.count == 0)
     active_role: 'admin',
     confirmed: true
   )
+  GuideExt.create({:about => "Edit profile to change your guide about section..", :experience => 'Novice', :user_id => u.id})
+  AnglerExt.create({:about => "Edit profile to change your angler about section..", :experience => 'Novice', :user_id => u.id})
+  PropExt.create({:about => "Edit profile to change your property_owner about section..", :user_id => u.id})
   u.roles << Role.find_by_name("admin")
   u.roles << Role.find_by_name("guide")
   u.roles << Role.find_by_name("property_owner")
@@ -64,6 +73,9 @@ if(User.count == 0)
     active_role: 'angler',
     confirmed: true
   )
+  GuideExt.create({:about => "Edit profile to change your guide about section..", :experience => 'Novice', :user_id => u.id})
+  AnglerExt.create({:about => "Edit profile to change your angler about section..", :experience => 'Novice', :user_id => u.id})
+  PropExt.create({:about => "Edit profile to change your property_owner about section..", :user_id => u.id})
   u.save
 
   u = User.create(
@@ -75,6 +87,9 @@ if(User.count == 0)
     active_role: 'guide',
     confirmed: true
   )
+  GuideExt.create({:about => "Edit profile to change your guide about section..", :experience => 'Novice', :user_id => u.id})
+  AnglerExt.create({:about => "Edit profile to change your angler about section..", :experience => 'Novice', :user_id => u.id})
+  PropExt.create({:about => "Edit profile to change your property_owner about section..", :user_id => u.id})
   u.roles << Role.find_by_name('guide')
   u.save
 
@@ -88,6 +103,9 @@ if(User.count == 0)
     active_role: 'property_owner',
     confirmed: true
   )
+  GuideExt.create({:about => "Edit profile to change your guide about section..", :experience => 'Novice', :user_id => u.id})
+  AnglerExt.create({:about => "Edit profile to change your angler about section..", :experience => 'Novice', :user_id => u.id})
+  PropExt.create({:about => "Edit profile to change your property_owner about section..", :user_id => u.id})
   u.roles << Role.find_by_name('property_owner')
   u.save
 

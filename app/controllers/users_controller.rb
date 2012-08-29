@@ -47,6 +47,11 @@ class UsersController < ApplicationController
     @user.active_role = "angler"
     respond_to do |format|
       if @user.save
+        #create the extendable parts of a user rows for guide_ext, angler_ext, and prop_ext
+        GuideExt.create({:about => "Edit profile to change..", :experience => 'Novice', :user_id => @user.id})
+        AnglerExt.create({:about => "Edit profile to change..", :experience => 'Novice', :user_id => @user.id})
+        PropExt.create({:about => "Edit profile to change..", :user_id => @user.id})
+        
         UserMailer.welcome_email(@user).deliver
         format.html { redirect_to login_path, notice: 'Check your email for to confirm your account.' }
       else

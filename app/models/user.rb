@@ -7,6 +7,8 @@ class User < ActiveRecord::Base
 
   before_save :make_angler
 
+  accepts_nested_attributes_for :guide_ext, :prop_ext, :angler_ext
+
   has_attached_file :photo, :styles => { :small => "50x50>", :medium => "150x150>", :full => "500x500>"}, :default_url => '/images/no_prof.png'
 
   [:first_name, :last_name, :active_role].each do |v|
@@ -50,6 +52,7 @@ class User < ActiveRecord::Base
     end
   end
 
+
   def my_posts
     if active_role == "angler"
       AnglerPost.find_all_by_user_id(self.id, :order => "created_at DESC")
@@ -71,5 +74,16 @@ class User < ActiveRecord::Base
 
   def disabled?
     !self.enable
+  end
+
+
+  def about
+    if active_role == "angler"
+      self.angler_ext.about
+    elsif active_role == "guide"
+      self.guide_ext.about
+    else
+      self.prop_ext.about
+    end
   end
 end

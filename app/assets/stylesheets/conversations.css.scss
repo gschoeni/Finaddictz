@@ -1,0 +1,30 @@
+.conversation{
+	border-bottom:1px solid #e2e2e2;
+	min-height:70px;
+	img{
+		float:left;
+		margin-right: 10px;
+	}
+}
+
+.conversation_messages{
+	width:400px;
+	margin:10px;
+
+	.msg{
+		border-bottom:1px solid gray;
+		.msg-text{
+			padding:10px;
+		}
+	}
+	.message-sender{
+		float:left;
+		padding:10px;
+		font-size:14px;
+	}
+	.message-date{
+		float:right;
+		padding:5px;
+		font-size:12px;
+	}
+}

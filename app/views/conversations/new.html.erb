@@ -1,0 +1,47 @@
+<%= form_for(@conversation, :html => {:class => 'form-horizontal'}) do |f| %>
+  <% if @conversation.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@conversation.errors.count, "error") %> prohibited this guide_post from being saved:</h2>
+
+      <ul>
+      <% @conversation.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <% if @to_user %>
+    <p>Message to: <%= @to_user %></p>
+    <%= f.hidden_field :user_id2, :value => @to_user.id %>
+  <% else %>
+    <div>Who would you like to send this message to?
+      <input type="text" id="select_origin">
+      <input id="link_origin_id" name="link[origin_id]" type="hidden"/>
+    </div>
+    
+  <% end %>
+  <%= f.hidden_field :user_id1, :value => current_user.id %>
+
+  <div class="control-group">
+    <%= f.label :title, :class => "control-label"%>
+    <div class="controls">
+      <%= f.text_field :title, :class => "text_field"  %>
+    </div>
+  </div>
+
+  <%= f.fields_for :messages do |builder| %>
+    <%= builder.hidden_field :user_id, :value => current_user.id %>
+    <div class="control-group">
+      <%= builder.label :text, :class => "control-label"  %>
+      <div class="controls">
+        <%= builder.text_area :text, :class => "text_field"  %>
+      </div>
+    </div>
+  <% end %>
+  
+
+  <div class="form-actions">
+    <%= f.submit 'Post', :class => 'btn btn-primary' %>
+  </div>
+<% end %>

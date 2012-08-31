@@ -1,0 +1,40 @@
+Who Would You Like to start a conversation with?
+<input type="text" id="select_origin">
+<input id="link_origin_id" name="link[origin_id]" type="hidden"/>
+
+<script type="text/javascript">
+    $(function() {
+        //Below is the name of the textfield that will be autocomplete    
+        $('#select_origin').autocomplete({
+            // This shows the min length of charcters that must be typed before the autocomplete looks for a match.
+            minLength: 2,
+            // This is the source of the auocomplete suggestions. In this case a list of names from the people controller, in JSON format.
+            source: '/users.json?search='+$('#select_origin').val(),
+            // This updates the textfield when you move the updown the suggestions list, with your keyboard. In our case it will reflect the same value that you see in the suggestions which is the user.given_name.
+            focus: function(event, ui) {
+                $('#select_origin').val(full_name(ui.item));
+                return false;
+            },
+            // Once a value in the drop down list is selected, do the following:
+            select: function(event, ui) {
+                 // place the user.given_name value into the textfield called 'select_origin'...
+                $('#select_origin').val(full_name(ui.item));
+            // and place the user.id into the hidden textfield called 'link_origin_id'. 
+            $('#link_origin_id').val(ui.item.id);
+                    return false;
+                }
+            })
+            // The below code is straight from the jQuery example. It formats what data is displayed in the dropdown box, and can be   customized.
+            .data( "autocomplete" )._renderItem = function( ul, item ) {
+                
+                return $( "<li></li>" )
+                    .data( "item.autocomplete", item )
+                    .append( "<a>" + full_name(item) + "</a>" )
+                    .appendTo( ul );
+            };
+
+            function full_name(user){
+                return user.first_name + " " + user.last_name;
+            }
+    });
+</script>

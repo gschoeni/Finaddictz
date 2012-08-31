@@ -5,6 +5,8 @@ class User < ActiveRecord::Base
   has_one :prop_ext
   has_one :angler_ext
 
+  has_many :messages
+
   before_save :make_angler
 
   accepts_nested_attributes_for :guide_ext, :prop_ext, :angler_ext

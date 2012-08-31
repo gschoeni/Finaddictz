@@ -47,7 +47,7 @@
             </button>
 
             <ul class="dropdown-menu">
-              <li><%= link_to 'Ask Guide', @guide_post %></li>
+              <li><%= link_to 'Message Guide', "/conversations/new?uid=#{@guide_post.user.id}" %></li>
               <li><%= link_to 'Hold', @guide_post %></li>
               <li><%= link_to 'Wait List', @guide_post %></li>
               <li><%= link_to 'Identify as Abusive', flag_as_abused_path(@guide_post), :method => :put %></li>

@@ -1,8 +1,10 @@
 class ConversationsController < ApplicationController
   
   def index
-    @conversations = Conversations.all
-
+    @conversations = Conversation.find_all_by_user_id1(current_user.id)
+    Conversation.find_all_by_user_id2(current_user.id).each do |c|
+      @conversations.push(c)
+    end
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @conversations }
@@ -10,8 +12,8 @@ class ConversationsController < ApplicationController
   end
 
   def show
-    @messages = Messages.find_by_conversation_id(params[:id])
-
+    @messages = Message.find_all_by_conversation_id(params[:id])
+    @message = Message.new({:conversation_id => params[:id]})
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @messages }
@@ -19,8 +21,11 @@ class ConversationsController < ApplicationController
   end
 
   def new
-    @conversation = Conversation.new
+    #@to_user will just be nil if ?uid=123 is not passed in 
+    @to_user = User.find(params[:uid]) if params[:uid]
 
+    @conversation = Conversation.new
+    @conversation.messages.build
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @conversation }
@@ -29,7 +34,6 @@ class ConversationsController < ApplicationController
 
   def create
     @conversation = Conversation.new(params[:conversation])
-
     respond_to do |format|
       if @conversation.save
         format.html { redirect_to @conversation, notice: 'Message successfully sent.' }

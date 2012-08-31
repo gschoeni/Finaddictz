@@ -19,6 +19,7 @@ authorization do
     end
     has_permission_on [:guide_posts, :angler_posts], :to => [:create, :flag_as_abused]
     has_permission_on :conversations, :to => [:read, :create]
+    has_permission_on :messages, :to => [:read, :create]
   end
 
   role :angler do
@@ -33,6 +34,7 @@ authorization do
     end
     has_permission_on [:guide_posts, :angler_posts], :to => [:create, :flag_as_abused]
     has_permission_on :conversations, :to => [:read, :create]
+    has_permission_on :messages, :to => [:read, :create]
   end
 
   role :property_owner do
@@ -43,6 +45,7 @@ authorization do
       if_attribute :id => is { user.id }
     end
     has_permission_on :conversations, :to => [:read, :create]
+    has_permission_on :messages, :to => [:read, :create]
   end
 
   role :admin do

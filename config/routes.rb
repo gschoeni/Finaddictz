@@ -1,4 +1,5 @@
 Finaddictz::Application.routes.draw do
+  resources :messages
   
   resources :conversations
 
@@ -28,6 +29,7 @@ Finaddictz::Application.routes.draw do
 
   #for changing a users role
   match 'users/:id/change_role/:role' => 'users#change_role', :as => 'change_role_user'
+
 
   #enabling and disabling a user
   put "users/:id/toggle_enabled" => 'users#toggle_enabled', :as => 'toggle_enabled_user'

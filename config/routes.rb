@@ -1,4 +1,6 @@
 Finaddictz::Application.routes.draw do
+  resources :property_posts
+
   resources :messages
   
   resources :conversations

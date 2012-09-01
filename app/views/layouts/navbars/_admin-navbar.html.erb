@@ -1,7 +1,13 @@
 <ul class="nav pull-right">
-  <li><%= link_to "Angler Posts", angler_posts_url%></li>
-  <li class="divider-vertical"></li>
-  <li><%= link_to "Guide Posts", guide_posts_url%></li>
+  <li class="dropdown">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown">View Posts<b class="caret"></b></a>
+    <ul class="dropdown-menu">
+      <li><%= link_to "Guide Posts", guide_posts_url %></li>
+      <li><%= link_to "Angler Posts", angler_posts_url %></li>
+      <li><%= link_to "Trips Wanted", angler_posts_url %></li>
+      <li><%= link_to "Property Posts", property_posts_url %></li>
+   </ul>   
+
   <li class="divider-vertical"></li>
   <li><%= link_to "Profile", @current_user %></li>
   <li class="divider-vertical"></li>

@@ -1,0 +1,2 @@
+module PropertyPostsHelper
+end

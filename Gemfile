@@ -49,3 +49,6 @@ gem "twitter-bootstrap-rails", :group => :assets
 gem "recaptcha", :require => "recaptcha/rails"
 gem 'sunspot_rails'
 gem 'sunspot_solr' # optional pre-packaged Solr distribution for use in development
+
+gem 'gmaps4rails' #for google maps
+gem 'geocoder'

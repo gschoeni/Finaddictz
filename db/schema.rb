@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120901174542) do
+ActiveRecord::Schema.define(:version => 20120904214329) do
 
   create_table "angler_exts", :force => true do |t|
     t.date     "fishing_license_exp"
@@ -123,6 +123,20 @@ ActiveRecord::Schema.define(:version => 20120901174542) do
     t.datetime "updated_at"
   end
 
+  create_table "rivers", :force => true do |t|
+    t.float    "latitude"
+    t.float    "longitude"
+    t.string   "address"
+    t.string   "city"
+    t.string   "state"
+    t.string   "country"
+    t.string   "keyword"
+    t.string   "radius"
+    t.boolean  "gmaps"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "roles", :force => true do |t|
     t.string   "name"
     t.datetime "created_at"
@@ -164,6 +178,7 @@ ActiveRecord::Schema.define(:version => 20120901174542) do
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
+    t.text     "info"
   end
 
 end

@@ -1,0 +1,23 @@
+<h1>Listing rivers</h1>
+
+<table class="table">
+  <tr>
+    <th>River</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @rivers.each do |river| %>
+  <tr>
+    <td><%= link_to river %></td>
+    <td><%= link_to 'Show', river %></td>
+    <td><%= link_to 'Edit', edit_river_path(river) %></td>
+    <td><%= link_to 'Destroy', river, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New River', new_river_path %>

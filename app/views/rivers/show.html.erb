@@ -1,0 +1,18 @@
+<style type="text/css">
+#map img { 
+  max-width: none;
+}
+#map label { 
+  width: auto; display:inline; 
+} 
+</style>
+
+<div>
+	<%= @river %>
+</div>
+
+<%= gmaps4rails(@river_json) %>
+<%= link_to 'Edit', edit_river_path(@river) %> |
+<%= link_to 'Back', rivers_path %>
+
+<%= yield :scripts %> 

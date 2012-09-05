@@ -20,4 +20,10 @@
    word-wrap: break-word;      /* IE */
 }
 
-
+/* for the google maps api and twitter bootstrap combo */
+#map img { 
+  max-width: none;
+}
+#map label { 
+  width: auto; display:inline; 
+} 

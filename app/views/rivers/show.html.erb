@@ -1,18 +1,16 @@
-<style type="text/css">
-#map img { 
-  max-width: none;
-}
-#map label { 
-  width: auto; display:inline; 
-} 
-</style>
-
 <div>
 	<%= @river %>
 </div>
 
-<%= gmaps4rails(@river_json) %>
+
+<%= gmaps({
+       "map_options" => {"auto_zoom" => false, "zoom" => 15, "center_latitude" => @river.latitude, "center_longitude" => @river.longitude },
+       "markers"     => {"data" => @river_json }
+      })
+%>
+
 <%= link_to 'Edit', edit_river_path(@river) %> |
 <%= link_to 'Back', rivers_path %>
 
 <%= yield :scripts %> 
+

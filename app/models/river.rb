@@ -9,7 +9,7 @@ class River < ActiveRecord::Base
 	end
 
 	def make_nice_address
-		"#{self.address} #{self.city}, #{self.state}, #{self.country}" 
+		"#{self.address} #{self.city} #{self.state}, #{self.country}" 
 	end
 
 	def to_s

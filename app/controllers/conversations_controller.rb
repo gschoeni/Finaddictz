@@ -1,10 +1,22 @@
 class ConversationsController < ApplicationController
   
   def index
-    @conversations = Conversation.find_all_by_user_id1(current_user.id)
-    Conversation.find_all_by_user_id2(current_user.id).each do |c|
-      @conversations.push(c)
+    @conversations = Conversation.find_all_by_user_id1(current_user.id, :order => "updated_at desc")
+    Conversation.find_all_by_user_id2(current_user.id, :order => "updated_at desc").each do |c|
+      i = 0
+      @conversations.each do |c1|
+        if c1.updated_at.to_i < c.updated_at.to_i
+          @conversations.insert(i, c)
+          break
+        elsif i == @conversations.count - 1
+          @conversations.insert(i, c)
+          break
+        end
+        i = i + 1
+      end
     end
+
+
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @conversations }

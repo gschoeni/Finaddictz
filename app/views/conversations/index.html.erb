@@ -1,12 +1,17 @@
-<% @conversations.each do |conversation| %>
-    <div class="conversation">
-    	<%= image_tag from_who(conversation).photo.url(:medium), :class => "img-polaroid" %>
-    	<div>
-    		<%= from_who(conversation) %>
-    	</div>
-    	
-    	<div>
-    		<%= link_to conversation.title, conversation %>
-    	</div>
-    </div>
-<% end %>
+<div class="span7">
+    <% @conversations.each do |conversation| %>
+        <div class="conversation">
+            <%= image_tag from_who(conversation).photo.url(:medium), :class => "img-polaroid" %>
+            <p class="name">
+                <%= from_who(conversation) %>
+            </p>
+            
+            <p>
+                <%= link_to conversation.title, conversation %>
+            </p>
+            <div class="text">
+                <%= conversation.messages.last.who(current_user) %> last said: <br/><%= conversation.messages.last %>
+            </div>
+        </div>
+    <% end %>
+</div>

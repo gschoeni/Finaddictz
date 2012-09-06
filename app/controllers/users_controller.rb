@@ -16,10 +16,11 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     @user = User.find(params[:id])
-    @my_posts = @user.my_posts
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @user }
+    if(current_user == @user)
+      @my_posts = @user.my_posts
+      render :template => "users/show/_#{layout_prefix}-show"
+    else
+      render :template => "users/public-show/_angler-show"
     end
   end
 
@@ -36,7 +37,8 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
-    @user = current_user
+    #@user = current_user
+    @user = User.find(params[:id])
   end
 
   # POST /users
@@ -48,9 +50,9 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.save
         #create the extendable parts of a user rows for guide_ext, angler_ext, and prop_ext
-        GuideExt.create({:about => "Edit profile to change..", :experience => 'Novice', :user_id => @user.id})
-        AnglerExt.create({:about => "Edit profile to change..", :experience => 'Novice', :user_id => @user.id})
-        PropExt.create({:about => "Edit profile to change..", :user_id => @user.id})
+        GuideExt.create({:about => "", :experience => 'Novice', :user_id => @user.id})
+        AnglerExt.create({:about => "", :experience => 'Novice', :user_id => @user.id})
+        PropExt.create({:about => "", :user_id => @user.id})
         
         UserMailer.welcome_email(@user).deliver
         format.html { redirect_to login_path, notice: 'Check your email for to confirm your account.' }

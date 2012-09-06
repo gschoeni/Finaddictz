@@ -34,6 +34,8 @@ class MessagesController < ApplicationController
 
   def create
     @message = Message.new(params[:message])
+    @message.conversation.updated_at = Time.now()
+    @message.conversation.save()
     respond_to do |format|
       if @message.save
         format.html { redirect_to @message.conversation}

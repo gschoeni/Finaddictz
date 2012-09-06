@@ -27,3 +27,8 @@
 #map label { 
   width: auto; display:inline; 
 } 
+
+.profile_info_wrapper{
+  margin: 10px;
+  min-height:100px;
+}

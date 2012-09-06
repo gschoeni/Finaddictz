@@ -1,0 +1,23 @@
+
+<div class="span7">
+	
+	<div class="profile_info_wrapper">
+		<div class="profile_picture">
+			<%= image_tag @user.photo.url(:medium), :class => "img-polaroid" %>
+		</div>
+		<p>
+			<%= @user %>
+		</p>
+		<p>
+			<%= @user.about %>
+		</p>
+		
+	</div>
+	<div class="clear"></div>
+	<p><%= link_to "Message #{@user.first_name}", "/conversations/new?uid=#{@user.id}", :class => 'btn btn-small' %></p>
+	<div>
+		<h5>Completed Trips:   #</h5>
+		<h5>Overall Rating:   #</h5>
+	</div>
+		
+</div>

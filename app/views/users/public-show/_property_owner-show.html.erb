@@ -1,0 +1,13 @@
+<span class="welcome">Welcome Property Owner <%= @user.first_name %></span>
+
+<div class="profile_picture">
+	<%= image_tag @user.photo.url(:medium), :class => "img-polaroid" %>
+</div>
+<div class="span7">
+<%= @user.about %>
+</div>	
+<div class="prof_info"> 
+	<div id="edit_profile"><%= link_to 'Manage Profile', edit_user_path%> <i class="icon-pencil"></i></div>
+	
+	
+<div class="clear"></div>

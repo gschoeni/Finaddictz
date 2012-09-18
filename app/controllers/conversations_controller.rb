@@ -1,21 +1,7 @@
 class ConversationsController < ApplicationController
   
   def index
-    @conversations = Conversation.find_all_by_user_id1(current_user.id, :order => "updated_at desc")
-    Conversation.find_all_by_user_id2(current_user.id, :order => "updated_at desc").each do |c|
-      i = 0
-      @conversations.each do |c1|
-        if c1.updated_at.to_i < c.updated_at.to_i
-          @conversations.insert(i, c)
-          break
-        elsif i == @conversations.count - 1
-          @conversations.insert(i, c)
-          break
-        end
-        i = i + 1
-      end
-    end
-
+    @conversations = Conversation.get_users_conversations(current_user)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -24,8 +10,18 @@ class ConversationsController < ApplicationController
   end
 
   def show
+    #find the messsages for the conversation and create a new message for the form to handle
     @messages = Message.find_all_by_conversation_id(params[:id])
     @message = Message.new({:conversation_id => params[:id]})
+
+    #update the conversation as being read
+    conversation = Conversation.find(params[:id])
+    if conversation.messages.last.user != current_user
+      conversation.new_message = false;
+    end
+    
+    conversation.save()
+
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @messages }

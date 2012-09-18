@@ -114,14 +114,149 @@ else
 end
 
 
+
+
+if River.count == 0
+  puts 'seeding rivers'
+  River.create(
+    latitude:37.25459609821637,
+    longitude:-107.87436748398437,
+    address:"Animas River",
+    city:"",
+    state:"Colorado",
+    country:"USA"
+  )
+
+  puts '1'
+  River.create(
+    latitude:39.638420,
+    longitude:-106.074300,
+    address:"Blue River",
+    city:"",
+    state:"Colorado",
+    country:"USA"
+  )
+  puts '2'
+  River.create(
+    latitude:39.630150,
+    longitude:-106.412770,
+    address:"Colorado River",
+    city:"",
+    state:"Colorado",
+    country:"USA"
+  )
+  puts '3'
+  River.create(
+    latitude:39.378060,
+    longitude:-106.930540,
+    address:"Frying Pan River",
+    city:"",
+    state:"Colorado",
+    country:"USA"
+  )
+  puts '4'
+  River.create(
+    latitude:39.630150,
+    longitude:-106.412770,
+    address:"Gore Creek",
+    city:"",
+    state:"Colorado",
+    country:"USA"
+  )
+  puts '5'
+  River.create(
+    latitude:38.556480,
+    longitude:-107.678720,
+    address:"Gunnison River",
+    city:"",
+    state:"Colorado",
+    country:"USA"
+  )
+  puts '6'
+  River.create(
+    latitude:40.795740,
+    longitude:-106.968160,
+    address:"North Delaney Lake",
+    city:"",
+    state:"Colorado",
+    country:"USA"
+  )
+  puts '7'
+  River.create(
+    latitude:40.971270,
+    longitude:-106.343120,
+    address:"North Platte River",
+    city:"",
+    state:"Colorado",
+    country:"USA"
+  )
+  puts '8'
+  River.create(
+    latitude:37.678160,
+    longitude:-106.615570,
+    address:"Rio Grande",
+    city:"",
+    state:"Colorado",
+    country:"USA"
+  )
+  puts '9'
+  River.create(
+    latitude:39.444110,
+    longitude:-107.264560,
+    address:"Roaring Fork River",
+    city:"",
+    state:"Colorado",
+    country:"USA"
+  )
+
+  River.create(
+    latitude:39.236140,
+    longitude:-105.254980,
+    address:"South Platte River",
+    city:"",
+    state:"Colorado",
+    country:"USA"
+  )
+  puts '10'
+  River.create(
+    latitude:39.001730,
+    longitude:-105.692720,
+    address:"Spinney Mountain Reservoir",
+    city:"",
+    state:"Colorado",
+    country:"USA"
+  )
+  puts '11'
+  River.create(
+    latitude:40.795740,
+    longitude:-106.968160,
+    address:"Steamboat Lake",
+    city:"",
+    state:"Colorado",
+    country:"USA"
+  )
+  puts '12'
+else 
+  puts 'rivers already seeded'
+
+end
+
+
 if GuidePost.count < 50
   puts 'seeding guide posts'
   times = ['Morning', 'Mid-Morning', 'Afternoon', 'Late Afternoon']
   adjectives = ['Fun', 'Joyous', 'Action packed', 'Exciting', 'Wild']
   wants = ['Want', 'Need', 'Would like', 'Inquiring about']
   50.times do |i|
+    if River.count() < i%12+1
+      next
+    end
+    river = River.find(i%12+1)
     GuidePost.create(
-      user_id: (i%6),
+      user_id: (i%6+1),
+      river_id:river.id,
+      latitude:river.latitude,
+      longitude:river.longitude,
       description: "#{adjectives[i%5]} fishing tour!", 
       num_people: (i%4+1), 
       price_per: 100*(i%4+1), 
@@ -142,8 +277,15 @@ if AnglerPost.count < 50
   people = ['buddy', 'friend', 'pal', 'gal', 'guy']
   wants = ['Want', 'Need', 'Would like', 'Inquiring about']
   50.times do |i|
+    if River.count() < i%12+1
+      next
+    end
+    river = River.find(i%12+1)
     AnglerPost.create(
-      user_id:i%6,
+      user_id:i%6+1,
+      river_id:river.id,
+      latitude:river.latitude,
+      longitude:river.longitude,
       num_people: i%4+1, 
       price_min: 10*(i%6+1), 
       price_max: 20*(i%6+1), 
@@ -161,5 +303,4 @@ if AnglerPost.count < 50
 else 
   puts 'already some angler posts in the db'
 end
-
 

@@ -25,7 +25,7 @@ class AnglerPostsController < ApplicationController
   # GET /angler_posts/new.json
   def new
     @angler_post = AnglerPost.new
-
+    @rivers = River.all
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @angler_post }

@@ -5,12 +5,13 @@ class AnglerPost < ActiveRecord::Base
     validates v, :presence => true
   end
 
-    validates :price_min, :if => :price_min, :numericality => { :greater_than_or_equal_to => 0 }
-    validates :price_max, :if => :price_max, :numericality => { :greater_than_or_equal_to => 0 }
-    belongs_to :user
-
   validates :price_min, :if => :price_min, :numericality => { :greater_than_or_equal_to => 0 }
   validates :price_max, :if => :price_max, :numericality => { :greater_than_or_equal_to => 0 }
+  validates :price_min, :if => :price_min, :numericality => { :greater_than_or_equal_to => 0 }
+  validates :price_max, :if => :price_max, :numericality => { :greater_than_or_equal_to => 0 }
+
+  belongs_to :user
+  belongs_to :river
 
   #make angler posts more dynamically searchable sunspot
   searchable do

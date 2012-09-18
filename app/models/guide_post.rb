@@ -6,6 +6,9 @@ class GuidePost < ActiveRecord::Base
   end
   validates :price_per, :numericality => { :greater_than_or_equal_to => 0 }
 	belongs_to :user
+
+	belongs_to :river
+
 	
   #make guide posts more dynamically searchable sunspot
   searchable do

@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
 
   accepts_nested_attributes_for :guide_ext, :prop_ext, :angler_ext
 
-  has_attached_file :photo, :styles => { :small => "50x50>", :medium => "150x150>", :full => "500x500>"}, :default_url => '/images/no_prof.png'
+  has_attached_file :photo, :styles => { :mini => "40x40>", :small => "70x70>", :medium => "150x150>", :full => "500x500>"}, :default_url => '/images/no_prof.png'
 
   [:first_name, :last_name, :active_role].each do |v|
     validates v, :presence => true
@@ -87,5 +87,11 @@ class User < ActiveRecord::Base
     else
       self.prop_ext.about
     end
+  end
+
+  def notifications
+    puts 'in here!!!!!'
+    puts self
+    Conversation.get_num_unread_conversations(self)
   end
 end

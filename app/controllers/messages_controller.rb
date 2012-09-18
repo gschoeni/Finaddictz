@@ -35,6 +35,7 @@ class MessagesController < ApplicationController
   def create
     @message = Message.new(params[:message])
     @message.conversation.updated_at = Time.now()
+    @message.conversation.new_message = true;
     @message.conversation.save()
     respond_to do |format|
       if @message.save

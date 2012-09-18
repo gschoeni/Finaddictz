@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120904214329) do
+ActiveRecord::Schema.define(:version => 20120918193126) do
 
   create_table "angler_exts", :force => true do |t|
     t.date     "fishing_license_exp"
@@ -35,6 +35,9 @@ ActiveRecord::Schema.define(:version => 20120904214329) do
     t.datetime "updated_at"
     t.string   "title"
     t.integer  "user_id"
+    t.integer  "river_id"
+    t.float    "latitude"
+    t.float    "longitude"
   end
 
   create_table "conversations", :force => true do |t|
@@ -43,6 +46,7 @@ ActiveRecord::Schema.define(:version => 20120904214329) do
     t.integer  "user_id2"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "new_message", :default => true
   end
 
   create_table "env_prefs", :force => true do |t|
@@ -84,13 +88,17 @@ ActiveRecord::Schema.define(:version => 20120904214329) do
     t.datetime "updated_at"
     t.string   "title"
     t.boolean  "abusive_flag", :default => false
+    t.integer  "river_id"
+    t.float    "latitude"
+    t.float    "longitude"
   end
 
   create_table "locations", :force => true do |t|
-    t.decimal  "center_lat"
-    t.decimal  "center_long"
-    t.decimal  "radius"
-    t.string   "name"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.string   "address"
+    t.integer  "radius"
+    t.boolean  "gmaps"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -114,6 +122,9 @@ ActiveRecord::Schema.define(:version => 20120904214329) do
   create_table "property_posts", :force => true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "river_id"
+    t.float    "latitude"
+    t.float    "longitude"
   end
 
   create_table "ratings", :force => true do |t|
@@ -131,7 +142,7 @@ ActiveRecord::Schema.define(:version => 20120904214329) do
     t.string   "state"
     t.string   "country"
     t.string   "keyword"
-    t.string   "radius"
+    t.integer  "radius"
     t.boolean  "gmaps"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -178,7 +189,6 @@ ActiveRecord::Schema.define(:version => 20120904214329) do
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
-    t.text     "info"
   end
 
 end

@@ -3,6 +3,7 @@
   <% @messages.each do |message| %>
     <div class="msg">
       <div class="message-date"><%= message.created_at %></div>
+      <%= image_tag message.user.photo.url(:small), :height => 35, :width => 35, :class => "img-polaroid" %>
       <div class="message-sender"><%= message.who(current_user) %> said:</div>
       <div class="clear"></div>
       <div class="msg-text">
@@ -22,6 +23,12 @@
     </div>
   </div>
   <div class="actions">
-    <%= f.submit 'Reply', :class => 'btn btn-primary' %>
+    <%= f.submit 'Send', :class => 'btn btn-primary' %>
   </div>
 <% end %>
+
+
+<script type="text/javascript">
+  //for scrolling to the bottom of the messages
+  $(".conversation_messages").scrollTop($(".conversation_messages")[0].scrollHeight);
+</script>

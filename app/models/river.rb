@@ -1,6 +1,7 @@
 class River < ActiveRecord::Base
 	acts_as_gmappable
 
+	has_many :guide_posts
 	geocoded_by :make_nice_address
 	after_validation :geocode, :if => :address_changed?
 

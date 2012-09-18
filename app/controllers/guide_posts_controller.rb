@@ -26,6 +26,7 @@ class GuidePostsController < ApplicationController
   # GET /guide_posts/new.json
   def new
     @guide_post = GuidePost.new
+    @rivers = River.all
 
     respond_to do |format|
       format.html # new.html.erb
@@ -43,7 +44,6 @@ class GuidePostsController < ApplicationController
   def create
 
     @guide_post = GuidePost.new(params[:guide_post])
-
     respond_to do |format|
       if @guide_post.save
         format.html { redirect_to @guide_post, notice: 'Guide post was successfully created.' }

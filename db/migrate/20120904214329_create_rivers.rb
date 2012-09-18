@@ -8,7 +8,7 @@ class CreateRivers < ActiveRecord::Migration
       t.string :state
       t.string :country
     	t.string :keyword
-    	t.string :radius
+    	t.integer :radius
       t.boolean :gmaps
       t.timestamps
     end

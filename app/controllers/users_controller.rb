@@ -20,7 +20,7 @@ class UsersController < ApplicationController
       @my_posts = @user.my_posts
       render :template => "users/show/_#{layout_prefix}-show"
     else
-      render :template => "users/public-show/_angler-show"
+      render :template => "users/public-show/_public-show"
     end
   end
 

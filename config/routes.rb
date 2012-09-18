@@ -27,6 +27,8 @@ Finaddictz::Application.routes.draw do
   match "/login" => "user_sessions#new"
   match "/register" => "users#new"
 
+  match "/map" => "map#index"
+
 
   #for confirming a user after they register 
   match 'users/confirm/:id/:sha' => 'users#confirm'

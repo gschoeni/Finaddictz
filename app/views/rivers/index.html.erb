@@ -10,7 +10,7 @@
 
 <% @rivers.each do |river| %>
   <tr>
-    <td><%= link_to river %></td>
+    <td><%= link_to river, river %></td>
     <td><%= link_to 'Show', river %></td>
     <td><%= link_to 'Edit', edit_river_path(river) %></td>
     <td><%= link_to 'Destroy', river, confirm: 'Are you sure?', method: :delete %></td>

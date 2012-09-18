@@ -2,6 +2,7 @@
 	border-bottom:1px solid #e2e2e2;
 	min-height:70px;
 	padding:10px;
+	cursor: pointer;
 	img{
 		float:left;
 		margin-right: 10px;
@@ -13,12 +14,28 @@
 		margin-left:90px;
 		font-size:12px;
 	}
+
+	.conversation-date{
+		float:right;
+		padding:5px;
+		font-size:11px;
+	}
+
+}
+
+.new_conversation_message{
+	background: #ADD8E6;
 }
 
 .conversation_messages{
-	width:400px;
-	margin:10px;
-
+	width: 600px;
+	margin: 10px;
+	max-height: 400px;
+	overflow-y: scroll;
+	img{
+		float:left;
+		margin-top:10px;
+	}
 	.msg{
 		border-bottom:1px solid gray;
 		.msg-text{
@@ -33,6 +50,6 @@
 	.message-date{
 		float:right;
 		padding:5px;
-		font-size:12px;
+		font-size:11px;
 	}
 }

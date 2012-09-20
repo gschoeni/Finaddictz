@@ -35,6 +35,7 @@ class AnglerPostsController < ApplicationController
   # GET /angler_posts/1/edit
   def edit
     @angler_post = AnglerPost.find(params[:id])
+    @rivers = River.all
   end
 
   # POST /angler_posts

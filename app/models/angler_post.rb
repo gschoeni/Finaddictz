@@ -12,6 +12,7 @@ class AnglerPost < ActiveRecord::Base
 
   belongs_to :user
   belongs_to :river
+  belongs_to :booking_status
 
   #make angler posts more dynamically searchable sunspot
   searchable do

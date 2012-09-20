@@ -31,6 +31,9 @@
           <span class="post_tripDate"><b>Trip Date: <%=  guide_post.date.strftime("%m/%d/%Y") %></span></b><br>
           <%=h truncate(guide_post.description, :length => 80) %> <% if guide_post.description.length > 80 %>...<% end%>
           <br>
+          This Trips Status is: <%= guide_post.booking_status %>
+          <br><br>
+
           <div class="btn-group">
             <button class="btn btn-primary">Learn More</button>
             <button class="btn btn-primary" data-toggle="dropdown">
@@ -41,7 +44,7 @@
               <li><%= link_to 'Hold', guide_post %></li>
               <li><%= link_to 'Wait List', guide_post %></li>
               <li class="divider"></li>
-              <li><%= link_to 'Book this trip!', guide_post %></li>
+              <li><%= link_to 'Book this trip!', "/guide_posts/book_trip/#{guide_post.id}/#{current_user.id}" %></li>
             </ul>
           </div>
 

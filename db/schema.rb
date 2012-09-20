@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120918193126) do
+ActiveRecord::Schema.define(:version => 20120920185547) do
 
   create_table "angler_exts", :force => true do |t|
     t.date     "fishing_license_exp"
@@ -38,6 +38,13 @@ ActiveRecord::Schema.define(:version => 20120918193126) do
     t.integer  "river_id"
     t.float    "latitude"
     t.float    "longitude"
+    t.integer  "booking_status_id"
+  end
+
+  create_table "booking_statuses", :force => true do |t|
+    t.string   "status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "conversations", :force => true do |t|
@@ -87,10 +94,11 @@ ActiveRecord::Schema.define(:version => 20120918193126) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "title"
-    t.boolean  "abusive_flag", :default => false
+    t.boolean  "abusive_flag",      :default => false
     t.integer  "river_id"
     t.float    "latitude"
     t.float    "longitude"
+    t.integer  "booking_status_id"
   end
 
   create_table "locations", :force => true do |t|
@@ -105,7 +113,7 @@ ActiveRecord::Schema.define(:version => 20120918193126) do
 
   create_table "messages", :force => true do |t|
     t.text     "text"
-    t.boolean  "read"
+    t.boolean  "read",            :default => false
     t.integer  "user_id"
     t.integer  "conversation_id"
     t.datetime "created_at"
@@ -125,6 +133,7 @@ ActiveRecord::Schema.define(:version => 20120918193126) do
     t.integer  "river_id"
     t.float    "latitude"
     t.float    "longitude"
+    t.integer  "booking_status_id"
   end
 
   create_table "ratings", :force => true do |t|

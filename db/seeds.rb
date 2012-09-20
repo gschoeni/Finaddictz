@@ -242,6 +242,23 @@ else
 end
 
 
+if BookingStatus.count == 0
+  puts 'setting booking statuses'
+  BookingStatus.create(
+    status:'Booked'
+  )
+
+  BookingStatus.create(
+    status:'Pending'
+  )
+
+  BookingStatus.create(
+    status:'Open'
+  )
+else 
+  puts 'Booking statuses set'
+end
+
 if GuidePost.count < 50
   puts 'seeding guide posts'
   times = ['Morning', 'Mid-Morning', 'Afternoon', 'Late Afternoon']
@@ -254,6 +271,7 @@ if GuidePost.count < 50
     river = River.find(i%12+1)
     GuidePost.create(
       user_id: (i%6+1),
+      booking_status_id:BookingStatus.find_by_status("Open").id,
       river_id:river.id,
       latitude:river.latitude,
       longitude:river.longitude,
@@ -283,6 +301,7 @@ if AnglerPost.count < 50
     river = River.find(i%12+1)
     AnglerPost.create(
       user_id:i%6+1,
+      booking_status_id:BookingStatus.find_by_status("Open").id,
       river_id:river.id,
       latitude:river.latitude,
       longitude:river.longitude,

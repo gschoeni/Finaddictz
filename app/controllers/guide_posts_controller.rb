@@ -37,6 +37,7 @@ class GuidePostsController < ApplicationController
   # GET /guide_posts/1/edit
   def edit
     @guide_post = GuidePost.find(params[:id])
+    @rivers = River.all
   end
 
   # POST /guide_posts
@@ -44,6 +45,7 @@ class GuidePostsController < ApplicationController
   def create
 
     @guide_post = GuidePost.new(params[:guide_post])
+
     respond_to do |format|
       if @guide_post.save
         format.html { redirect_to @guide_post, notice: 'Guide post was successfully created.' }
@@ -92,7 +94,18 @@ class GuidePostsController < ApplicationController
     else
       redirect_to @guide_post, notice: 'Something went wrong..'
     end
+  end  
 
-    
-  end      
+  def book_trip
+    @guide_post = GuidePost.find(params[:id])
+    @guide_post.booking_status_id = BookingStatus.find_by_status("Pending").id;
+    #insert into trips users table here!
+
+    if @guide_post.save
+      redirect_to @guide_post, notice: 'The guide has been notified of your interest!'
+    else
+      redirect_to @guide_post, notice: 'Something went wrong..'
+    end
+  end 
+
 end

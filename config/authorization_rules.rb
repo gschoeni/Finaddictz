@@ -21,6 +21,7 @@ authorization do
     has_permission_on :conversations, :to => [:read, :create]
     has_permission_on :messages, :to => [:read, :create]
     has_permission_on :map, :to => :read
+    has_permission_on :notifications, :to => :read
 
   end
 
@@ -38,6 +39,7 @@ authorization do
     has_permission_on :conversations, :to => [:read, :create]
     has_permission_on :messages, :to => [:read, :create]
     has_permission_on :map, :to => :read
+    has_permission_on :notifications, :to => :read
   end
 
   role :property_owner do
@@ -50,6 +52,7 @@ authorization do
     has_permission_on :conversations, :to => [:read, :create]
     has_permission_on :messages, :to => [:read, :create]
     has_permission_on :map, :to => :read
+    has_permission_on :notifications, :to => :read
   end
 
   role :admin do

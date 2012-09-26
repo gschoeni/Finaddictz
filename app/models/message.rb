@@ -11,6 +11,14 @@ class Message < ActiveRecord::Base
 		end
 	end
 
+	def getUserId(current_user)
+		if self.conversation.user_id1 != current_user.id
+			self.conversation.user_id1
+		else 
+			self.conversation.user_id2
+		end
+	end
+
 	def to_s
 		self.text
 	end

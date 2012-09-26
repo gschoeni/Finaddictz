@@ -90,8 +90,10 @@ class User < ActiveRecord::Base
   end
 
   def notifications
-    puts 'in here!!!!!'
-    puts self
-    Conversation.get_num_unread_conversations(self)
+    Notification.find_all_by_user_id_and_read(self.id, false)
+  end
+
+  def unread_messages
+    0
   end
 end

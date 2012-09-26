@@ -1,4 +1,6 @@
 Finaddictz::Application.routes.draw do
+  resources :notifications
+
   resources :rivers
 
   resources :property_posts

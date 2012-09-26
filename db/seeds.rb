@@ -259,7 +259,7 @@ else
   puts 'Booking statuses set'
 end
 
-if GuidePost.count < 50
+if GuidePost.count <= 0
   puts 'seeding guide posts'
   times = ['Morning', 'Mid-Morning', 'Afternoon', 'Late Afternoon']
   adjectives = ['Fun', 'Joyous', 'Action packed', 'Exciting', 'Wild']
@@ -289,7 +289,7 @@ else
 end
 
 
-if AnglerPost.count < 50
+if AnglerPost.count <= 0
   puts 'seeding angler posts'
   times = ['Morning', 'Mid-Morning', 'Afternoon', 'Late Afternoon']
   people = ['buddy', 'friend', 'pal', 'gal', 'guy']
@@ -323,3 +323,15 @@ else
   puts 'already some angler posts in the db'
 end
 
+if NotificationType.count == 0
+  puts 'setting NotificationTypes'
+  NotificationType.create(
+    name:'message'
+  )
+
+  NotificationType.create(
+    name:'trip_booking'
+  )
+else 
+  puts 'NotificationTypes set'
+end

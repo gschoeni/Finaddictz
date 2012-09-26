@@ -99,7 +99,22 @@ class GuidePostsController < ApplicationController
   def book_trip
     @guide_post = GuidePost.find(params[:id])
     @guide_post.booking_status_id = BookingStatus.find_by_status("Pending").id;
+    
     #insert into trips users table here!
+    TripsToUser.create(
+      post_id: @guide_post.id,
+      post_booking_status_id: @guide_post.booking_status_id,
+      user_who_posted_id: @guide_post.user.id,
+      user_who_agreed_id: current_user.id
+    )
+
+    Notification.create(
+      user_id: @guide_post.user.id,
+      notification_type: NotificationType.find_by_name("trip_booking").id,
+      title: "Your post '#{@guide_post.title}' has a booking request",
+      message: "",
+      related_id: @guide_post.id
+    )
 
     if @guide_post.save
       redirect_to @guide_post, notice: 'The guide has been notified of your interest!'

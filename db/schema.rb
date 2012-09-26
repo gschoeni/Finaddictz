@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120920185547) do
+ActiveRecord::Schema.define(:version => 20120925203117) do
 
   create_table "angler_exts", :force => true do |t|
     t.date     "fishing_license_exp"
@@ -120,6 +120,23 @@ ActiveRecord::Schema.define(:version => 20120920185547) do
     t.datetime "updated_at"
   end
 
+  create_table "notification_types", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "notifications", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "notification_type"
+    t.string   "title"
+    t.string   "message"
+    t.integer  "related_id"
+    t.boolean  "read",              :default => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "prop_exts", :force => true do |t|
     t.text     "about"
     t.integer  "user_id"
@@ -167,6 +184,16 @@ ActiveRecord::Schema.define(:version => 20120920185547) do
   create_table "roles_users", :force => true do |t|
     t.integer "role_id"
     t.integer "user_id"
+  end
+
+  create_table "trips_to_users", :force => true do |t|
+    t.integer  "post_id"
+    t.integer  "post_booking_status_id"
+    t.integer  "user_who_posted_id"
+    t.integer  "user_who_agreed_id"
+    t.boolean  "trip_has_been_finished", :default => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "user_sessions", :force => true do |t|

@@ -24,7 +24,6 @@ class MessagesController < ApplicationController
 
     @conversation = Conversation.new
     @message = Message.new
-    #@message.conversation_id = @conversation.id
 
     respond_to do |format|
       format.html # new.html.erb
@@ -37,6 +36,15 @@ class MessagesController < ApplicationController
     @message.conversation.updated_at = Time.now()
     @message.conversation.new_message = true;
     @message.conversation.save()
+
+    Notification.create(
+      user_id: @message.getUserId(current_user),
+      notification_type: NotificationType.find_by_name("message"),
+      title: "You have a message from #{User.find(@message.getUserId(current_user))}.",
+      message: "#{@message}",
+      related_id: @message.conversation.id
+    )
+
     respond_to do |format|
       if @message.save
         format.html { redirect_to @message.conversation}

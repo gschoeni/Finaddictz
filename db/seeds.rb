@@ -332,6 +332,14 @@ if NotificationType.count == 0
   NotificationType.create(
     name:'trip_booking'
   )
+
+  NotificationType.create(
+    name:'trip_full'
+  )
+
+  NotificationType.create(
+    name:'trip_confirmed'
+  )
 else 
   puts 'NotificationTypes set'
 end

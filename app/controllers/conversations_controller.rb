@@ -42,8 +42,16 @@ class ConversationsController < ApplicationController
 
   def create
     @conversation = Conversation.new(params[:conversation])
+
     respond_to do |format|
       if @conversation.save
+        Notification.create(
+          user_id: @conversation.messages.first.getUserId(current_user),
+          notification_type: NotificationType.find_by_name("message"),
+          title: "You have a message from #{User.find(@conversation.messages.first.getUserId(current_user))}.",
+          message: "#{@conversation.messages.first}",
+          related_id: @conversation.id
+        )
         format.html { redirect_to @conversation, notice: 'Message successfully sent.' }
         format.json { render json: @conversation, status: :created, location: @conversation }
       else

@@ -59,7 +59,7 @@ class ApplicationController < ActionController::Base
 
 	  #method for redirecting user if they do not have access via declarative auth
 	  def permission_denied
-	    flash[:error] = "You do not have access to that."
+	    flash[:error] = "Access Denied"
 	    if current_user
 	    	redirect_url = user_path(current_user)
 	    else 

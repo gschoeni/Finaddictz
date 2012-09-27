@@ -46,6 +46,8 @@ Finaddictz::Application.routes.draw do
 
   put "guide_posts/:id/flag_as_abused" => 'guide_posts#flag_as_abused', :as => 'flag_as_abused'
 
+  delete "guide_posts/:id/remove_user_from_trip/:user_id" => 'guide_posts#remove_user_from_trip', :as => 'remove_user_from_trip'
+
   resources :users
 
   root :to => "user_sessions#new"

@@ -1,4 +1,22 @@
 <legend>Editing Guide Post</legend>
+<% if @interested_user_count &&  @interested_user_count > 0 %>
+	<div class="alert alert-success">
+		You have <b><%= pluralize(@interested_user_count, 'user') %></b> interested in this trip. To confirm the trip change the "Trip Status" below to booked. Otherwise you can inform the user the trip is full by clicking 'Deny Request'.
+	</div>
+	<h5>Interested Users:</h5>
+	<div class="span4">
+		<% @users.each do |user| %>
+			<p>
+				<%= user %>
+			</p>
+			<%= link_to 'View Profile', user_path(user), :class => 'btn btn-small' %> 
+			<%= link_to 'Deny Request', "/guide_posts/#{@guide_post.id}/remove_user_from_trip/#{user.id}", :class => 'btn btn-small btn-danger', :method => 'DELETE' %>
+			
+			<hr/>
+		<% end %>
+	</div>
+<% end %>
+<div class="clear"></div>
 
 <%= render 'form' %>
 

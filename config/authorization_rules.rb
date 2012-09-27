@@ -17,7 +17,7 @@ authorization do
     has_permission_on [:guide_posts, :angler_posts], :to => :update do
       if_attribute :user_id => is { user.id }
     end
-    has_permission_on [:guide_posts, :angler_posts], :to => [:create, :flag_as_abused, :book_trip]
+    has_permission_on [:guide_posts, :angler_posts], :to => [:create, :flag_as_abused, :book_trip, :remove_user_from_trip]
     has_permission_on :conversations, :to => [:read, :create]
     has_permission_on :messages, :to => [:read, :create]
     has_permission_on :map, :to => :read
@@ -35,7 +35,7 @@ authorization do
     has_permission_on [:guide_posts, :angler_posts], :to => :update do
       if_attribute :user_id => is { user.id }
     end
-    has_permission_on [:guide_posts, :angler_posts], :to => [:create, :flag_as_abused, :book_trip]
+    has_permission_on [:guide_posts, :angler_posts], :to => [:create, :flag_as_abused, :book_trip, :remove_user_from_trip]
     has_permission_on :conversations, :to => [:read, :create]
     has_permission_on :messages, :to => [:read, :create]
     has_permission_on :map, :to => :read

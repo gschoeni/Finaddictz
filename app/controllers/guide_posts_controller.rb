@@ -15,6 +15,11 @@ class GuidePostsController < ApplicationController
   # GET /guide_posts/1.json
   def show
     @guide_post = GuidePost.find(params[:id])
+    @post_is_booked = true if @guide_post.booking_status == BookingStatus.find_by_status("Booked")
+    @post_is_pending = true if @guide_post.booking_status == BookingStatus.find_by_status("Pending")
+    if @post_is_pending
+      @pending_users = TripsToUser.find_all_by_post_id(params[:id]).count()
+    end
 
     respond_to do |format|
       format.html # show.html.erb
@@ -38,6 +43,12 @@ class GuidePostsController < ApplicationController
   def edit
     @guide_post = GuidePost.find(params[:id])
     @rivers = River.all
+    interested_users = TripsToUser.find_all_by_post_id(params[:id])
+    @interested_user_count = interested_users.count()
+    @users = []
+    interested_users.each do |u|
+      @users.push(User.find_by_id(u.user_who_agreed_id))
+    end
   end
 
   # POST /guide_posts
@@ -61,6 +72,13 @@ class GuidePostsController < ApplicationController
   # PUT /guide_posts/1.json
   def update
     @guide_post = GuidePost.find(params[:id])
+    @rivers = River.all
+    interested_users = TripsToUser.find_all_by_post_id(params[:id])
+    @interested_user_count = interested_users.count()
+    @users = []
+    interested_users.each do |u|
+      @users.push(User.find_by_id(u.user_who_agreed_id))
+    end
 
     respond_to do |format|
       if @guide_post.update_attributes(params[:guide_post])
@@ -99,28 +117,47 @@ class GuidePostsController < ApplicationController
   def book_trip
     @guide_post = GuidePost.find(params[:id])
     @guide_post.booking_status_id = BookingStatus.find_by_status("Pending").id;
-    
-    #insert into trips users table here!
-    TripsToUser.create(
-      post_id: @guide_post.id,
-      post_booking_status_id: @guide_post.booking_status_id,
-      user_who_posted_id: @guide_post.user.id,
-      user_who_agreed_id: current_user.id
-    )
+    unless TripsToUser.find_by_post_id_and_user_who_agreed_id(params[:id], current_user.id)
+      #insert into trips users table here!
+      TripsToUser.create(
+        post_id: @guide_post.id,
+        post_booking_status_id: @guide_post.booking_status_id,
+        user_who_posted_id: @guide_post.user.id,
+        user_who_agreed_id: current_user.id
+      )
+
+      Notification.create(
+        user_id: @guide_post.user.id,
+        notification_type: NotificationType.find_by_name("trip_booking").id,
+        title: "#{current_user} has requested to book your trip: '#{@guide_post.title}'",
+        message: "",
+        related_id: @guide_post.id
+      )
+
+      if @guide_post.save
+        redirect_to @guide_post, notice: 'The guide has been notified of your interest!'
+      else
+        redirect_to @guide_post, notice: 'Something went wrong..'
+      end
+    else 
+      redirect_to @guide_post, notice: 'You have already send a request for booking this trip.'
+    end
+  end 
+
+  def remove_user_from_trip
+    @guide_post = GuidePost.find(params[:id])
+    @trip = TripsToUser.find_by_post_id_and_user_who_agreed_id(params[:id], params[:user_id])
+    @trip.destroy
 
     Notification.create(
-      user_id: @guide_post.user.id,
-      notification_type: NotificationType.find_by_name("trip_booking").id,
-      title: "Your post '#{@guide_post.title}' has a booking request",
-      message: "",
+      user_id: @trip.user_who_agreed_id,
+      notification_type: NotificationType.find_by_name("trip_full").id,
+      title: "Trip Full",
+      message: "Unfortunately your trip with #{@guide_post.user} is full, you can contact #{@guide_post.user} for more details.",
       related_id: @guide_post.id
     )
 
-    if @guide_post.save
-      redirect_to @guide_post, notice: 'The guide has been notified of your interest!'
-    else
-      redirect_to @guide_post, notice: 'Something went wrong..'
-    end
-  end 
+    redirect_to edit_guide_post_url(params[:id]), notice: 'User has been informed that this slot has been taken.'
+  end
 
 end

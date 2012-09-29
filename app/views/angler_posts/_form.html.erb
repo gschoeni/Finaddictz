@@ -34,18 +34,6 @@
     </div>
   </div>
   <div class="control-group">
-    <%= f.label :price_min, :class => "control-label" %>
-    <div class="controls">
-      <%= f.number_field :price_min, :class => "text_field" %>
-    </div>
-  </div>
-  <div class="control-group">
-    <%= f.label :price_max, :class => "control-label" %>
-    <div class="controls">
-      <%= f.number_field :price_max, :class => "text_field" %>
-    </div>
-  </div>
-  <div class="control-group">
     <%= f.label :date, :class => "control-label" %>
     <div class="controls">
       <%= f.date_select :date, :class => "text_field" %>
@@ -57,26 +45,6 @@
       <%= f.text_field :time, :class => "text_field" %>
     </div>
   </div>
-
-  <div class="control-group">
-    <%= f.label :search_guide, :class => "control-label" %>
-    <div class="controls">
-      <%= f.check_box :search_guide %>
-    </div>
-  </div>
-  <div class="control-group">
-    <%= f.label :search_angler, :class => "control-label" %>
-    <div class="controls">
-      <%= f.check_box :search_angler %>
-      </div>
-  </div>
-  <div class="control-group">
-    <%= f.label "Trip Status:", :class => "control-label" %>
-    <div class="controls">
-      <%= f.select :booking_status_id, BookingStatus.all.reverse!.collect {|s| [ s, s.id ] }, :selected => "Open" %>
-    </div>
-  </div>
-
   <%= f.hidden_field :latitude, :id => 'latitude_hidden_field' %>  
   <%= f.hidden_field :longitude, :id => 'longitude_hidden_field' %>
   <div class="control-group">
@@ -91,9 +59,8 @@
     </div>
   </div>
   
-  <div class="form-actions">
-    <%= f.submit %>
-  </div>
+    <%= f.submit :class => 'btn btn-primary' %>
+
 <% end %>
 
 <script type="text/javascript"> 

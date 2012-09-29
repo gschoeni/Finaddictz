@@ -42,22 +42,12 @@
           This Trips Status is: <%= guide_post.booking_status %>
           <br><br>
 
-          <div class="btn-group">
-            <button class="btn btn-primary">Learn More</button>
-            <button class="btn btn-primary" data-toggle="dropdown">
-              <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu">
-              <li><%= link_to 'Details', guide_post %></li>
-              <li><%= link_to 'Hold', guide_post %></li>
-              <li><%= link_to 'Wait List', guide_post %></li>
-              <li class="divider"></li>
-              <li><%= link_to 'Book this trip!', "/guide_posts/book_trip/#{guide_post.id}/#{current_user.id}" %></li>
-            </ul>
+            <%= link_to 'Trip Details', guide_post, :class => 'btn btn-primary' %>
           </div>
 
             <br>
         </div>
+        <% end %>
     </div>
-<% end %>
+
 <%= will_paginate @guide_posts, :renderer => BootstrapPagination::Rails %>

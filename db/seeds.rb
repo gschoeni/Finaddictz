@@ -312,6 +312,24 @@ else
   puts 'already some angler posts in the db'
 end
 
+if PropertyPost.count == 0
+  puts 'seeding property posts'
+  times = ['Morning', 'Mid-Morning', 'Afternoon', 'Late Afternoon']
+  people = ['buddy', 'friend', 'pal', 'gal', 'guy']
+  wants = ['Want', 'Need', 'Would like', 'Inquiring about']
+  20.times do |i| 
+    PropertyPost.create(
+      title: "#{wants[i%4]} Property",
+      description: "#{} description",
+      booking_status_id:BookingStatus.find_by_status("Open").id,
+      price: "#{i%500}",
+      user_id: i%6+1
+      )
+  end
+else
+  puts 'already seeded property posts'
+end
+
 if NotificationType.count == 0
   puts 'setting NotificationTypes'
   NotificationType.create(

@@ -314,13 +314,13 @@ end
 
 if PropertyPost.count == 0
   puts 'seeding property posts'
-  times = ['Morning', 'Mid-Morning', 'Afternoon', 'Late Afternoon']
+  description = ['This is a really nice spot', 'All by yourself on a stretch of the St. Vrain', 'Big Thompson place', 'This is a private spot that is not fished much anymore']
   people = ['buddy', 'friend', 'pal', 'gal', 'guy']
-  wants = ['Want', 'Need', 'Would like', 'Inquiring about']
+  wants = ['Offering', 'Sweet', 'Fishing', 'Big time fishing']
   20.times do |i| 
     PropertyPost.create(
       title: "#{wants[i%4]} Property",
-      description: "#{} description",
+      description: "#{description[i%4]}",
       booking_status_id:BookingStatus.find_by_status("Open").id,
       price: "#{i%500}",
       user_id: i%6+1

@@ -5,10 +5,14 @@ class AnglerPost < ActiveRecord::Base
     validates v, :presence => true
   end
 
-  validates :price_min, :if => :price_min, :numericality => { :greater_than_or_equal_to => 0 }
-  validates :price_max, :if => :price_max, :numericality => { :greater_than_or_equal_to => 0 }
-  validates :price_min, :if => :price_min, :numericality => { :greater_than_or_equal_to => 0 }
-  validates :price_max, :if => :price_max, :numericality => { :greater_than_or_equal_to => 0 }
+  #validates date is not in the past
+    validate :not_past_date
+
+    def not_past_date
+      if self.date.past?
+        errors.add(:date, 'of trip cannot be in the past')
+      end
+    end
 
   belongs_to :user
   belongs_to :river
@@ -29,7 +33,6 @@ class AnglerPost < ActiveRecord::Base
       search = AnglerPost.search do
         #the full text search
         fulltext params[:search]
-
 
         #the pricing search params
         params[:price_max] = 1000 if (params[:price_max] == nil)
@@ -53,7 +56,6 @@ class AnglerPost < ActiveRecord::Base
           with(:date).less_than t
         end 
 
-        
         #with(:date).greater_than params[:start_date] if params[:start_date].present?
         paginate :page => params[:page] || 1, :per_page => 10
         order_by :date, :desc

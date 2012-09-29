@@ -60,7 +60,7 @@ class AnglerPostsController < ApplicationController
   # PUT /angler_posts/1.json
   def update
     @angler_post = AnglerPost.find(params[:id])
-
+    @rivers = River.all
     respond_to do |format|
       if @angler_post.update_attributes(params[:angler_post])
         format.html { redirect_to @angler_post, notice: 'Angler post was successfully updated.' }

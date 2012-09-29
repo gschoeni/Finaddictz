@@ -23,6 +23,16 @@ class GuidePost < ActiveRecord::Base
   end
   validates :price_per, :numericality => { :greater_than_or_equal_to => 0 }
   validates_with GuidePostValidator
+
+  #validates the date of trip is not in the past
+  validate :not_past_date
+
+def not_past_date
+  if self.date.past?
+    errors.add(:date, 'of trip cannot be in the past')
+  end
+end
+
   #end validations
 
   #relations

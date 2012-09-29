@@ -34,6 +34,8 @@ Finaddictz::Application.routes.draw do
   #for changing a trips status from open to pending
   match 'guide_posts/book_trip/:id/:user_id' => 'guide_posts#book_trip', :as => 'book_trip'
 
+  match 'angler_posts/book_trip/:id/:user_id' => 'angler_posts#book_trip', :as => 'book_trip'
+
   #for confirming a user after they register 
   match 'users/confirm/:id/:sha' => 'users#confirm'
 

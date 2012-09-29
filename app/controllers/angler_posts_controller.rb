@@ -79,8 +79,20 @@ class AnglerPostsController < ApplicationController
     @angler_post.destroy
 
     respond_to do |format|
-      format.html { redirect_to angler_posts_url }
+      format.html { redirect_to current_user, notice: 'Your post has been deleted.' }
       format.json { head :ok }
     end
   end
+
+  def book_trip
+    @angler_post = AnglerPost.find(params[:id])
+    @angler_post.booking_status_id = BookingStatus.find_by_status("Booked").id;
+ 
+    if @angler_post.save
+      redirect_to current_user, notice: "Your trip has been marked as booked."
+    else
+      redirect_to current_user, notice: 'Something went wrong..'
+    end
+  end 
+
 end

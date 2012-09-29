@@ -100,7 +100,7 @@ class GuidePostsController < ApplicationController
     @guide_post.destroy
 
     respond_to do |format|
-      format.html { redirect_to guide_posts_url }
+      format.html { redirect_to current_user, notice: 'Your post has been deleted.' }
       format.json { head :ok }
     end
   end
@@ -142,7 +142,7 @@ class GuidePostsController < ApplicationController
         redirect_to @guide_post, notice: 'Something went wrong..'
       end
     else 
-      redirect_to @guide_post, notice: 'You have already send a request for booking this trip.'
+      redirect_to @guide_post, notice: 'You have already sent a request for booking this trip.'
     end
   end 
 

@@ -42,6 +42,14 @@
       <%= f.text_field :time, :class => "text_field" %>
     </div>
   </div>
+
+  <div class="control-group">
+    <%= f.label "Trip Status:", :class => "control-label" %>
+    <div class="controls">
+      <%= f.select :booking_status_id, [BookingStatus.find_by_status('Booked'), BookingStatus.find_by_status('Open')].collect {|s| [ s, s.id ] } %>
+    </div>
+  </div>
+
   <%= f.hidden_field :latitude, :id => 'latitude_hidden_field' %>  
   <%= f.hidden_field :longitude, :id => 'longitude_hidden_field' %>
   <div class="control-group">

@@ -7,16 +7,16 @@
   <li class="divider-vertical"></li>
   <li class="dropdown">
     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%=current_user%> 
-      <% if current_user.notifications > 0 %>
-        <span class="badge badge-important"><%=current_user.notifications %></span> 
+      <% if current_user.notifications.count > 0 %>
+        <span class="badge badge-important"><%=current_user.notifications.count %></span> 
       <% end %>
     </a>
     <ul class="dropdown-menu">
       <li>
         <a href="<%= conversations_url %>">
           Inbox
-          <% if current_user.notifications > 0 %>
-            <span class="badge badge-important"><%=current_user.notifications %></span> 
+          <% if current_user.notifications.count > 0 %>
+            <span class="badge badge-important"><%=current_user.notifications.count %></span> 
           <% end %>
         </a>
       </li>

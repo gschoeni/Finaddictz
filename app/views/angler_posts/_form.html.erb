@@ -1,17 +1,14 @@
 <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script> 
 <%= form_for(@angler_post, :html => {:class => 'form-horizontal'}) do |f| %>
   <% if @angler_post.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@angler_post.errors.count, "error") %> prohibited this angler_post from being saved:</h2>
-
-      <ul>
+    <div class="alert alert-error">
       <% @angler_post.errors.full_messages.each do |msg| %>
+      <ul>  
         <li><%= msg %></li>
+      </ul>  
       <% end %>
-      </ul>
     </div>
   <% end %>
-
 
    <%= f.hidden_field :user_id, :value => current_user.id %>
 

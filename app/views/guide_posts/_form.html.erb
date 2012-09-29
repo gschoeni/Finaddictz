@@ -2,14 +2,12 @@
 
 <%= form_for(@guide_post, :html => {:class => 'form-horizontal'}) do |f| %>
   <% if @guide_post.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@guide_post.errors.count, "error") %> prohibited this guide_post from being saved:</h2>
-
-      <ul>
+    <div class="alert alert-error">
       <% @guide_post.errors.full_messages.each do |msg| %>
+      <ul>  
         <li><%= msg %></li>
-      <% end %>
       </ul>
+      <% end %>
     </div>
   <% end %>
   <%= f.hidden_field :user_id, :value => current_user.id %>
@@ -72,9 +70,9 @@
     </div>
   </div>
   <div class="form-actions">
-    <%= f.submit 'Post', :class => 'btn btn-primary' %>
+    <%= f.submit 'Update Post', :class => 'btn btn-primary' %>
   </div>
-<% end %>
+    <% end %>
 
 
 

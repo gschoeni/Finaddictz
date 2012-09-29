@@ -5,6 +5,7 @@
 	<thead>
 		<th>Title</th>
 		<th>Status</th>
+		<th>Trip Date</th>
 		<th>Date Posted</th>
 		<th>Manage Posts</th>
 
@@ -14,6 +15,7 @@
 	    <tr>
 		    	<td><%=h truncate(post.title, :length => 30) %> <% if post.title.length > 30 %><% end%></td>
 		    	<td><%= post.booking_status %></td>
+		    	<td cellspacing="10px"><%=post.date.strftime("%m/%d/%Y") %></td>
 		    	<td cellspacing="10px"><%=post.created_at.strftime("%m/%d/%Y") %></td>
 		      <td>         
 		        <div class="btn-group">

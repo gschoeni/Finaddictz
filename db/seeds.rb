@@ -269,6 +269,7 @@ if GuidePost.count <= 0
       next
     end
     river = River.find(i%12+1)
+    puts "#{Time.now().year}-#{Time.now().month+1}-#{i%Time.now.end_of_month.day+1}"
     GuidePost.create(
       user_id: (i%6+1),
       booking_status_id:BookingStatus.find_by_status("Open").id,
@@ -278,7 +279,7 @@ if GuidePost.count <= 0
       description: "#{adjectives[i%5]} fishing tour!", 
       num_people: (i%4+1), 
       price_per: 100*(i%4+1), 
-      date: Time.mktime(2012, 8, i%29+1), 
+      date: "#{Time.now().year}-#{Time.now().month+1}-#{i%Time.now.end_of_month.day+1}", 
       time: times[i%4], 
       status: nil,
       title: "#{wants[i%4]} #{i%4} people to go fishing with."
@@ -308,7 +309,7 @@ if AnglerPost.count <= 0
       num_people: i%4+1, 
       price_min: 10*(i%6+1), 
       price_max: 20*(i%6+1), 
-      date: Time.mktime(2012, 8, i%29+1), 
+      date: "#{Time.now().year}-#{Time.now().month+1}-#{i%Time.now.end_of_month.day+1}",
       time: times[i%4], 
       description: "#{wants[i%4]} to go fishing with a #{people[i%5]}, let me know if you interested", 
       search_guide: false, 

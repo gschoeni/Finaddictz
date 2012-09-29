@@ -54,7 +54,7 @@ authorization do
     has_permission_on [:property_posts], :to => [:update, :delete] do
       if_attribute :user_id => is { user.id }
     end
-    has_permission_on [:property_posts], :to => :read
+    has_permission_on [:property_posts], :to => [:read, :create]
     has_permission_on :conversations, :to => [:read, :create]
     has_permission_on :messages, :to => [:read, :create]
     has_permission_on :map, :to => :read

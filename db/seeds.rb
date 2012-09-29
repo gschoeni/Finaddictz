@@ -127,7 +127,6 @@ if River.count == 0
     country:"USA"
   )
 
-  puts '1'
   River.create(
     latitude:39.638420,
     longitude:-106.074300,
@@ -136,7 +135,6 @@ if River.count == 0
     state:"Colorado",
     country:"USA"
   )
-  puts '2'
   River.create(
     latitude:39.630150,
     longitude:-106.412770,
@@ -145,7 +143,6 @@ if River.count == 0
     state:"Colorado",
     country:"USA"
   )
-  puts '3'
   River.create(
     latitude:39.378060,
     longitude:-106.930540,
@@ -154,7 +151,6 @@ if River.count == 0
     state:"Colorado",
     country:"USA"
   )
-  puts '4'
   River.create(
     latitude:39.630150,
     longitude:-106.412770,
@@ -163,7 +159,6 @@ if River.count == 0
     state:"Colorado",
     country:"USA"
   )
-  puts '5'
   River.create(
     latitude:38.556480,
     longitude:-107.678720,
@@ -172,7 +167,6 @@ if River.count == 0
     state:"Colorado",
     country:"USA"
   )
-  puts '6'
   River.create(
     latitude:40.795740,
     longitude:-106.968160,
@@ -181,7 +175,6 @@ if River.count == 0
     state:"Colorado",
     country:"USA"
   )
-  puts '7'
   River.create(
     latitude:40.971270,
     longitude:-106.343120,
@@ -190,7 +183,6 @@ if River.count == 0
     state:"Colorado",
     country:"USA"
   )
-  puts '8'
   River.create(
     latitude:37.678160,
     longitude:-106.615570,
@@ -199,7 +191,6 @@ if River.count == 0
     state:"Colorado",
     country:"USA"
   )
-  puts '9'
   River.create(
     latitude:39.444110,
     longitude:-107.264560,
@@ -217,7 +208,6 @@ if River.count == 0
     state:"Colorado",
     country:"USA"
   )
-  puts '10'
   River.create(
     latitude:39.001730,
     longitude:-105.692720,
@@ -226,7 +216,6 @@ if River.count == 0
     state:"Colorado",
     country:"USA"
   )
-  puts '11'
   River.create(
     latitude:40.795740,
     longitude:-106.968160,
@@ -278,7 +267,7 @@ if GuidePost.count <= 0
       description: "#{adjectives[i%5]} fishing tour!", 
       num_people: (i%4+1), 
       price_per: 100*(i%4+1), 
-      date: Time.mktime(2012, 8, i%29+1), 
+      date: "#{Time.now().year}-#{Time.now().month+1}-#{i%Time.now.end_of_month.day+1}", 
       time: times[i%4], 
       status: nil,
       title: "#{wants[i%4]} #{i%4} people to go fishing with."
@@ -308,7 +297,7 @@ if AnglerPost.count <= 0
       num_people: i%4+1, 
       price_min: 10*(i%6+1), 
       price_max: 20*(i%6+1), 
-      date: Time.mktime(2012, 8, i%29+1), 
+      date: "#{Time.now().year}-#{Time.now().month+1}-#{i%Time.now.end_of_month.day+1}",
       time: times[i%4], 
       description: "#{wants[i%4]} to go fishing with a #{people[i%5]}, let me know if you interested", 
       search_guide: false, 

@@ -38,7 +38,7 @@ ActiveRecord::Schema.define(:version => 20120929205021) do
     t.integer  "river_id"
     t.float    "latitude"
     t.float    "longitude"
-    t.integer  "booking_status_id"
+    t.integer  "booking_status_id", :default => 3
   end
 
   create_table "booking_statuses", :force => true do |t|
@@ -98,7 +98,7 @@ ActiveRecord::Schema.define(:version => 20120929205021) do
     t.integer  "river_id"
     t.float    "latitude"
     t.float    "longitude"
-    t.integer  "booking_status_id"
+    t.integer  "booking_status_id", :default => 3
   end
 
   create_table "locations", :force => true do |t|
@@ -150,7 +150,7 @@ ActiveRecord::Schema.define(:version => 20120929205021) do
     t.integer  "river_id"
     t.float    "latitude"
     t.float    "longitude"
-    t.integer  "booking_status_id"
+    t.integer  "booking_status_id", :default => 3
     t.integer  "user_id"
     t.text     "description"
     t.string   "title"

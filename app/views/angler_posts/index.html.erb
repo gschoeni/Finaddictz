@@ -1,25 +1,32 @@
 <h1><font color="red">FinAddictz</font> Trips Wanted</h1>
 <br>
-<%= form_for request.path, :method => 'get' do |f|%>
-    <%= f.label :search_text %>
-    <%= text_field_tag :search, params[:search] %>
-    <br>
-    
-    <%= f.label 'Minimum Price' %>
-    <%= text_field_tag :price_min, params[:price_min] %>
-    <br>
+<div class="horizontal-form-layout">
+  <%= form_for request.path, :method => 'get' do |f|%>
+    <div class="form-element-wrapper">
+      <%= f.label :search_text %>
+      <%= text_area_tag :search, params[:search], :rows => '4'%>
+    </div>
+      
+    <div class="form-element-wrapper">
+      <%= f.label 'Minimum Price' %>
+      <%= text_field_tag :price_min, params[:price_min] %><br/>
+      <%= f.label "Maximum Price #{params[:price_max]}" %>
+      <%= text_field_tag :price_max, params[:price_max] %>
+    </div>
 
-    <%= f.label 'Maximum Price' %>
-    <%= text_field_tag :price_max, params[:price_max] %>
-    
-    <%= f.label :start_date %>
-    <%= text_field_tag :start_date, params[:start_date] %>
-
-    <%= f.label :end_date %>
-    <%= text_field_tag :end_date, params[:end_date] %>
-    <br>
-    <%= f.submit 'Search trips'%>
-<% end %>
+    <div class="form-element-wrapper">
+      <%= f.label :start_date %>
+      <%= text_field_tag :start_date, params[:start_date] %><br/>
+      <%= f.label :end_date %>
+      <%= text_field_tag :end_date, params[:end_date] %>
+    </div>
+    <div class="clear"></div>
+    <div class="form-element-wrapper">
+      <%= f.submit 'Search trips'%>
+    </div>
+    <div class="clear"></div>
+  <% end %>
+</div>
 
 <%= will_paginate @angler_posts, :renderer => BootstrapPagination::Rails %>
 <% @angler_posts.each do |angler_post|%>

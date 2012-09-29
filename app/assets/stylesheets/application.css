@@ -32,3 +32,8 @@
   margin: 10px;
   min-height:100px;
 }
+
+.horizontal-form-layout .form-element-wrapper{
+  float:left;
+  padding: 10px;
+}

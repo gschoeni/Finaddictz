@@ -67,8 +67,8 @@ class GuidePost < ActiveRecord::Base
 	      fulltext params[:search]
 
 	      #the pricing search params
-	      params[:price_max] = 1000 unless (params[:price_max] == nil)
-	      params[:price_min] = 0 unless (params[:price_min] == nil)
+	      params[:price_max] = 1000 if (params[:price_max] == nil)
+	      params[:price_min] = 0 if (params[:price_min] == nil)
 	      with(:price_per, params[:price_min].to_i..params[:price_max].to_i)
 
 	      #expects 08/19/2012 for dates

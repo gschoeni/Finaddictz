@@ -3,7 +3,9 @@ class GuidePostsController < ApplicationController
   # GET /guide_posts
   # GET /guide_posts.json
   def index
-
+    if params == {"action"=>"index", "controller"=>"guide_posts"}
+      params.merge!({:price_min => 0, :price_max => 1000})
+    end
     @guide_posts  = GuidePost.fullSearch(params)
     respond_to do |format|
       format.html # index.html.erb

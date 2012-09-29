@@ -2,8 +2,10 @@ class AnglerPostsController < ApplicationController
   # GET /angler_posts
   # GET /angler_posts.json
   def index 
-
-    @angler_posts  = AnglerPost.fullSearch(params)
+    if params == {"action"=>"index", "controller"=>"angler_posts"}
+      params.merge!({:price_min => 0, :price_max => 1000})
+    end
+    @angler_posts = AnglerPost.fullSearch(params)
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @angler_posts }

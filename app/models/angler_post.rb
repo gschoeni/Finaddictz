@@ -32,8 +32,8 @@ class AnglerPost < ActiveRecord::Base
 
 
         #the pricing search params
-        params[:price_max] = 1000 unless (params[:price_max] == nil)
-        params[:price_min] = 0 unless (params[:price_min] == nil)
+        params[:price_max] = 1000 if (params[:price_max] == nil)
+        params[:price_min] = 0 if (params[:price_min] == nil)
         #puts "price max: #{(params[:price_max] == nil)}"
         with(:price_min, params[:price_min].to_i..params[:price_max].to_i)
         with(:price_max, params[:price_min].to_i..params[:price_max].to_i)

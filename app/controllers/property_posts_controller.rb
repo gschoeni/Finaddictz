@@ -25,7 +25,7 @@ class PropertyPostsController < ApplicationController
   # GET /property_posts/new.json
   def new
     @property_post = PropertyPost.new
-
+    @rivers = River.all
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @property_post }
@@ -41,7 +41,7 @@ class PropertyPostsController < ApplicationController
   # POST /property_posts.json
   def create
     @property_post = PropertyPost.new(params[:property_post])
-
+    @rivers = River.all
     respond_to do |format|
       if @property_post.save
         format.html { redirect_to @property_post, notice: 'Property post was successfully created.' }
@@ -57,7 +57,7 @@ class PropertyPostsController < ApplicationController
   # PUT /property_posts/1.json
   def update
     @property_post = PropertyPost.find(params[:id])
-
+    @rivers = River.all
     respond_to do |format|
       if @property_post.update_attributes(params[:property_post])
         format.html { redirect_to @property_post, notice: 'Property post was successfully updated.' }

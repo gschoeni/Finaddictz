@@ -43,20 +43,11 @@
         <div>Trip Status: <%=angler_post.booking_status%></div>
         <br>
 
-        <div class="btn-group">
-          <button class="btn btn-primary">Learn More</button>
-          <button class="btn btn-primary" data-toggle="dropdown">
-            <span class="caret"></span>
-          </button>
-          <ul class="dropdown-menu">
-            <li><%= link_to 'Details', angler_post %></li>
-            <li><%= link_to 'Contact Angler', angler_post %></li>
-            <li class="divider"></li>
-            <li><%= link_to 'Book this trip!', angler_post %></li>
-          </ul>
-        </div>
-        <br>
+        <%= link_to 'Trip Details', angler_post, :class => 'btn btn-primary' %>
       </div>
+        <br>
     </div>
-<% end %>
+    <% end %>
+    </div>
+
 <%= will_paginate @angler_posts, :renderer => BootstrapPagination::Rails %>

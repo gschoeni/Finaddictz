@@ -48,19 +48,10 @@
         <tr>
           <td colspan=2>         
             <div class="btn-group">
-                <button class="btn btn-primary" align="center">More</button>
-                <button class="btn btn-primary" data-toggle="dropdown">
-                  <span class="caret"></span>
-                </button>
-
-                <ul class="dropdown-menu">
-                  <li><%= link_to 'Message Angler', "/conversations/new?uid=#{@angler_post.user.id}" %></li>
-                  <li><%= link_to 'Hold', @angler_post %></li>
-                  <li><%= link_to 'Wait List', @angler_post %></li>
-                  <li class="divider"></li>
-                  <li><%= link_to 'Book this trip!', @angler_post %></li>
-                </ul>
-              </div></td>    </tr>       
+                <%= link_to 'Message Angler', "/conversations/new?uid=#{@angler_post.user.id}", :class => 'btn btn-primary' %>
+            </div>
+          </td>    
+        </tr>       
 
       </tbody>
     </table>

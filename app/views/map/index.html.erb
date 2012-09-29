@@ -10,8 +10,13 @@
      // global "map" variable
       var map = null;
       var marker = null;
-      var initialLat = <%= @booked_pins.last.latitude %>;
-      var initialLng = <%= @booked_pins.last.longitude %>;
+      <% if @booked_pins.count > 0 %>
+      	var initialLat = <%= @booked_pins.last.latitude %>;
+      	var initialLng = <%= @booked_pins.last.longitude %>;
+      <% else %>
+      	var initialLat = 40.0150;
+      	var initialLng = -105.2700;
+      <% end %>
 
 
 			var infowindow = new google.maps.InfoWindow(

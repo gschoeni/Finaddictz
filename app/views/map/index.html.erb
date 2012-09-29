@@ -4,16 +4,16 @@
     <%= f.label :search_text %>
     <select id="month" name="month">
     	<% ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December' ].each_with_index.map do |month, i|%>
-    		<option <% if @month == i+1 %> selected="selected" <% end %> value="<%=i+1%>"><%=month%></option>
+    		<option <% if params[:month].to_i == i+1 %> selected="selected" <% end %> value="<%=i+1%>"><%=month%></option>
     	<% end %>
 		</select>
 		<select id="day" name="day">
 			<% Time.now.end_of_month.day.times do |i| %>
-				<option <% if @day == i+1 %> selected="selected" <% end %>  value="<%=i+1%>"><%=i+1%></option>
+				<option <% if params[:day].to_i == i+1 %> selected="selected" <% end %>  value="<%=i+1%>"><%=i+1%></option>
 			<% end %>
 		</select>
-
-    <%= f.submit 'Search trips'%>
+		<br/>
+    <%= f.submit 'Search trips', :class => 'btn'%>
 <% end %>
 
 <div id="map_canvas" style="width: 550px; height: 450px"></div> 

@@ -1,21 +1,26 @@
-<h1>Listing property_posts</h1>
+<h1><font color="red">FinAddictz</font> Private Properties</h1>
+<br>
 
-<table>
-  <tr>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<%= will_paginate @property_posts, :renderer => BootstrapPagination::Rails %>
+<% @property_posts.each do |property_post|%>
+  
+    <div class="row">
+      <div class="span8 post_row" <% if property_post ==  @property_posts.last %> style="border-bottom:solid 1px #d3d3d3;" <% end %>>
+        <span class="post_created">Posted: <%= property_post.created_at.strftime("%m/%d/%Y") %></span><br>
+        <span class="post_title"><%= property_post.title %></span>
+        <span class="post_price">$<%= property_post.price %></span><br>
+        <br>
+        <div><%=property_post.description%></div>
+        <br>
+        <div>Trip Status: <%=property_post.booking_status%></div>
+        <br>
 
-<% @property_posts.each do |property_post| %>
-  <tr>
-    <td><%= link_to 'Show', property_post %></td>
-    <td><%= link_to 'Edit', edit_property_post_path(property_post) %></td>
-    <td><%= link_to 'Destroy', property_post, confirm: 'Are you sure?', method: :delete %></td>
-  </tr>
-<% end %>
-</table>
+        <%= link_to 'Trip Details', property_post, :class => 'btn btn-primary' %>
+      </div>
+        <br>
+    </div>
+    <% end %>
+    </div>
 
-<br />
+<%= will_paginate @property_posts, :renderer => BootstrapPagination::Rails %>
 
-<%= link_to 'New Property post', new_property_post_path %>

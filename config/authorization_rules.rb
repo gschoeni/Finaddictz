@@ -67,7 +67,7 @@ authorization do
     includes :angler
     includes :property_owner
     has_permission_on :users, :to =>  [:manage, :toggle_enabled]
-    has_permission_on [:fish_species, :fishing_methods, :guide_posts, :angler_posts, :env_prefs, :locations, :ratings], :to => :manage
+    has_permission_on [:fish_species, :fishing_methods, :guide_posts, :property_posts, :angler_posts, :env_prefs, :locations, :ratings], :to => :manage
     has_permission_on :conversations, :to => :manage
     has_permission_on :rivers, :to => :manage
   end

@@ -2,7 +2,7 @@ class PropertyPostsController < ApplicationController
   # GET /property_posts
   # GET /property_posts.json
   def index
-    @property_posts = PropertyPost.all
+    @property_posts = PropertyPost.paginate(:page => params[:page])
 
     respond_to do |format|
       format.html # index.html.erb

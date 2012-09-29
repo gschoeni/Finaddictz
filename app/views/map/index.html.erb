@@ -1,29 +1,36 @@
 <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script> 
-
-<%= form_for request.path, :method => 'get' do |f|%>
-		<%= f.label 'Search Type:' %>
-    <select id="type" name="type">
-    	<option value="both" <% if params[:type] == "both" %> selected="selected" <% end %>>Guide and Angler Posts</option>
-    	<option value="angler" <% if params[:type] == "angler" %> selected="selected" <% end %>>Only Angler Posts</option>
-    	<option value="guide" <% if params[:type] == "guide" %> selected="selected" <% end %>>Only Guide Posts</option>
-    	
-		</select>
-    <%= f.label :month %>
-    <select id="month" name="month">
-    	<% ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December' ].each_with_index.map do |month, i|%>
-    		<option <% if params[:month].to_i == i+1 %> selected="selected" <% end %> value="<%=i+1%>"><%=month%></option>
-    	<% end %>
-		</select>
-		<%= f.label :day %>
-		<select id="day" name="day">
-			<% Time.now.end_of_month.day.times do |i| %>
-				<option <% if params[:day].to_i == i+1 %> selected="selected" <% end %>  value="<%=i+1%>"><%=i+1%></option>
-			<% end %>
-		</select>
-		<br/>
-    <%= f.submit 'Search trips', :class => 'btn'%>
-<% end %>
-
+<div class="horizontal-form-layout">
+	<%= form_for request.path, :method => 'get' do |f|%>
+		<div class="form-element-wrapper">
+			<%= f.label 'Search Type:' %>
+	    <select id="type" name="type">
+	    	<option value="both" <% if params[:type] == "both" %> selected="selected" <% end %>>Guide and Angler Posts</option>
+	    	<option value="angler" <% if params[:type] == "angler" %> selected="selected" <% end %>>Only Angler Posts</option>
+	    	<option value="guide" <% if params[:type] == "guide" %> selected="selected" <% end %>>Only Guide Posts</option>
+	    	
+			</select>
+		</div>
+		<div class="form-element-wrapper">
+	    <%= f.label :month %>
+	    <select id="month" name="month">
+	    	<% ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December' ].each_with_index.map do |month, i|%>
+	    		<option <% if params[:month].to_i == i+1 %> selected="selected" <% end %> value="<%=i+1%>"><%=month%></option>
+	    	<% end %>
+			</select>
+		</div>
+		<div class="form-element-wrapper">
+			<%= f.label :day %>
+			<select id="day" name="day">
+				<% Time.now.end_of_month.day.times do |i| %>
+					<option <% if params[:day].to_i == i+1 %> selected="selected" <% end %>  value="<%=i+1%>"><%=i+1%></option>
+				<% end %>
+			</select>
+		</div>
+		<div class="clear"></div>
+	  <%= f.submit 'Search trips', :class => 'btn'%>
+	  <div class="clear"></div>
+	<% end %>
+</div>
 <div id="map_canvas" style="width: 550px; height: 450px"></div> 
 
 

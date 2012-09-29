@@ -4,7 +4,9 @@
   <% if @guide_post.errors.any? %>
     <div class="alert alert-error">
       <% @guide_post.errors.full_messages.each do |msg| %>
-        <%= msg %>
+      <ul>  
+        <li><%= msg %></li>
+      </ul>
       <% end %>
     </div>
   <% end %>

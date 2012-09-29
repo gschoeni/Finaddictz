@@ -5,6 +5,8 @@ class AnglerPost < ActiveRecord::Base
     validates v, :presence => true
   end
 
+  validates :num_people, :numericality => { :greater_than_or_equal_to => 1 }
+
   #validates date is not in the past
     validate :not_past_date
 

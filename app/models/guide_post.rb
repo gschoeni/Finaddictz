@@ -22,6 +22,8 @@ class GuidePost < ActiveRecord::Base
     validates v, :presence => true
   end
   validates :price_per, :numericality => { :greater_than_or_equal_to => 0 }
+  validates :num_people, :numericality => { :greater_than_or_equal_to => 1 }
+
   validates_with GuidePostValidator
 
   #validates the date of trip is not in the past

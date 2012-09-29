@@ -3,7 +3,9 @@
   <% if @angler_post.errors.any? %>
     <div class="alert alert-error">
       <% @angler_post.errors.full_messages.each do |msg| %>
-        <%= msg %>
+      <ul>  
+        <li><%= msg %></li>
+      </ul>  
       <% end %>
     </div>
   <% end %>

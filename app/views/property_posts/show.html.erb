@@ -1,5 +1,177 @@
 <p id="notice"><%= notice %></p>
 
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script> 
 
+<div class="row">
+  <div class="span8">
+    <p>Posted By:</p>
+    <div class="profile_info_wrapper">
+      <div class="profile_picture">
+        <%= image_tag  @property_post.user.photo.url(:small), :class => "img-polaroid" %>
+      </div>
+      <%= link_to @property_post.user, @property_post.user %>
+      <p><%= @property_post.user.about %></p>
+    </div>  
+    <% if @post_is_pending %>
+      <div>This trip currently has <%= @pending_users %> people interested</div> 
+    <% end %>
+    <table class="table table-bordered table-striped">
+      <colgroup>
+        <col class="span1">
+        <col class="span7">
+      </colgroup>
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>
+            <% if @property_post.user == current_user %>
+              <div id="edit_profile"><%= link_to 'Edit Post', edit_guide_post_path(@property_post)%> <i class="icon-pencil"></i></div>
+            <% end %>
+            <span class="post_title"><%= @property_post.title %></span>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Description</td>
+          <td><%= @property_post.description %></td>
+        </tr>
+        <tr>
+          <td>Cost per Person</td>
+          <td>$<%= @property_post.price %></td>
+        </tr>
+        <tr>
+          <td>Status</td>
+          <td>This trip is currently <%= @property_post.booking_status %></td>
+        </tr>   
+        <tr>
+          <td colspan=2>         
+            <div class="btn-group">
+                <button class="btn btn-primary" align="center">More</button>
+                <button class="btn btn-primary" data-toggle="dropdown">
+                  <span class="caret"></span>
+                </button>
+
+                <ul class="dropdown-menu">
+                  <li><a href="#messageModal" role="button" data-toggle="modal">Message Property Owner</a></li>
+                  <li><%= link_to 'Identify as Abusive', flag_as_abused_path(@property_post), :method => :put %></li>
+                  <% unless @post_is_booked %>
+                    <li class="divider"></li>
+                    <li><%= link_to 'Book this Property!', "/guide_posts/book_trip/#{@property_post.id}/#{current_user.id}" %></li>
+                  <% end %>
+                </ul>
+              </div>
+            </td>    
+          </tr>       
+
+      </tbody>
+    </table>
+    
+    <div id="map_canvas" style="width: 550px; height: 450px"></div> 
+  </div>
+</div>
+
+<div id="messageModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none; ">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">Send an inquiry</h3>
+  </div>
+  <div class="modal-body">
+    
+    <% @conversation = Conversation.new %>
+    <%= form_for(@conversation, :html => {:class => 'form-horizontal'}) do |f| %>
+      
+      <p>Message to: <%= @property_post.user %></p>
+      <%= f.hidden_field :user_id2, :value => @property_post.user.id %>
+      
+      <%= f.hidden_field :user_id1, :value => current_user.id %>
+
+      <div class="control-group">
+        <%= f.label :title, :class => "control-label"%>
+        <div class="controls">
+          <%= f.text_field :title, :class => "text_field"  %>
+        </div>
+      </div>
+
+      <input id="conversation_messages_attributes_0_user_id" name="conversation[messages_attributes][0][user_id]" type="hidden" value="<%= current_user.id %>">
+      <div class="control-group">
+        <%= f.label :text, :class => "control-label"  %>
+        <div class="controls">
+          <textarea class="text_field" id="conversation_messages_attributes_0_text" name="conversation[messages_attributes][0][text]" rows="10"></textarea>
+        </div>
+      </div>
+      
+
+      <div class="form-actions">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+        <%= f.submit 'Send', :class => 'btn btn-primary' %>
+      </div>
+    <% end %>
+</div>
+
+
+<script type="text/javascript"> 
+//<![CDATA[
+  $(document).ready(function () {
+     // global "map" variable
+      var map = null;
+      var marker = null;
+
+      var infowindow = new google.maps.InfoWindow(
+        { 
+          size: new google.maps.Size(150,50)
+        });
+
+      // A function to create the marker and set up the event window function 
+      function createMarker(latlng, name, html) {
+          var contentString = html;
+          var marker = new google.maps.Marker({
+              position: latlng,
+              map: map,
+              zIndex: Math.round(latlng.lat()*-100000)<<5
+              });
+
+          google.maps.event.addListener(marker, 'click', function() {
+              infowindow.setContent(contentString); 
+              infowindow.open(map,marker);
+              });
+          google.maps.event.trigger(marker, 'click');    
+          return marker;
+      }
+
+       
+
+      function initialize() {
+        // create the map
+        var myOptions = {
+          zoom: 10,
+          center: new google.maps.LatLng(<%=@property_post.latitude%>, <%=@property_post.longitude%>),
+          mapTypeControl: true,
+          mapTypeControlOptions: {style: google.maps.MapTypeControlStyle.DROPDOWN_MENU},
+          navigationControl: true,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        }
+
+        map = new google.maps.Map(document.getElementById("map_canvas"),
+                                      myOptions);
+
+        var latlng = new google.maps.LatLng(<%=@property_post.latitude%>, <%=@property_post.longitude%>); 
+
+        marker = createMarker(latlng, "name");
+
+       
+        google.maps.event.addListener(map, 'click', function() {
+          infowindow.close();
+        });
+
+
+      }
+      initialize();
+
+
+      
+    });
+//]]>
+</script> 
 <%= link_to 'Edit', edit_property_post_path(@property_post) %> |
 <%= link_to 'Back', property_posts_path %>

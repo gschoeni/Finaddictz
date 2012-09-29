@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120929201223) do
+ActiveRecord::Schema.define(:version => 20120929205021) do
 
   create_table "angler_exts", :force => true do |t|
     t.date     "fishing_license_exp"
@@ -151,6 +151,11 @@ ActiveRecord::Schema.define(:version => 20120929201223) do
     t.float    "latitude"
     t.float    "longitude"
     t.integer  "booking_status_id", :default => 3
+    t.integer  "user_id"
+    t.text     "description"
+    t.string   "title"
+    t.float    "price"
+    t.string   "booking_status"
   end
 
   create_table "ratings", :force => true do |t|

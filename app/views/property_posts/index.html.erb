@@ -7,8 +7,8 @@
     <div class="row">
       <div class="span8 post_row" <% if property_post ==  @property_posts.last %> style="border-bottom:solid 1px #d3d3d3;" <% end %>>
         <span class="post_created">Posted: <%= property_post.created_at.strftime("%m/%d/%Y") %></span><br>
-        <span class="post_title"><%= property_post.title %></span>
-        <span class="post_price">$<%= property_post.price %></span><br>
+        <span class="post_title"><%= property_post.title %></span><br>
+        <span class="post_price">Price: $<%= number_with_precision(property_post.price, :precision => 2) %></span><br>
         <br>
         <div><%=property_post.description%></div>
         <br>

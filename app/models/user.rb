@@ -60,6 +60,9 @@ class User < ActiveRecord::Base
       AnglerPost.find_all_by_user_id(self.id, :order => "created_at DESC")
     elsif active_role == "guide"
       GuidePost.find_all_by_user_id(self.id, :order => "created_at DESC")
+    elsif active_role == "property_owner"
+      PropertyPost.find_all_by_user_id(self.id, :order => "created_at DESC")
+          
     end
   end
 

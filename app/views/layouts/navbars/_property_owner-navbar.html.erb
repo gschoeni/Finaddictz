@@ -3,6 +3,10 @@
   <%= render 'layouts/navbars/posts-dropdown' %>
 
   <li class="divider-vertical"></li>
+  
+
+  <li><%= link_to 'Post a Trip', new_property_post_path%></li>
+  <li class="divider-vertical"></li>
   <li><%= link_to "Profile", @current_user %></li>
   <li class="divider-vertical"></li>
   <li class="dropdown">

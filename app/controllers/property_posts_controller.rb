@@ -35,6 +35,7 @@ class PropertyPostsController < ApplicationController
   # GET /property_posts/1/edit
   def edit
     @property_post = PropertyPost.find(params[:id])
+    @rivers = River.all
   end
 
   # POST /property_posts

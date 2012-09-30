@@ -64,7 +64,7 @@
 
                 <ul class="dropdown-menu">
                   <li><a href="#messageModal" role="button" data-toggle="modal">Message Guide</a></li>
-                  <li><%= link_to 'Identify as Abusive', flag_as_abused_path(@guide_post), :method => :put %></li>
+                  <li><%= link_to 'Identify as Abusive', flag_guide_post_as_abused_path(@guide_post), :method => :put %></li>
                   <% unless @post_is_booked %>
                     <li class="divider"></li>
                     <li><%= link_to 'Book this trip!', "/guide_posts/book_trip/#{@guide_post.id}/#{current_user.id}" %></li>

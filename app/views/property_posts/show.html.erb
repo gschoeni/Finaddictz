@@ -54,7 +54,7 @@
 
                 <ul class="dropdown-menu">
                   <li><a href="#messageModal" role="button" data-toggle="modal">Message Property Owner</a></li>
-                  <li><%= link_to 'Identify as Abusive', flag_as_abused_path(@property_post), :method => :put %></li>
+                  <li><%= link_to 'Identify as Abusive', flag_property_post_as_abused_path(@property_post), :method => :put %></li>
                   <% unless @post_is_booked %>
                     <li class="divider"></li>
 

@@ -81,4 +81,15 @@ class PropertyPostsController < ApplicationController
       format.json { head :ok }
     end
   end
+
+  def flag_as_abused
+    @property_post = PropertyPost.find(params[:id])
+    @property_post.abusive_flag = true;
+    if @property_post.save
+      AbuseMailer.abuse_email.deliver
+      redirect_to @property_post, notice: 'Property post was flagged as abusive'
+    else
+      redirect_to @property_post, notice: 'Something went wrong..'
+    end
+  end 
 end

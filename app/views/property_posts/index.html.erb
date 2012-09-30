@@ -11,9 +11,13 @@
         <span class="post_price">Price: $<%= number_with_precision(property_post.price, :precision => 2) %></span><br>
         <br>
         <div><%=property_post.description%></div>
-        <br>
-        <div>Trip Status: <%=property_post.booking_status%></div>
-        <br>
+        <% if property_post.abusive_flag == "false" %>
+          <td>This trip is currently <%= property_post.booking_status %></td>
+          
+          <% elsif property_post.abusive_flag == "true" %>
+          <td><font color="red">This posting has been flagged as abusive</font></td>
+          <% end %>
+        <br><br>
 
         <%= link_to 'Trip Details', property_post, :class => 'btn btn-primary' %>
       </div>

@@ -270,7 +270,8 @@ if GuidePost.count <= 0
       date: "#{Time.now().year}-#{Time.now().month+1}-#{i%Time.now.end_of_month.day+1}", 
       time: times[i%4], 
       status: nil,
-      title: "#{wants[i%4]} #{i%4} people to go fishing with."
+      title: "#{wants[i%4]} #{i%4} people to go fishing with.", 
+      abusive_flag: "false"
     )
   end
 else 
@@ -304,7 +305,8 @@ if AnglerPost.count <= 0
       search_angler: true, 
       created_at: "2012-08-19 15:19:22", 
       updated_at: "2012-08-19 15:19:22", 
-      title: "#{wants[i%4]} Fishing Trip"
+      title: "#{wants[i%4]} Fishing Trip", 
+      abusive_flag: "false"
     )
   end
 
@@ -323,7 +325,8 @@ if PropertyPost.count == 0
       description: "#{description[i%4]}",
       booking_status_id:BookingStatus.find_by_status("Open").id,
       price: "#{i%500}",
-      user_id: i%6+1
+      user_id: i%6+1, 
+      abusive_flag: "false"
       )
   end
 else

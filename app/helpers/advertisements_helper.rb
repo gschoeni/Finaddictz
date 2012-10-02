@@ -19,4 +19,14 @@ module AdvertisementsHelper
 			"<a href='#'><img src='/images/OGBbanner.jpg' alt='Finnaddictz'/></a>"
 		end
 	end
+
+	def listPagesForAdvertisement(ad)
+		ret = ""
+		ad.pages.each do |page|
+			ret += page.name 
+			ret += ", " unless page == ad.pages.last
+		end
+		return ret if ad.pages.count > 0
+		return "no" if ad.pages.count == 0
+	end
 end

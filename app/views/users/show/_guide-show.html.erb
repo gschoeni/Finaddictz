@@ -1,41 +1,74 @@
 <%= render :partial => 'users/show/guide_or_angler' %>
 
-<h4>Trips</h4> 
-<table class="table table-hover table-condensed table-striped">
-	<thead>
-		<th>Title</th>
-		<th>Status</th>
-		<th>Trip Date</th>
-		<th>Date Posted</th>
-		<th>Manage Posts</th>
+<h4>Upcoming trips</h4>
+<% if @upcoming_trips.count == 0 %>
+	You have no upcoming trips.
+<% else %>
+	<table class="table table-hover table-condensed table-striped">
+		<thead>
+			<th>Title</th>
+			<th>Status</th>
+			<th>Trip Date</th>
+			<th>Date Posted</th>
+			<th>Manage Posts</th>
+		</thead>
+		<tbody>
+			<% @upcoming_trips.each do |post| %>
+		    <tr>
+			    <small>
+			    	<td><%=h truncate(post.title, :length => 30) %> <% if post.title.length > 30 %><% end%></td>
+			    	<td cellspacing="10px"><%= BookingStatus.find(post.booking_status_id) %></td>
+			    	<td cellspacing="10px"><%=post.date.strftime("%m/%d/%Y") %></td>
+			    	<td cellspacing="10px"><%=post.created_at.strftime("%m/%d/%Y") %></td>
 
-	</thead>
-	<tbody>
-		<% @my_posts.each do |post| %>
-	    <tr>
-		    	<td><%=h truncate(post.title, :length => 30) %> <% if post.title.length > 30 %><% end%></td>
-		    	<td><%= post.booking_status %></td>
-		    	<td cellspacing="10px"><%=post.date.strftime("%m/%d/%Y") %></td>
-		    	<td cellspacing="10px"><%=post.created_at.strftime("%m/%d/%Y") %></td>
+			    </small>
 		      <td>         
-		        <div class="btn-group">
-		            <button class="btn btn-mini btn-primary" align="center">More</button>
-		            <button class="btn btn-mini btn-primary" data-toggle="dropdown">
-		              <span class="caret"></span>
-		            </button>
-
-		            <ul class="dropdown-menu">
-		              <li><%= link_to 'View Post', guide_post_path(post) %></li>
-		              <li><%= link_to 'Edit Post', edit_guide_post_path(post) %></li>
-		              <li><%= link_to 'Delete Post', edit_guide_post_path(post) %></li>
-		              <li class="divider"></li>
-		              <li><%= link_to 'Manage Trip', edit_guide_post_path %></li>
-		            </ul>
-		          </div>
+		        <%= link_to 'View Trip', angler_post_path(post), :class => 'btn btn-primary btn-small' %>
 		      </td>    
 		  </tr>   
-		<% end %>
-	</tbody>
+			<% end %>
+		</tbody>
+	</table>
+<% end #end has @upcoming_trips %>
 
-	
-</table>
+<h4>Trips I have posted</h4> 
+<% if @my_posts.count == 0 %>
+	You have not posted any trips.
+<% else %>
+	<table class="table table-hover table-condensed table-striped">
+		<thead>
+			<th>Title</th>
+			<th>Status</th>
+			<th>Trip Date</th>
+			<th>Date Posted</th>
+			<th>Manage Posts</th>
+
+		</thead>
+		<tbody>
+			<% @my_posts.each do |post| %>
+		    <tr>
+			    	<td><%=h truncate(post.title, :length => 30) %> <% if post.title.length > 30 %><% end%></td>
+			    	<td><%= post.booking_status %></td>
+			    	<td cellspacing="10px"><%=post.date.strftime("%m/%d/%Y") %></td>
+			    	<td cellspacing="10px"><%=post.created_at.strftime("%m/%d/%Y") %></td>
+			      <td>         
+			        <div class="btn-group">
+			            <button class="btn btn-mini btn-primary" align="center">More</button>
+			            <button class="btn btn-mini btn-primary" data-toggle="dropdown">
+			              <span class="caret"></span>
+			            </button>
+
+			            <ul class="dropdown-menu">
+			              <li><%= link_to 'View Post', guide_post_path(post) %></li>
+			              <li><%= link_to 'Edit Post', edit_guide_post_path(post) %></li>
+			              <li><%= link_to 'Delete Post', edit_guide_post_path(post) %></li>
+			              <li class="divider"></li>
+			              <li><%= link_to 'Manage Trip', edit_guide_post_path %></li>
+			            </ul>
+			          </div>
+			      </td>    
+			  </tr>   
+			<% end %>
+		</tbody>
+	</table>
+<% end %>

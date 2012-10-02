@@ -62,8 +62,34 @@ class User < ActiveRecord::Base
       GuidePost.find_all_by_user_id(self.id, :order => "created_at DESC")
     elsif active_role == "property_owner"
       PropertyPost.find_all_by_user_id(self.id, :order => "created_at DESC")
-          
     end
+  end
+
+  def upcoming_trips
+    trips = []
+    TripsToUser.find_all_by_user_who_agreed_id(self.id).each do |trip|
+      trips.push(GuidePost.find(trip.post_id))
+    end
+    TripsToUser.find_all_by_user_who_posted_id(self.id).each do |trip|
+      trips.push(GuidePost.find(trip.post_id))
+    end
+    GuidePost.find_all_by_user_id_and_booking_status_id(self.id, BookingStatus.find_by_status("Booked"), :order => "created_at DESC").each do |trip|
+      trips.push(trip)
+    end
+    GuidePost.find_all_by_user_id_and_booking_status_id(self.id, BookingStatus.find_by_status("Pending"), :order => "created_at DESC").each do |trip|
+      trips.push(trip)
+    end
+    AnglerPost.find_all_by_user_id_and_booking_status_id(self.id, BookingStatus.find_by_status("Booked"), :order => "created_at DESC").each do |trip|
+      trips.push(trip)
+    end 
+    trips
+  end
+
+  def has_conflicting_trip(t)
+    self.upcoming_trips.each do |trip|
+      return true if trip.date == t.date
+    end
+    return false
   end
 
   #make sure everyone is always an angler (even if the uncheck the box)

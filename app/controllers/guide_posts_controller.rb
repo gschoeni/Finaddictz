@@ -119,7 +119,11 @@ class GuidePostsController < ApplicationController
   def book_trip
     @guide_post = GuidePost.find(params[:id])
     @guide_post.booking_status_id = BookingStatus.find_by_status("Pending").id;
-    unless TripsToUser.find_by_post_id_and_user_who_agreed_id(params[:id], current_user.id)
+
+    already_booked_this_trip = TripsToUser.find_by_post_id_and_user_who_agreed_id(params[:id], current_user.id)
+    already_has_trip_on_this_day = current_user.has_conflicting_trip(@guide_post)
+
+    unless already_booked_this_trip || already_has_trip_on_this_day
       #insert into trips users table here!
       TripsToUser.create(
         post_id: @guide_post.id,
@@ -142,7 +146,11 @@ class GuidePostsController < ApplicationController
         redirect_to @guide_post, notice: 'Something went wrong..'
       end
     else 
-      redirect_to @guide_post, notice: 'You have already sent a request for booking this trip.'
+      if already_has_trip_on_this_day
+        redirect_to @guide_post, notice: 'You already have a trip booked for this day.'
+      else 
+        redirect_to @guide_post, notice: 'You have already sent a request for booking this trip.'
+      end
     end
   end 
 

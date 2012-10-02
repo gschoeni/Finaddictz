@@ -12,20 +12,14 @@
 		<p><%= @advertisement.email %></p>
 		<p><%= @advertisement.company_name %></p>
 		<%= image_tag @advertisement.photo.url(:full), :class => "img-polaroid" %>
+		<p>
+			This ad will be shown on <%= listPagesForAdvertisement(@advertisement) %> pages.
+		</p>
 		<hr/>
-		<%= form_for @advertisement do |f|%>
-			<p>Which pages should this ad appear on?</p>
-			<%Page.all.each do |p|%>
-				<div>
-					<label class="checkbox">
-						<%= check_box_tag "advertisement[page_ids][]", p.id, @advertisement.pages.include?(p) %> <%= p.name %>
-					</label>
-				</div>
-			<%end%>
-			<%= f.submit 'Save', :class => 'btn btn-primary' %>
-
-		<% end %>
-
+		<p>
+			<%= link_to "Edit", edit_advertisement_path(@advertisement), :class => 'btn btn-primary' %>
+		</p>
+		
 	</div>
 </div>
 

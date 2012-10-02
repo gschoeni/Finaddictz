@@ -18,6 +18,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     if(current_user == @user)
       @my_posts = @user.my_posts
+      @upcoming_trips = @user.upcoming_trips
       render :template => "users/show/_#{layout_prefix}-show"
     else
       render :template => "users/public-show/_public-show"

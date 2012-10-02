@@ -353,3 +353,24 @@ if NotificationType.count == 0
 else 
   puts 'NotificationTypes set'
 end
+
+if Page.count == 0
+  puts 'setting Pages'
+  Page.create(
+    name:'Guide Posts'
+  )
+
+  Page.create(
+    name:'Angler Posts'
+  )
+
+  Page.create(
+    name:'Trip Detail'
+  )
+
+  Page.create(
+    name:'Map Page'
+  )
+else 
+  puts 'NotificationTypes set'
+end

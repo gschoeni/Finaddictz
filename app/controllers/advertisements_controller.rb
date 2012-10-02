@@ -57,7 +57,8 @@ class AdvertisementsController < ApplicationController
   # PUT /advertisements/1.json
   def update
     @advertisement = Advertisement.find(params[:id])
-
+    puts 'updating advertisement'
+    puts params
     respond_to do |format|
       if @advertisement.update_attributes(params[:advertisement])
         format.html { redirect_to @advertisement, notice: 'Advertisement was successfully updated.' }

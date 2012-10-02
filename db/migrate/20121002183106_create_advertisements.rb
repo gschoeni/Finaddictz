@@ -13,7 +13,7 @@ class CreateAdvertisements < ActiveRecord::Migration
     	t.integer :photo_file_size
     	t.datetime :photo_updated_at
 
-      t.timestamps
+        t.timestamps
     end
   end
 end

@@ -1,5 +1,32 @@
-<p id="notice"><%= notice %></p>
+<p>
+	<%= link_to 'Back', advertisements_path %>
+</p>
+
+<div class="span6">
+	<div class="well">
+		<p><%= @advertisement.headline %></p>
+		<p><%= @advertisement.description %></p>
+		<p><%= @advertisement.keywords %></p>
+		<p><%= @advertisement.url %></p>
+		<p><%= @advertisement.contact_name %></p>
+		<p><%= @advertisement.email %></p>
+		<p><%= @advertisement.company_name %></p>
+		<%= image_tag @advertisement.photo.url(:full), :class => "img-polaroid" %>
+		<hr/>
+		<%= form_for @advertisement do |f|%>
+			<p>Which pages should this ad appear on?</p>
+			<%Page.all.each do |p|%>
+				<div>
+					<label class="checkbox">
+						<%= check_box_tag "advertisement[page_ids][]", p.id, @advertisement.pages.include?(p) %> <%= p.name %>
+					</label>
+				</div>
+			<%end%>
+			<%= f.submit 'Save', :class => 'btn btn-primary' %>
+
+		<% end %>
+
+	</div>
+</div>
 
 
-<%= link_to 'Edit', edit_advertisement_path(@advertisement) %> |
-<%= link_to 'Back', advertisements_path %>

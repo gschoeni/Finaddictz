@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121002183106) do
+ActiveRecord::Schema.define(:version => 20121002203508) do
 
   create_table "advertisements", :force => true do |t|
     t.string   "headline"
@@ -24,6 +24,14 @@ ActiveRecord::Schema.define(:version => 20121002183106) do
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "url"
+  end
+
+  create_table "advertisements_pages", :force => true do |t|
+    t.integer  "advertisement_id"
+    t.integer  "page_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -149,6 +157,12 @@ ActiveRecord::Schema.define(:version => 20121002183106) do
     t.string   "message"
     t.integer  "related_id"
     t.boolean  "read",              :default => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "pages", :force => true do |t|
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

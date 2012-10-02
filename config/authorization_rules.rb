@@ -3,7 +3,7 @@ authorization do
   role :guest do
     has_permission_on :user_sessions, :to => :manage
     has_permission_on :users, :to => [:create, :confirm]
-
+    has_permission_on :advertisements, :to => :create
   end
 
 
@@ -70,6 +70,7 @@ authorization do
     has_permission_on [:fish_species, :fishing_methods, :guide_posts, :property_posts, :angler_posts, :env_prefs, :locations, :ratings], :to => :manage
     has_permission_on :conversations, :to => :manage
     has_permission_on :rivers, :to => :manage
+    has_permission_on :advertisements, :to => :manage
   end
 
 end

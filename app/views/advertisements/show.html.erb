@@ -4,15 +4,17 @@
 
 <div class="span6">
 	<div class="well">
-		<p><%= @advertisement.headline %></p>
-		<p><%= @advertisement.description %></p>
-		<p><%= @advertisement.keywords %></p>
-		<p><%= @advertisement.url %></p>
-		<p><%= @advertisement.contact_name %></p>
-		<p><%= @advertisement.email %></p>
-		<p><%= @advertisement.company_name %></p>
 		<%= image_tag @advertisement.photo.url(:full), :class => "img-polaroid" %>
+		<p><h5>Ad Headline:</h5> <%= @advertisement.headline %></p>
+		<p><h5>Ad Description:</h5><%= @advertisement.description %></p>
+		<p><h5>Keywords:</h5><%= @advertisement.keywords %></p>
+		<p><h5>Url:</h5><%= @advertisement.url %></p>
+		<p><h5>Contact Name:</h5><%= @advertisement.contact_name %></p>
+		<p><h5>Contact Email:</h5><%= @advertisement.email %></p>
+		<p><h5>Company Name:</h5><%= @advertisement.company_name %></p>
+		
 		<p>
+			<h5>Selected pages to display ad:</h5>
 			This ad will be shown on <%= listPagesForAdvertisement(@advertisement) %> pages.
 		</p>
 		<hr/>

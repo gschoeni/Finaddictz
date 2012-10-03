@@ -14,6 +14,10 @@ module ApplicationHelper
 			check_phrase keywords, post.description
 		end
 
+		PropertyPost.all.each do |post|
+			check_phrase keywords, post.title
+			check_phrase keywords, post.description
+		end
 		#add any other things to check here
 
 		sorted = keywords.sort_by {|key, value| value}.reverse

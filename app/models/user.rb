@@ -17,7 +17,6 @@ class User < ActiveRecord::Base
     validates v, :presence => true
   end
 
-
   searchable do
     text :email, :first_name, :last_name
     date :created_at

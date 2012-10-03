@@ -2,8 +2,8 @@
 
 <%= form_for @advertisement, :html => {:class => 'form-horizontal'} do |f| %>
     <% if @advertisement.errors.any? %>
-        <div id="error_explanation">
-          <h2><%= pluralize(@advertisement.errors.count, "error") %> prohibited this advertisement from being saved:</h2>
+        <div class="alert alert-error">
+          <h2><%= pluralize(@advertisement.errors.count, "error") %> prohibited this advertisement from being submitted:</h2>
 
           <ul>
             <% @advertisement.errors.full_messages.each do |msg| %>

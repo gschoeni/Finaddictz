@@ -68,20 +68,20 @@ class User < ActiveRecord::Base
     trips = []
     TripsToUser.find_all_by_user_who_agreed_id(self.id).each do |trip|
       post = GuidePost.find(trip.post_id)
-      trips.push(post) unless post.date.past?
+      trips.push(post) unless post.date.past? or trips.include?(post)
     end
     TripsToUser.find_all_by_user_who_posted_id(self.id).each do |trip|
       post = GuidePost.find(trip.post_id)
-      trips.push(post) unless post.date.past?
+      trips.push(post) unless post.date.past? or trips.include?(post)
     end
     GuidePost.find_all_by_user_id_and_booking_status_id(self.id, BookingStatus.find_by_status("Booked"), :order => "created_at DESC").each do |trip|
-      trips.push(trip) unless trip.date.past?
+      trips.push(trip) unless trip.date.past? or trips.include?(trip)
     end
     GuidePost.find_all_by_user_id_and_booking_status_id(self.id, BookingStatus.find_by_status("Pending"), :order => "created_at DESC").each do |trip|
-      trips.push(trip) unless trip.date.past?
+      trips.push(trip) unless trip.date.past? or trips.include?(trip)
     end
     AnglerPost.find_all_by_user_id_and_booking_status_id(self.id, BookingStatus.find_by_status("Booked"), :order => "created_at DESC").each do |trip|
-      trips.push(trip) unless trip.date.past?
+      trips.push(trip) unless trip.date.past? or trips.include?(trip)
     end 
     trips
   end

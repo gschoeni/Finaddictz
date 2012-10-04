@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121002203508) do
+ActiveRecord::Schema.define(:version => 20121004210214) do
 
   create_table "advertisements", :force => true do |t|
     t.string   "headline"
@@ -230,6 +230,8 @@ ActiveRecord::Schema.define(:version => 20121002203508) do
     t.boolean  "trip_has_been_finished", :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "type_of_trip",           :default => "guide"
+    t.boolean  "accepted",               :default => false
   end
 
   create_table "user_sessions", :force => true do |t|

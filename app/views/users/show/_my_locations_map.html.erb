@@ -1,0 +1,77 @@
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script> 
+
+<h4>My Favorite Locations</h4>
+<div id="map_canvas" style="width: 550px; height: 450px"></div> 
+
+
+<script type="text/javascript"> 
+//<![CDATA[
+	$(document).ready(function () {
+     // global "map" variable
+      var map = null;
+      var marker = null;
+      <% if @previous_trips.count > 0 %>
+      	var initialLat = <%= @previous_trips.last.latitude %>;
+      	var initialLng = <%= @previous_trips.last.longitude %>;
+      <% else %>
+      	var initialLat = 40.0150;
+      	var initialLng = -105.2700;
+      <% end %>
+
+
+			var infowindow = new google.maps.InfoWindow(
+			  { 
+			    size: new google.maps.Size(150,50)
+			  });
+
+			function createMarker(latlng, name, html, color) {
+			    var contentString = html;
+			    var marker = new google.maps.Marker({
+			        position: latlng,
+			        map: map,
+			        icon:'/assets/'+color+'_pin.png'
+			        //zIndex: Math.round(latlng.lat()*-100000)<<5
+			     });
+
+			    google.maps.event.addListener(marker, 'click', function() {
+			        infowindow.setContent(contentString); 
+			        infowindow.open(map,marker);
+			        });
+			    google.maps.event.trigger(marker, 'click');    
+			    return marker;
+			}
+
+		 
+
+			function initialize() {
+			  // create the map
+			  var myOptions = {
+			    zoom: 6,
+			    center: new google.maps.LatLng(initialLat, initialLng),
+			    mapTypeControl: true,
+			    mapTypeControlOptions: {style: google.maps.MapTypeControlStyle.DROPDOWN_MENU},
+			    navigationControl: true,
+			    mapTypeId: google.maps.MapTypeId.ROADMAP
+			  }
+
+			  map = new google.maps.Map(document.getElementById("map_canvas"),
+			                                myOptions);
+
+			  var latlng; 
+			  var html;
+			  <% @previous_trips.each do |p| %>
+			  	latlng = new google.maps.LatLng(<%= p.latitude %>, <%= p.longitude %>); 
+			  	html = 'Visted: <%= p.date%><br/>'
+			  	<% if p.class == GuidePost %>
+			  		html += '<%= link_to "View Trip", guide_post_url(p) %>'
+			  	<% else %>
+			  		html += '<%= link_to "View Trip", angler_post_url(p) %>'
+			  	<% end %>
+			  	marker = createMarker(latlng, "name", html, "red");
+			  <% end %>			  
+
+			}
+			initialize();
+		});
+//]]>
+</script> 

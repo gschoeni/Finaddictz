@@ -53,6 +53,7 @@ Finaddictz::Application.routes.draw do
   put "angler_posts/:id/flag_as_abused" => 'angler_posts#flag_as_abused', :as => 'flag_angler_post_as_abused'
 
   delete "guide_posts/:id/remove_user_from_trip/:user_id" => 'guide_posts#remove_user_from_trip', :as => 'remove_user_from_trip'
+  put "trips_to_users/:id/accept_user_on_trip/:user_id/:guide_post_id" => 'trips_to_users#accept_user_on_trip', :as => 'accept_user_on_trip'
 
   resources :users
 

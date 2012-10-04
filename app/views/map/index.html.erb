@@ -28,7 +28,7 @@
 			</select>
 		</div>
 		<div class="clear"></div>
-	  <%= f.submit 'Search trips', :class => 'btn'%>
+	  <%= f.submit 'Search trips', :class => 'btn btn-primary'%>
 	  <div class="clear"></div>
 	<% end %>
 </div>
@@ -95,8 +95,12 @@ There are <%= @num_trips %> trips going out on this day.
 			  var html;
 			  <% @booked_pins.each do |p| %>
 			  	latlng = new google.maps.LatLng(<%= p.latitude %>, <%= p.longitude %>); 
-			  	html = '<%= link_to p.title, guide_post_url(p) %><br/>'+
-			  					'Date: <%= p.date%>'
+			  	<% if p.class == GuidePost %>
+			  		html = '<%= link_to p.title, guide_post_url(p) %><br/>'
+			  	<% else %>
+			  		html = '<%= link_to p.title, angler_post_url(p) %><br/>'
+			  	<% end %>
+			  	html +=	'Date: <%= p.date%>'
 			  	marker = createMarker(latlng, "name", html, "red");
 			  <% end %>
 

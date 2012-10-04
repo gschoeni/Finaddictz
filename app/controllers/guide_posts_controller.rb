@@ -46,10 +46,14 @@ class GuidePostsController < ApplicationController
     @guide_post = GuidePost.find(params[:id])
     @rivers = River.all
     interested_users = TripsToUser.find_all_by_post_id(params[:id])
-    @interested_user_count = interested_users.count()
-    @users = []
-    interested_users.each do |u|
-      @users.push(User.find_by_id(u.user_who_agreed_id))
+    @interested_users = []
+    @accepted_users = []
+    interested_users.each do |trip|
+      if trip.accepted
+        @accepted_users.push({"user" => User.find_by_id(trip.user_who_agreed_id), "trip_id" => trip.id})
+      else
+        @interested_users.push({"user" => User.find_by_id(trip.user_who_agreed_id), "trip_id" => trip.id})
+      end
     end
   end
 

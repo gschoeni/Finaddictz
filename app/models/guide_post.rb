@@ -61,6 +61,10 @@ class GuidePost < ActiveRecord::Base
 			end
 		end
 	end
+
+	def isFull?
+		TripsToUser.find_all_by_post_id(self.id).count() >= num_people
+	end
 	
   #make guide posts more dynamically searchable sunspot
   searchable do

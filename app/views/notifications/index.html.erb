@@ -1,5 +1,7 @@
-<div class="span7">
-    <% @notifications.each do |notification| %>
-    	<%= render :partial => "notifications/#{NotificationType.find(notification.notification_type)}", :locals => {:notification => notification}%>
-    <% end %>
+<div class="span7 min-height">
+
+
+  <% @notifications.each do |notification| %>
+  	<%= render :partial => "notifications/#{NotificationType.find(notification.notification_type)}", :locals => {:notification => notification}%>
+  <% end %>
 </div>

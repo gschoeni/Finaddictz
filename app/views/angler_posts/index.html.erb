@@ -26,7 +26,7 @@
 <% @angler_posts.each do |angler_post|%>
   <div class="row">
     <div class="span8 post_row" <% if angler_post ==  @angler_posts.last %> style="border-bottom:solid 1px #d3d3d3;" <% end %>>
-      <span class="post_created">Posted: <%= angler_post.created_at.strftime("%m/%d/%Y") %></span><br>
+      <span class="post_created">Posted: <%= angler_post.created_at.strftime("%m/%d/%Y") %> by <%= angler_post.user%></span><br>
       <span class="post_title"><%= angler_post.title %></span><br/>
       <span class="post_tripDate"><b>Desired Trip Date: <%=  angler_post.date %></span></b>
       <br>

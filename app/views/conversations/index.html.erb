@@ -1,19 +1,23 @@
-<div class="span7">
-    <% @conversations.each do |conversation| %>
-        <div class="conversation <%= 'new_conversation_message' if conversation.has_new_message?(current_user) %>" onclick="conversationDivClicked(<%= conversation.id %>)">
-            <div class="conversation-date"><%= conversation.updated_at %></div>
-            <%= image_tag from_who(conversation).photo.url(:small), :class => "img-polaroid", :width => '80', :height => '80' %>
-            <p class="name">
-                <%= from_who(conversation) %>
-            </p>
-            
-            <p>
-                <%= conversation.title %>
-            </p>
-            <div class="text">
-                <%= conversation.messages.last.who(current_user) %> last said: <br/><%= conversation.messages.last %>
+<div class="span7 min-height">
+    <% if @conversations.count == 0 %>
+        <p>Your inbox is empty.</p>
+    <% else %>
+        <% @conversations.each do |conversation| %>
+            <div class="conversation <%= 'new_conversation_message' if conversation.has_new_message?(current_user) %>" onclick="conversationDivClicked(<%= conversation.id %>)">
+                <div class="conversation-date"><%= conversation.updated_at %></div>
+                <%= image_tag from_who(conversation).photo.url(:small), :class => "img-polaroid", :width => '80', :height => '80' %>
+                <p class="name">
+                    <%= from_who(conversation) %>
+                </p>
+                
+                <p>
+                    <%= conversation.title %>
+                </p>
+                <div class="text">
+                    <%= conversation.messages.last.who(current_user) %> last said: <br/><%= conversation.messages.last %>
+                </div>
             </div>
-        </div>
+        <% end %>
     <% end %>
 </div>
 <script type="text/javascript">

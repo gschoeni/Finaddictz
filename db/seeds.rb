@@ -254,10 +254,7 @@ if GuidePost.count <= 0
   adjectives = ['Fun', 'Joyous', 'Action packed', 'Exciting', 'Wild']
   wants = ['Want', 'Need', 'Would like', 'Inquiring about']
   50.times do |i|
-    if River.count() < i%12+1
-      next
-    end
-    river = River.find(i%12+1)
+    river = River.find(i%River.count()+1)
     GuidePost.create(
       user_id: (i%6+1),
       booking_status_id:BookingStatus.find_by_status("Open").id,
@@ -285,10 +282,7 @@ if AnglerPost.count <= 0
   people = ['buddy', 'friend', 'pal', 'gal', 'guy']
   wants = ['Want', 'Need', 'Would like', 'Inquiring about']
   50.times do |i|
-    if River.count() < i%12+1
-      next
-    end
-    river = River.find(i%12+1)
+    river = River.find(i%River.count()+1)
     AnglerPost.create(
       user_id:i%6+1,
       booking_status_id:BookingStatus.find_by_status("Open").id,

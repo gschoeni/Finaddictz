@@ -1,5 +1,5 @@
 <div class="top-ad"><%=getAdForPage('Guide Posts').html_safe%></div>
-<h1>Available <font color="red">FinAddictz</font> Trips</h1>
+<h1><font color="red">FinAddictz</font> Guides looking for Anglers</h1>
 <br>
 <div class="horizontal-form-layout">
   <%= form_for request.path, :method => 'get' do |f|%>
@@ -33,22 +33,18 @@
 <%= will_paginate @guide_posts, :renderer => BootstrapPagination::Rails %>
 <% @guide_posts.each do |guide_post| %>
     <div class="row">
-        <div class="span8 post_row" <% if guide_post ==  @guide_posts.last %> style="border-bottom:solid 1px #d3d3d3;" <% end %>>
-          <span class="post_created">Posted: <%=  guide_post.created_at.strftime("%m/%d/%Y") %> by <%= guide_post.user %></span><br>
-          <span class="post_title"><%= link_to guide_post.title, guide_post %></span>
-          <span class="post_price">$<%= guide_post.price_per %></span><br>
-          <span class="post_tripDate"><b>Trip Date: <%=  guide_post.date.strftime("%m/%d/%Y") %></span></b><br>
-          <%=h truncate(guide_post.description, :length => 80) %> <% if guide_post.description.length > 80 %>...<% end%>
-          <br>
-          This Trips Status is: <%= guide_post.booking_status %>
-          <br><br>
-
-            <%= link_to 'Trip Details', guide_post, :class => 'btn btn-primary' %>
-          </div>
-
-            <br>
-        </div>
-        <% end %>
+      <div class="span8 post_row" <% if guide_post ==  @guide_posts.last %> style="border-bottom:solid 1px #d3d3d3;" <% end %>>
+        <span class="post_created">Posted: <%=  guide_post.created_at.strftime("%m/%d/%Y") %> by <%= guide_post.user %></span><br>
+        <span class="post_title"><%= link_to guide_post.title, guide_post %></span>
+        <span class="post_price">$<%= guide_post.price_per %></span><br>
+        <span class="post_tripDate"><b>Trip Date: <%=  guide_post.date.strftime("%m/%d/%Y") %></span></b><br>
+        <%=h truncate(guide_post.description, :length => 80) %> <% if guide_post.description.length > 80 %>...<% end%>
+        <br>
+        This Trips Status is: <%= guide_post.booking_status %>
+        <br><br>
+        <%= link_to 'Trip Details', guide_post, :class => 'btn btn-primary' %>
+      </div>
     </div>
+<% end %>
 
 <%= will_paginate @guide_posts, :renderer => BootstrapPagination::Rails %>

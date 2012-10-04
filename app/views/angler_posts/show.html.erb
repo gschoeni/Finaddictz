@@ -33,10 +33,6 @@
           <td><%= @angler_post.num_people %></td>
         </tr>
         <tr>
-          <td>Price Range</td>
-          <td>$<%= @angler_post.price_min %> - $<%= @angler_post.price_max %></td>
-        </tr>
-        <tr>
           <td>Trip Date</td>
           <td><%= @angler_post.date %></td>
         </tr> 
@@ -65,9 +61,6 @@
     <div id="map_canvas" style="width: 550px; height: 450px"></div> 
   </div>
 </div>
-
-
-<%= link_to 'Back', angler_posts_path %>
 
 <div id="messageModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none; ">
   <div class="modal-header">

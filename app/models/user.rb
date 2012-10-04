@@ -67,19 +67,40 @@ class User < ActiveRecord::Base
   def upcoming_trips
     trips = []
     TripsToUser.find_all_by_user_who_agreed_id(self.id).each do |trip|
-      trips.push(GuidePost.find(trip.post_id))
+      post = GuidePost.find(trip.post_id)
+      trips.push(post) unless post.date.past?
     end
     TripsToUser.find_all_by_user_who_posted_id(self.id).each do |trip|
-      trips.push(GuidePost.find(trip.post_id))
+      post = GuidePost.find(trip.post_id)
+      trips.push(post) unless post.date.past?
     end
     GuidePost.find_all_by_user_id_and_booking_status_id(self.id, BookingStatus.find_by_status("Booked"), :order => "created_at DESC").each do |trip|
-      trips.push(trip)
+      trips.push(trip) unless trip.date.past?
     end
     GuidePost.find_all_by_user_id_and_booking_status_id(self.id, BookingStatus.find_by_status("Pending"), :order => "created_at DESC").each do |trip|
-      trips.push(trip)
+      trips.push(trip) unless trip.date.past?
     end
     AnglerPost.find_all_by_user_id_and_booking_status_id(self.id, BookingStatus.find_by_status("Booked"), :order => "created_at DESC").each do |trip|
-      trips.push(trip)
+      trips.push(trip) unless trip.date.past?
+    end 
+    trips
+  end
+
+  def previous_trips
+    trips = []
+    TripsToUser.find_all_by_user_who_agreed_id(self.id).each do |trip|
+      post = GuidePost.find(trip.post_id)
+      trips.push(post) if post.date.past?
+    end
+    TripsToUser.find_all_by_user_who_posted_id(self.id).each do |trip|
+      post = GuidePost.find(trip.post_id)
+      trips.push(post) if post.date.past?
+    end
+    GuidePost.find_all_by_user_id_and_booking_status_id(self.id, BookingStatus.find_by_status("Booked"), :order => "created_at DESC").each do |trip|
+      trips.push(trip) if trip.date.past?
+    end
+    AnglerPost.find_all_by_user_id_and_booking_status_id(self.id, BookingStatus.find_by_status("Booked"), :order => "created_at DESC").each do |trip|
+      trips.push(trip) if trip.date.past?
     end 
     trips
   end

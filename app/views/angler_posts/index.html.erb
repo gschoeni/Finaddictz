@@ -1,5 +1,5 @@
 <div class="top-ad"><%=getAdForPage('Angler Posts').html_safe%></div>
-<h1><font color="red">FinAddictz</font> Trips Wanted</h1>
+<h1><font color="red">FinAddictz</font> Anglers looking for Anglers</h1>
 <br>
 <div class="horizontal-form-layout">
   <%= form_for request.path, :method => 'get' do |f|%>
@@ -9,16 +9,9 @@
     </div>
       
     <div class="form-element-wrapper">
-      <%= f.label 'Minimum Price' %>
-      <%= text_field_tag :price_min, params[:price_min] %><br/>
-      <%= f.label "Maximum Price #{params[:price_max]}" %>
-      <%= text_field_tag :price_max, params[:price_max] %>
-    </div>
-
-    <div class="form-element-wrapper">
-      <%= f.label :start_date %>
+      <%= f.label 'Start date (mm/dd/yyyy)' %>
       <%= text_field_tag :start_date, params[:start_date] %><br/>
-      <%= f.label :end_date %>
+      <%= f.label 'End Date (mm/dd/yyyy)' %>
       <%= text_field_tag :end_date, params[:end_date] %>
     </div>
     <div class="clear"></div>
@@ -31,24 +24,19 @@
 
 <%= will_paginate @angler_posts, :renderer => BootstrapPagination::Rails %>
 <% @angler_posts.each do |angler_post|%>
-  
-    <div class="row">
-      <div class="span8 post_row" <% if angler_post ==  @angler_posts.last %> style="border-bottom:solid 1px #d3d3d3;" <% end %>>
-        <span class="post_created">Posted: <%= angler_post.created_at.strftime("%m/%d/%Y") %></span><br>
-        <span class="post_title"><%= angler_post.title %></span>
-        <span class="post_price">$<%= angler_post.price_min %> - $<%= angler_post.price_max %></span><br>
-        <span class="post_tripDate"><b>Desired Trip Date: <%=  angler_post.date %></span></b>
-        <br>
-        <div><%=angler_post.description%></div>
-        <br>
-        <div>Trip Status: <%=angler_post.booking_status%></div>
-        <br>
-
-        <%= link_to 'Trip Details', angler_post, :class => 'btn btn-primary' %>
-      </div>
-        <br>
+  <div class="row">
+    <div class="span8 post_row" <% if angler_post ==  @angler_posts.last %> style="border-bottom:solid 1px #d3d3d3;" <% end %>>
+      <span class="post_created">Posted: <%= angler_post.created_at.strftime("%m/%d/%Y") %></span><br>
+      <span class="post_title"><%= angler_post.title %></span><br/>
+      <span class="post_tripDate"><b>Desired Trip Date: <%=  angler_post.date %></span></b>
+      <br>
+      <div><%=angler_post.description%></div>
+      <br>
+      <div>Trip Status: <%=angler_post.booking_status%></div>
+      <br>
+      <%= link_to 'Trip Details', angler_post, :class => 'btn btn-primary' %>
     </div>
-    <% end %>
-    </div>
+  </div>
+<% end %>
 
 <%= will_paginate @angler_posts, :renderer => BootstrapPagination::Rails %>

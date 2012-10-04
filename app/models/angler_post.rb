@@ -8,13 +8,13 @@ class AnglerPost < ActiveRecord::Base
   validates :num_people, :numericality => { :greater_than_or_equal_to => 1 }
 
   #validates date is not in the past
-    validate :not_past_date
+  validate :not_past_date
 
-    def not_past_date
-      if self.date.past?
-        errors.add(:date, 'of trip cannot be in the past')
-      end
+  def not_past_date
+    if self.date.past?
+      errors.add(:date, 'of trip cannot be in the past')
     end
+  end
 
   belongs_to :user
   belongs_to :river
@@ -24,8 +24,8 @@ class AnglerPost < ActiveRecord::Base
   searchable do
     text :title, :boost => 5 
     text :description
-    integer :price_min
-    integer :price_max
+    #integer :price_min
+    #integer :price_max
     time :date
   end
 
@@ -37,11 +37,10 @@ class AnglerPost < ActiveRecord::Base
         fulltext params[:search]
 
         #the pricing search params
-        params[:price_max] = 1000 if (params[:price_max] == nil)
-        params[:price_min] = 0 if (params[:price_min] == nil)
-        #puts "price max: #{(params[:price_max] == nil)}"
-        with(:price_min, params[:price_min].to_i..params[:price_max].to_i)
-        with(:price_max, params[:price_min].to_i..params[:price_max].to_i)
+        #params[:price_max] = 1000 if (params[:price_max] == nil)
+        #params[:price_min] = 0 if (params[:price_min] == nil)
+        #with(:price_min, params[:price_min].to_i..params[:price_max].to_i)
+        #with(:price_max, params[:price_min].to_i..params[:price_max].to_i)
 
         #expects 08/19/2012 for dates
         if params[:start_date].present?

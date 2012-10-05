@@ -8,7 +8,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :password_salt
       t.string :persistence_token
       t.string :state
-      t.string :birthdate
+      t.date :birthdate
       t.string :active_role
 
       t.timestamps

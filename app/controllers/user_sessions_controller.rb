@@ -15,12 +15,16 @@ class UserSessionsController < ApplicationController
     @user_session = UserSession.new(params[:user_session])
 
     if @user_session.save
-      flash[:notice] = "Successfully logged in"
-      #not quite sure why it wants object id here... can usually just say user_path(current_user)
       current_user = UserSession.find.user
-      id = current_user.id
-      puts "Current user id: #{id}"
-      redirect_to current_user
+      if !current_user.enabled?
+        session[:user_enabled] = false
+        flash[:error] = "Your account has been temporarily disabled, contact Finaddictz for more details."
+        redirect_to logout_url
+      else
+        flash[:notice] = "Successfully logged in"
+        redirect_to current_user
+      end
+      
     else
       render :action => 'new'
     end
@@ -34,8 +38,13 @@ class UserSessionsController < ApplicationController
     if @user_session
       @user_session.destroy
     end
-
-    flash[:notice] = "Successfully logged out."
+    if session[:user_enabled] == false
+      session[:user_enabled] = true
+      flash[:error] = "Your account has been temporarily disabled, contact Finaddictz for more details."
+    else
+      flash[:notice] = "Successfully logged out."
+    end
+    
     redirect_to root_url
   end
 end

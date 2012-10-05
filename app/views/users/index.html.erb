@@ -4,10 +4,9 @@
 <h2>User Management</h2>
 
     <%= form_for request.path, :method => 'get' do |f|%>
-    <!-- <%= f.label 'User Search' %> -->
-    <%= text_field_tag :term, params[:term] %>
+      <%= text_field_tag :term, params[:term] %><br/>
+      <%= f.submit 'Search', :class => 'btn btn-inverse' %>
     <% end %>
-   <button type="submit" class="btn btn-inverse">Search Users</button>
 
 <table>
 <div class="row">
@@ -32,7 +31,7 @@
       <td><%= user.first_name %> <%= user.last_name %></td>
       <td><a href="mailto:<%= user.email %>"><%= user.email %></a></td>
       <td><%= user.state %></td>
-      <td><%= user.enable %></td>
+      <td><%= user.enabled? %></td>
       <td>         
         <div class="btn-group">
             <button class="btn btn-primary" align="center">More</button>
@@ -43,7 +42,7 @@
             <ul class="dropdown-menu">
               <li><%= link_to 'Show', user %></li>  <!-- show user profile-->
               <li><%= link_to 'Edit', edit_user_path(user) %></li>
-              <% if user.disabled? %>
+              <% if !user.enabled? %>
                 <li><%= link_to 'Activate', toggle_enabled_user_path(user), confirm: 'Are you sure?', method: :put %></li>
               <% else %>
                 <li><%= link_to 'Deactivate', toggle_enabled_user_path(user), confirm: 'Are you sure?', method: :put %></li>

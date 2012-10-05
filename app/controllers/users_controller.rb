@@ -143,7 +143,7 @@ class UsersController < ApplicationController
     user = User.find(params[:id])
 
     #toggle enabled
-    if user.disabled?
+    if !user.enabled?
       user.enable = true
     else
       user.enable = false
@@ -151,7 +151,7 @@ class UsersController < ApplicationController
 
     #save and redirect
     if user.save
-      enabled_string = (user.disabled? && 'disabled') || 'enabled'
+      enabled_string = (!user.enabled? && 'disabled') || 'enabled'
       flash[:success] = "User: #{user} has been #{enabled_string}"
       redirect_to users_path
     else 

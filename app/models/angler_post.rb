@@ -27,6 +27,7 @@ class AnglerPost < ActiveRecord::Base
     #integer :price_min
     #integer :price_max
     time :date
+    time :created_at
   end
 
   #called from the controller passed in params
@@ -59,14 +60,14 @@ class AnglerPost < ActiveRecord::Base
 
         #with(:date).greater_than params[:start_date] if params[:start_date].present?
         paginate :page => params[:page] || 1, :per_page => 10
-        order_by :date, :desc
+        order_by :created_at, :desc
       end
       search.results
-    #we'll just give a vanilla search if they really f something up and break the code above
+    #we'll just give a vanilla search if they f something up and break the code above
     rescue
       search = AnglerPost.search do
         paginate :page => params[:page] || 1, :per_page => 10
-        order_by :date, :desc
+        order_by :created_at, :desc
       end
       search.results
     end

@@ -55,18 +55,18 @@
 			    </small>
 		      <td>         
 		        <div class="btn-group">
-		            <button class="btn btn-mini btn-primary" align="center">More</button>
-		            <button class="btn btn-mini btn-primary" data-toggle="dropdown">
-		              <span class="caret"></span>
-		            </button>
+	            <button class="btn btn-mini btn-primary" align="center">More</button>
+	            <button class="btn btn-mini btn-primary" data-toggle="dropdown">
+	              <span class="caret"></span>
+	            </button>
 
-		            <ul class="dropdown-menu">
-		              <li><%= link_to 'View Post', angler_post_path(post) %></li>
-		              <li><%= link_to 'Edit Post', edit_angler_post_path(post) %></li>
-		              <li><%= link_to 'Mark as Booked', "/angler_posts/book_trip/#{post.id}/#{current_user.id}" %></li>
-		              <li><%= link_to 'Delete Post', post, confirm: 'Are you sure?', method: :delete %></li>
-		            </ul>
-		          </div>
+	            <ul class="dropdown-menu">
+	              <li><%= link_to 'View Post', angler_post_path(post) %></li>
+	              <li><%= link_to 'Edit Post', edit_angler_post_path(post) %></li>
+	              <li><%= link_to 'Mark as Booked', "/angler_posts/book_trip/#{post.id}/#{current_user.id}" %></li>
+	              <li><%= link_to 'Delete Post', post, confirm: 'Are you sure?', method: :delete %></li>
+	            </ul>
+	          </div>
 		      </td>    
 		  </tr>   
 			<% end %>

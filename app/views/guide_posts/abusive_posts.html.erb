@@ -1,0 +1,107 @@
+<h4>Guide Posts:</h4>
+
+<table class="table">
+	<thead>
+		<tr>
+			<th>Title</th>
+			<th>Description</th>
+			<th>Date Posted</th>
+			<th>Manage</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @guide_posts.each do |post| %>
+			<tr>
+				<td><%= post.title %></td>
+				<td><%= post.description %></td>
+				<td><%= post.created_at %></td>
+				<td>
+					<div class="btn-group">
+            <button class="btn btnbtn-primary" align="center">Manage</button>
+            <button class="btn btnbtn-primary" data-toggle="dropdown">
+              <span class="caret"></span>
+            </button>
+
+            <ul class="dropdown-menu">
+              <li><%= link_to 'View Post', guide_post_path(post) %></li>
+              <li><%= link_to 'Edit Post', edit_guide_post_path(post) %></li>
+              <li><%= link_to 'Flag as unabusive', flag_guide_post_as_not_abused_path(post), confirm: 'Are you sure?', method: :put  %></li>
+              <li><%= link_to 'Delete Post', post, confirm: 'Are you sure?', method: :delete %></li>
+            </ul>
+          </div>
+				</td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>
+
+<div class="clear"></div>
+<table class="table">
+	<thead>
+		<tr>
+			<th>Title</th>
+			<th>Description</th>
+			<th>Date Posted</th>
+			<th>Manage</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @angler_posts.each do |post| %>
+			<tr>
+				<td><%= post.title %></td>
+				<td><%= post.description %></td>
+				<td><%= post.created_at %></td>
+				<td>
+					<div class="btn-group">
+            <button class="btn btnbtn-primary" align="center">Manage</button>
+            <button class="btn btnbtn-primary" data-toggle="dropdown">
+              <span class="caret"></span>
+            </button>
+
+            <ul class="dropdown-menu">
+              <li><%= link_to 'View Post', angler_post_path(post) %></li>
+              <li><%= link_to 'Edit Post', edit_angler_post_path(post) %></li>
+              <li><%= link_to 'Flag as unabusive', flag_angler_post_as_not_abused_path(post), confirm: 'Are you sure?', method: :put  %></li>
+              <li><%= link_to 'Delete Post', post, confirm: 'Are you sure?', method: :delete %></li>
+            </ul>
+          </div>
+				</td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>
+<div class="clear"></div>
+<table class="table">
+	<thead>
+		<tr>
+			<th>Title</th>
+			<th>Description</th>
+			<th>Date Posted</th>
+			<th>Manage</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @property_posts.each do |post| %>
+			<tr>
+				<td><%= post.title %></td>
+				<td><%= post.description %></td>
+				<td><%= post.created_at %></td>
+				<td>
+					<div class="btn-group">
+            <button class="btn btnbtn-primary" align="center">Manage</button>
+            <button class="btn btnbtn-primary" data-toggle="dropdown">
+              <span class="caret"></span>
+            </button>
+
+            <ul class="dropdown-menu">
+              <li><%= link_to 'View Post', property_post_path(post) %></li>
+              <li><%= link_to 'Edit Post', edit_property_post_path(post) %></li>
+              <li><%= link_to 'Flag as unabusive', flag_property_post_as_not_abused_path(post), confirm: 'Are you sure?', method: :put  %></li>
+              <li><%= link_to 'Delete Post', post, confirm: 'Are you sure?', method: :delete %></li>
+            </ul>
+          </div>
+				</td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>

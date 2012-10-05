@@ -29,6 +29,7 @@
 		<br>
 		<ul>
 			<li><%= link_to 'Users', users_path %></li>
+			<li><%= link_to "Abusive Posts (#{GuidePost.abusive_posts_count})", abusive_posts_path(1) %></li>
 			<li><%= link_to 'Advertisements', advertisements_path %></li>
 			<li><%= link_to 'Fishing Methods', fishing_methods_path %></li>
 			<li><%= link_to 'Fishing Species', fish_species_path %></li>

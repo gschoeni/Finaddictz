@@ -62,9 +62,16 @@
       </div>
     </div>
     <div class="control-group">
-      <%= f.label :role, :class => "control-label"  %>
+      <%= f.label 'Roles', :class => "control-label"  %>
       <div class="controls">
-        <% {'guide' => 'Guide', 'angler' => 'Angler', 'property_owner' => 'Property Owner'}.each do |key, val| %>
+        <% 
+        if current_user.roles.include?(Role.find_by_name("admin"))
+          tags = {'admin' => 'Admin', 'guide' => 'Guide', 'angler' => 'Angler', 'property_owner' => 'Property Owner'}
+        else
+          tags = {'guide' => 'Guide', 'angler' => 'Angler', 'property_owner' => 'Property Owner'}
+        end 
+        %>
+        <% tags.each do |key, val| %>
         <br><%= check_box_tag 'user[role_ids][]', Role.find_by_name(key).id, current_user.roles.include?(Role.find_by_name(key))%> <%= val %>
         <% end %>
       </div>
@@ -78,7 +85,7 @@
     <div class="control-group">
       <%= f.label :birthdate, :class => "control-label"  %>
       <div class="controls">
-        <%= f.text_field :birthdate, :class => "text_field"  %>
+       <%= f.date_select :birthdate, :class => "text_field"  %>
       </div>
     </div>
 

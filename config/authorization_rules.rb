@@ -72,6 +72,9 @@ authorization do
     has_permission_on :conversations, :to => :manage
     has_permission_on :rivers, :to => :manage
     has_permission_on :advertisements, :to => :manage
+    has_permission_on :guide_posts, :to => [:abusive_posts, :flag_as_not_abused]
+    has_permission_on :property_posts, :to => [:abusive_posts, :flag_as_not_abused]
+    has_permission_on :angler_posts, :to => [:abusive_posts, :flag_as_not_abused]
   end
 
 end

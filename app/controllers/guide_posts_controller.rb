@@ -114,9 +114,19 @@ class GuidePostsController < ApplicationController
     @guide_post.abusive_flag = true;
     if @guide_post.save
       AbuseMailer.abuse_email.deliver
-      redirect_to @guide_post, notice: 'Guide post was flagged as abusive'
+      redirect_to @guide_post, notice: 'Guide post was flagged as abusive.'
     else
-      redirect_to @guide_post, notice: 'Something went wrong..'
+      redirect_to @guide_post, notice: 'Cannot flag this post as abusive.'
+    end
+  end 
+
+  def flag_as_not_abused
+    @guide_post = GuidePost.find(params[:id])
+    @guide_post.abusive_flag = false;
+    if @guide_post.save
+      redirect_to abusive_posts_path(1), notice: 'Guide post was flagged as unabusive.'
+    else
+      redirect_to abusive_posts_path(1), notice: 'Cannot flag this post as abusive.'
     end
   end  
 
@@ -172,6 +182,12 @@ class GuidePostsController < ApplicationController
     )
 
     redirect_to edit_guide_post_url(params[:id]), notice: 'User has been informed that this slot has been taken.'
+  end
+
+  def abusive_posts
+    @guide_posts = GuidePost.find_all_by_abusive_flag(true)
+    @angler_posts = AnglerPost.find_all_by_abusive_flag(true)
+    @property_posts = PropertyPost.find_all_by_abusive_flag(true)
   end
 
 end

@@ -44,6 +44,8 @@ Finaddictz::Application.routes.draw do
   #for changing a users role
   match 'users/:id/change_role/:role' => 'users#change_role', :as => 'change_role_user'
 
+  #for viewing abusive posts
+  get 'abusive_posts/:id' => 'guide_posts#abusive_posts', :as => 'abusive_posts'
 
   #enabling and disabling a user
   put "users/:id/toggle_enabled" => 'users#toggle_enabled', :as => 'toggle_enabled_user'
@@ -51,6 +53,10 @@ Finaddictz::Application.routes.draw do
   put "guide_posts/:id/flag_as_abused" => 'guide_posts#flag_as_abused', :as => 'flag_guide_post_as_abused'
   put "property_posts/:id/flag_as_abused" => 'property_posts#flag_as_abused', :as => 'flag_property_post_as_abused'
   put "angler_posts/:id/flag_as_abused" => 'angler_posts#flag_as_abused', :as => 'flag_angler_post_as_abused'
+
+  put "guide_posts/:id/flag_as_not_abused" => 'guide_posts#flag_as_not_abused', :as => 'flag_guide_post_as_not_abused'
+  put "property_posts/:id/flag_as_not_abused" => 'property_posts#flag_as_not_abused', :as => 'flag_property_post_as_not_abused'
+  put "angler_posts/:id/flag_as_not_abused" => 'angler_posts#flag_as_not_abused', :as => 'flag_angler_post_as_not_abused'
 
   delete "guide_posts/:id/remove_user_from_trip/:user_id" => 'guide_posts#remove_user_from_trip', :as => 'remove_user_from_trip'
   put "trips_to_users/:id/accept_user_on_trip/:user_id/:guide_post_id" => 'trips_to_users#accept_user_on_trip', :as => 'accept_user_on_trip'

@@ -123,8 +123,8 @@ class User < ActiveRecord::Base
     "#{first_name} #{last_name}"
   end
 
-  def disabled?
-    !self.enable
+  def enabled?
+    self.enable
   end
 
 

@@ -1,10 +1,8 @@
-
-
 <%= form_for @user, :html => {:class => 'form-horizontal'} do |f| %>
   <legend>Register</legend>
     <% if @user.errors.any? %>
-        <div id="error_explanation">
-          <h2>There were <%= pluralize(@user.errors.count, "error") %> with your information:</h2>
+        <div class="alert alert-error">
+          <h3>We found <%= pluralize(@user.errors.count, "error") %> with your information:</h3>
 
           <ul>
             <% @user.errors.full_messages.each do |msg| %>
@@ -48,15 +46,23 @@
       </div>
     </div>
     <div class="control-group">
+      <%= f.label 'I am a:', :class => "control-label"  %>
+      <div class="controls">
+        <% {'angler' => 'Angler', 'guide' => 'Guide', 'property_owner' => 'Property Owner'}.each do |key, val| %>
+        <br><%= check_box_tag 'user[role_ids][]', Role.find_by_name(key).id, key == 'angler'%> <%= val %>
+        <% end %>
+      </div>
+    </div>
+    <div class="control-group">
       <%= f.label :state, :class => "control-label"  %>
       <div class="controls">
-        <%= f.text_field :state, :class => "text_field"  %>
+        <%= f.select :state, us_states %>
       </div>
     </div>
     <div class="control-group">
       <%= f.label :birthdate, :class => "control-label"  %>
       <div class="controls">
-        <%= f.text_field :birthdate, :class => "text_field"  %>
+        <%= f.date_select :birthdate, :start_year => Time.now().year - 100, :end_year => Time.now().year - 18, :class => "text_field", :default => Time.now() - 21.years %>
       </div>
     </div>
 

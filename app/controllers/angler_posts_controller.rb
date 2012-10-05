@@ -107,9 +107,19 @@ class AnglerPostsController < ApplicationController
     @angler_post.abusive_flag = true;
     if @angler_post.save
       AbuseMailer.abuse_email.deliver
-      redirect_to @angler_post, notice: 'Angler post was flagged as abusive'
+      redirect_to @angler_post, notice: 'Angler post was flagged as abusive.'
     else
-      redirect_to @angler_post, notice: 'Something went wrong..'
+      redirect_to @angler_post, notice: 'Cannot flag this post as abusive.'
+    end
+  end 
+
+  def flag_as_not_abused
+    @angler_post = AnglerPost.find(params[:id])
+    @angler_post.abusive_flag = false;
+    if @angler_post.save
+      redirect_to abusive_posts_path(1), notice: 'Angler Post was flagged as unabusive.'
+    else
+      redirect_to abusive_posts_path(1), notice: 'Something went wrong..'
     end
   end 
 

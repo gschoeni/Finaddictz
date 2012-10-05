@@ -65,6 +65,14 @@ class GuidePost < ActiveRecord::Base
 	def isFull?
 		TripsToUser.find_all_by_post_id(self.id).count() >= num_people
 	end
+
+	def self.abusive_posts_count
+		count = 0
+		count += GuidePost.find_all_by_abusive_flag(true).count()
+		count += AnglerPost.find_all_by_abusive_flag(true).count()
+		count += PropertyPost.find_all_by_abusive_flag(true).count()
+		count
+	end
 	
   #make guide posts more dynamically searchable sunspot
   searchable do
@@ -72,6 +80,7 @@ class GuidePost < ActiveRecord::Base
     text :description
     integer :price_per
     time :date
+    time :created_at
   end
 
   #called from the controller passed in params
@@ -104,14 +113,14 @@ class GuidePost < ActiveRecord::Base
 		    
 	      #with(:date).greater_than params[:start_date] if params[:start_date].present?
 	      paginate :page => params[:page] || 1, :per_page => 10
-	      order_by :date, :desc
+	      order_by :created_at, :desc
 	    end
 	    search.results
 	  #we'll just give a vanilla search if they really f something up and break the code above
 	  rescue
 	  	search = GuidePost.search do
 	  		paginate :page => params[:page] || 1, :per_page => 10
-	  		order_by :date, :desc
+	  		order_by :created_at, :desc
 	  	end
 	  	search.results
 	  end

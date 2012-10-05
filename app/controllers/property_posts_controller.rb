@@ -89,7 +89,17 @@ class PropertyPostsController < ApplicationController
       AbuseMailer.abuse_email.deliver
       redirect_to @property_post, notice: 'Property post was flagged as abusive'
     else
-      redirect_to @property_post, notice: 'Something went wrong..'
+      redirect_to @property_post, notice: 'Cannot flag this post as abusive.'
     end
   end 
+
+  def flag_as_not_abused
+    @property_post = PropertyPost.find(params[:id])
+    @property_post.abusive_flag = false;
+    if @property_post.save
+      redirect_to abusive_posts_path(1), notice: 'Property post was flagged as unabusive.'
+    else
+      redirect_to abusive_posts_path(1), notice: 'Something went wrong..'
+    end
+  end  
 end

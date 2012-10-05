@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121004210214) do
+ActiveRecord::Schema.define(:version => 20121005002009) do
 
   create_table "advertisements", :force => true do |t|
     t.string   "headline"
@@ -249,16 +249,16 @@ ActiveRecord::Schema.define(:version => 20121004210214) do
     t.string   "password_salt"
     t.string   "persistence_token"
     t.string   "state"
-    t.string   "birthdate"
+    t.date     "birthdate",          :limit => 255
     t.string   "active_role"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "notify_email",       :default => false
-    t.boolean  "notify_sms",         :default => false
-    t.boolean  "notify_phone",       :default => false
-    t.boolean  "notify_site",        :default => false
-    t.boolean  "confirmed",          :default => false
-    t.boolean  "enable",             :default => false
+    t.boolean  "notify_email",                      :default => false
+    t.boolean  "notify_sms",                        :default => false
+    t.boolean  "notify_phone",                      :default => false
+    t.boolean  "notify_site",                       :default => false
+    t.boolean  "confirmed",                         :default => false
+    t.boolean  "enable",                            :default => true
     t.string   "photo_file_name"
     t.string   "photo_content_type"
     t.integer  "photo_file_size"

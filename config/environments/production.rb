@@ -53,11 +53,9 @@ Finaddictz::Application.configure do
   config.action_mailer.smtp_settings = {
     :address              => "smtp.gmail.com",
     :port                 => 25,
-    :domain               => 'finaddictz.com',
     :user_name            => 'finaddictz@gmail.com',
     :password             => 'password123!',
-    :authentication       => 'plain',
-    :enable_starttls_auto => true  
+    :authentication       => :login
   }
 
   # Enable threaded mode

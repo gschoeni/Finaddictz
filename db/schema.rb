@@ -249,7 +249,7 @@ ActiveRecord::Schema.define(:version => 20121005002009) do
     t.string   "password_salt"
     t.string   "persistence_token"
     t.string   "state"
-    t.date     "birthdate",          :limit => 255
+    t.datetime "birthdate",          :limit => 255
     t.string   "active_role"
     t.datetime "created_at"
     t.datetime "updated_at"

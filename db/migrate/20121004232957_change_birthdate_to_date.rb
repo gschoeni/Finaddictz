@@ -1,7 +1,7 @@
 class ChangeBirthdateToDate < ActiveRecord::Migration
   def self.up
     change_table :users do |t|
-      t.change :birthdate, :date
+      t.change :birthdate, :datetime
     end
   end
 

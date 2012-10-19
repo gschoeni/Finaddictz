@@ -159,4 +159,21 @@ class UsersController < ApplicationController
       redirect_to users_path
     end
   end
+
+  def forgot_password
+    #just a simple form for an email address
+  end
+
+  def send_new_password
+    @user = User.find_by_email(params[:email])
+    if @user
+      @password = SecureRandom.hex(4)
+      UserMailer.new_password(@user, @password).deliver
+      flash[:success] = "Your new password has been sent to your email."
+      redirect_to login_path
+    else
+      flash[:error] = "Your email was not found, try a different email or register for an account."
+      redirect_to forgot_password_path
+    end
+  end
 end

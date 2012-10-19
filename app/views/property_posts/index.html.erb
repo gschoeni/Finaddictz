@@ -1,30 +1,43 @@
 <div class="top-ad"><%=getAdForPage('Property Posts').html_safe%></div>
 <br>
-
+<img src="images/search.png" width="70" height="70" style="float:left; margin-right:20px;">
+<h1><font color="red">FinAddictz</font> Private Properties for Fishing</h1>
+<br>
+<div class="horizontal-form-layout">
+  <%= form_for request.path, :method => 'get' do |f|%>
+    <div class="form-element-wrapper">
+      <%= f.label "Enter a word or phrase:" %>
+      <%= text_area_tag :search, params[:search], :rows => '4'%>
+    </div>
+    <div class="clear"></div>
+    <div class="form-element-wrapper">
+      <%= f.submit 'Search trips'%>
+    </div>
+    <div class="clear"></div>
+  <% end %>
+</div>
 <%= will_paginate @property_posts, :renderer => BootstrapPagination::Rails %>
 <% @property_posts.each do |property_post|%>
   
-    <div class="row">
-      <div class="span8 post_row" <% if property_post ==  @property_posts.last %> style="border-bottom:solid 1px #d3d3d3;" <% end %>>
-        <span class="post_created">Posted: <%= property_post.created_at.strftime("%m/%d/%Y") %></span><br>
-        <span class="post_title"><%= property_post.title %></span><br>
-        <span class="post_price">Price: $<%= number_with_precision(property_post.price, :precision => 2) %></span><br>
-        <br>
-        <div><%=property_post.description%></div>
-        <% if property_post.abusive_flag == "false" %>
-          <td>This trip is currently <%= property_post.booking_status %></td>
-          
-          <% elsif property_post.abusive_flag == "true" %>
-          <td><font color="red">This posting has been flagged as abusive</font></td>
-          <% end %>
-        <br><br>
+  <div class="row">
+    <div class="span8 post_row" <% if property_post ==  @property_posts.last %> style="border-bottom:solid 1px #d3d3d3;" <% end %>>
+      <span class="post_created">Posted: <%= property_post.created_at.strftime("%m/%d/%Y") %></span><br>
+      <span class="post_title"><%= property_post.title %></span><br>
+      <span class="post_price">Price: $<%= number_with_precision(property_post.price, :precision => 2) %></span><br>
+      <br>
+      <div><%=property_post.description%></div>
+      <% if property_post.abusive_flag == "false" %>
+        <td>This trip is currently <%= property_post.booking_status %></td>
+        
+        <% elsif property_post.abusive_flag == "true" %>
+        <td><font color="red">This posting has been flagged as abusive</font></td>
+        <% end %>
+      <br><br>
 
-        <%= link_to 'Trip Details', property_post, :class => 'btn btn-primary' %>
-      </div>
-        <br>
+      <%= link_to 'Trip Details', property_post, :class => 'btn btn-primary' %>
     </div>
-    <% end %>
-    </div>
+      <br>
+  </div>
+<% end %>
 
 <%= will_paginate @property_posts, :renderer => BootstrapPagination::Rails %>
-

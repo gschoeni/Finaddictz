@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script> 
 
 <div class="row">
@@ -25,7 +23,7 @@
           <th>Title</th>
           <th>
             <% if @property_post.user == current_user %>
-              <div id="edit_profile"><%= link_to 'Edit Post', edit_guide_post_path(@property_post)%> <i class="icon-pencil"></i></div>
+              <div id="edit_profile"><%= link_to 'Edit Post', edit_property_post_path(@property_post)%> <i class="icon-pencil"></i></div>
             <% end %>
             <span class="post_title"><%= @property_post.title %></span>
           </th>
@@ -55,15 +53,7 @@
                 <ul class="dropdown-menu">
                   <li><a href="#messageModal" role="button" data-toggle="modal">Message Property Owner</a></li>
                   <li><%= link_to 'Identify as Abusive', flag_property_post_as_abused_path(@property_post), :method => :put %></li>
-                  <% unless @post_is_booked %>
-                    <li class="divider"></li>
-
-                   <li> <%= link_to 'Delete', @property_post if permitted_to? :delete, @property_post %></li>
-
-
-
-                    <li><%= link_to 'Book this Property!', "/property_posts/book_trip/#{@property_post.id}/#{current_user.id}" %></li>
-                  <% end %>
+                  <li> <%= link_to 'DELETE', @property_post if permitted_to? :delete, @property_post %></li>
                 </ul>
               </div>
             </td>    

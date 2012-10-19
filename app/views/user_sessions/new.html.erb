@@ -5,33 +5,46 @@ http-equiv="content-type">
 <title></title>
 </head>
 <body>
-  <div id="myCarousel" class="carousel slide">
-    <div class="carousel-inner">
-      <div class="item">
-        <img src="images/guides2.jpg" style="width: 100%; height: 100%;" alt="Guides" />
-        <!-- <div class="carousel-caption">
-          <h4>First Thumbnail label</h4>
-          <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-        </div> -->
+  <div id="centerLogin">
+    <div id="myCarousel" class="carousel slide">
+      <div class="carousel-inner">
+        <div class="item">
+          <img src="images/man-golden-leaves.png" style="width: 100%; height: 100%;" alt="Guides" />
+          <div class="carousel-caption">
+            <p>Whoever said, “knowledge is power” must have been a fisherman.  But this isn’t another fishing report site.  We give you the ability to learn new, off-the-beaten path locations paired with a view into fishing pressure, making the most of your fish whispering abilities in a way that no one else can.</p>
+          </div>
+        </div>
+        <div class="item active">
+          <img src="images/man-in-river.png" style="width: 1000px; height: 330px;" alt="Bolden Jump" />
+          <div class="carousel-caption">
+            <p>Learn from someone else on the water with you at a price you can afford (or, in many cases, at no price).</p>
+          </div>
+        </div>
+        <div class="item">
+          <img src="images/kid-fishing.png" style="width: 1000px; height: 330px;" alt="Fox River" />
+          <div class="carousel-caption">
+            <p>See who is planning to fish (and soon, real time tracking of who is fishing) in your favorite spots, or new spots you would like to check out.</p>
+          </div>
+        </div>
+        <div class="item">
+          <img src="images/men-fishing.png" style="width: 1000px; height: 330px;" alt="Fox River" />
+          <div class="carousel-caption">
+            <p>Get access to private water at low costs.</p>
+          </div>
+        </div>
+        <div class="item">
+          <img src="images/foxRiver.png" style="width: 1000px; height: 330px;" alt="Fox River" />
+          <div class="carousel-caption">
+            <p>Join us, and start fishing fish, not crowds.</p>
+          </div>
+        </div>
       </div>
-      <div class="item active">
-        <img src="images/bolden_jump_800.jpg" style="width: 1070px; height: 328px;" alt="Bolden Jump" />
-        <!-- <div class="carousel-caption">
-          <h4>Second Thumbnail label</h4>
-          <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-        </div> -->
-      </div>
-      <div class="item">
-        <img src="images/foxRiver.jpg" style="width: 1070px; height: 328px;" alt="Fox River" />
-        <!-- <div class="carousel-caption">
-          <h4>Third Thumbnail label</h4>
-          <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-        </div> -->
-      </div>
+      <a class="left carousel-control" href="#myCarousel" data-slide="prev">‹</a>
+      <a class="right carousel-control" href="#myCarousel" data-slide="next">›</a>
     </div>
-    <a class="left carousel-control" href="#myCarousel" data-slide="prev">‹</a>
-    <a class="right carousel-control" href="#myCarousel" data-slide="next">›</a>
+
   </div>
+
 
   <%= form_for @user_session, :html => {:class => 'form-horizontal'} do |f| %>
     <% if @user_session.errors.any? %>
@@ -60,23 +73,17 @@ http-equiv="content-type">
           <%=  f.password_field :password, :class => "text_field" %>
         </div>
       </div>
-
+      <div class="control-group">
+        <div class="controls">
+          <%= link_to "Forgot Password?", forgot_password_path %>
+        </div>
+      </div>
+      
       <div class="form-actions">
         <%= f.submit "Login" %>
       </div>
     </fieldset>
     
   <% end %>
-
-  <div align="right">
-    <a href="">Contact Us  |  </a><%= link_to 'Advertise with Us!', new_advertisement_path %> |  <a href="">Careers</a>
-  </div>
-  <address>
-    <strong>FinAddictz, Inc.</strong><br>
-    795 Address Ave, Suite 600<br>
-    Boulder, CO 80534<br>
-    <abbr title="Phone">P:</abbr> (123) 456-7890
-  </address>
-
 </body>
 </html>

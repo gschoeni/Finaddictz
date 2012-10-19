@@ -30,6 +30,8 @@ Finaddictz::Application.routes.draw do
   match "/logout" => "user_sessions#destroy"
   match "/login" => "user_sessions#new"
   match "/register" => "users#new"
+  get '/forgot_password' => "users#forgot_password", :as => 'forgot_password'
+  post '/forgot_password/send_new_password' => "users#send_new_password"
 
   match "/map" => "map#index"
 

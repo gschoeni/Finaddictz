@@ -5,7 +5,11 @@
   <li class="divider-vertical"></li>
   
 
-  <li><%= link_to 'Post a Trip', new_property_post_path%></li>
+  <li>
+  	<a href="<%=new_property_post_path%>" rel="tooltip" data-placement="bottom" data-original-title="Have a good spot for fishing? Rent it out by posting your property here.">
+  		Post Your Property
+  	</a>
+  </li>
   <li class="divider-vertical"></li>
   <li><%= link_to "Profile", @current_user %></li>
   <li class="divider-vertical"></li>

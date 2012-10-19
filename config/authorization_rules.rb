@@ -2,8 +2,10 @@ authorization do
   
   role :guest do
     has_permission_on :user_sessions, :to => :manage
-    has_permission_on :users, :to => [:create, :confirm]
+    has_permission_on :users, :to => [:create, :confirm, :forgot_password, :send_new_password]
     has_permission_on :advertisements, :to => :create
+    has_permission_on [:property_posts, :guide_posts, :angler_posts], :to => [:index]
+    has_permission_on :map, :to => :read
   end
 
 

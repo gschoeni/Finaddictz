@@ -65,8 +65,33 @@
         <%= f.date_select :birthdate, :start_year => Time.now().year - 100, :end_year => Time.now().year - 18, :class => "text_field", :default => Time.now() - 21.years %>
       </div>
     </div>
+    <div class="control-group">
+      <%= f.label :state, :class => "control-label"  %>
+      <div class="controls">
+        <%= f.select :state, us_states %>
+      </div>
+    </div>
 
+    <div class="control-group">
+
+      <div class="controls">
+        <input id="agreed_with_terms" type="checkbox"/>
+         I have read and agree with the <a href="#"> FinAddictz Terms and Conditions.</a>      
+       </div>
+    </div>
+    
     <div class="form-actions">
-      <%= f.submit 'Register', :class => 'btn btn-primary' %>
+      <%= f.submit 'Register', :class => 'btn btn-primary', "onClick" => "return confirmEighteen();" %>
     </div>
 <% end %>
+
+<script type="text/javascript">
+  function confirmEighteen() {
+    if (!document.getElementById('agreed_with_terms').checked) {
+      alert("You must read the terms and conditions and acknowledge that you agree.");
+      return false;
+    } else {
+      return true;
+    }
+  }
+</script>

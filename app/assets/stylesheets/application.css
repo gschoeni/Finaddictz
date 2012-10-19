@@ -41,3 +41,17 @@
 .min-height{
   min-height: 500px;
 }
+
+#myCarousel {
+  width:1000px;
+  height:330px;
+  margin: 20px auto;
+}
+
+#centerLogin {
+  text-align: center;
+}
+
+footer {
+  min-height: 100px;
+}

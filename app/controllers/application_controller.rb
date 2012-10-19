@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   layout 'application'
 
    #for declarative auth permissions
-  filter_resource_access
+  filter_access_to :all
 
   #define any other helpers here
   helper_method [:current_user, :readable_role, :layout_prefix]
@@ -59,7 +59,7 @@ class ApplicationController < ActionController::Base
 
 	  #method for redirecting user if they do not have access via declarative auth
 	  def permission_denied
-	    flash[:error] = "Access Denied"
+	    flash[:notice] = "Please log in to continue."
 	    if current_user
 	    	redirect_url = user_path(current_user)
 	    else 

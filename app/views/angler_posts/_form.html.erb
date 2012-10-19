@@ -65,7 +65,9 @@
       <%= f.select :river_id, River.all.collect {|r| [ r, r.id ] }, :include_blank => "Select River" %>
     </div>
   </div>
-  
+  <div class="control-group">
+    <div class="controls"><b>Click on the map to pin where on the river you are planning to go.</b></div>
+  </div>
   <div class="control-group">
     <div class="controls">
       <div id="map_canvas" style="width: 550px; height: 450px"></div> 

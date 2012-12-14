@@ -51,7 +51,6 @@ gem 'will_paginate', '~> 3.0'
 gem 'will_paginate-bootstrap'
 gem "paperclip", "~> 2.7"
 gem "twitter-bootstrap-rails"
-gem "recaptcha", :require => "recaptcha/rails"
 gem 'sunspot_rails'
 gem 'sunspot_solr' # optional pre-packaged Solr distribution for use in development
 

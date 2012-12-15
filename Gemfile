@@ -16,7 +16,7 @@ end
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'sass-rails',   '~> 3.1.5'
+  gem 'sass-rails',   '~> 3.1.4'
   gem 'coffee-rails', '~> 3.1.1'
   gem 'uglifier', '>= 1.0.3'
 end
@@ -45,7 +45,7 @@ gem 'authlogic', :git => 'git://github.com/odorcicd/authlogic.git', :branch => '
 # using for role assignments
 gem "declarative_authorization"
 
-gem "sass"
+gem "sass", '~> 3.1.4'
 gem 'therubyracer'
 gem 'will_paginate', '~> 3.0'
 gem 'will_paginate-bootstrap'

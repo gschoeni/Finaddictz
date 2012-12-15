@@ -65,12 +65,6 @@
         <%= f.date_select :birthdate, :start_year => Time.now().year - 100, :end_year => Time.now().year - 18, :class => "text_field", :default => Time.now() - 21.years %>
       </div>
     </div>
-    <div class="control-group">
-      <%= f.label :state, :class => "control-label"  %>
-      <div class="controls">
-        <%= f.select :state, us_states %>
-      </div>
-    </div>
 
     <div class="control-group">
 

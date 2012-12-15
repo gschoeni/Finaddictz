@@ -1,16 +1,29 @@
 ---
-!binary "cmFpbHMucG5n": rails-7ad812856c7dc20006d43424bbe57d40.png
-!binary "cmVkX3Bpbi5wbmc=": red_pin-5335fdd6d2815468764f750a7ae11306.png
-!binary "cmVkX3Bpbl9zbWFsbC5wbmc=": red_pin_small-5335fdd6d2815468764f750a7ae11306.png
-!binary "eWVsbG93X3Bpbi5wbmc=": yellow_pin-9cc4ba0c09ea0a49c5d91348a3ca70f8.png
-!binary "YXBwbGljYXRpb24uanM=": application-bf74a9431d6c3403ccc03cdeb49facd3.js
-!binary "YXBwbGljYXRpb24uY3Nz": application-1cb0fe12e1c561052b04b10d1bed4b82.css
-!binary "Zm9udGF3ZXNvbWUtd2ViZm9udC5lb3Q=": fontawesome-webfont-e03a2da63c3c6d17998251400bea197f.eot
-!binary "Zm9udGF3ZXNvbWUtd2ViZm9udC5zdmc=": fontawesome-webfont-c3af6f4d0046f2b0092fcccf151a4e04.svg
-!binary "Zm9udGF3ZXNvbWUtd2ViZm9udC50dGY=": fontawesome-webfont-e539183cb13c2cb1cffa5f1e60ea2719.ttf
-!binary "Zm9udGF3ZXNvbWUtd2ViZm9udC53b2Zm": fontawesome-webfont-de9f41115a78ef66e51be4bcc6f28d6b.woff
+!binary "cmFpbHMucG5n": !binary |-
+  cmFpbHMucG5n
+!binary "cmVkX3Bpbi5wbmc=": !binary |-
+  cmVkX3Bpbi5wbmc=
+!binary "cmVkX3Bpbl9zbWFsbC5wbmc=": !binary |-
+  cmVkX3Bpbl9zbWFsbC5wbmc=
+!binary "eWVsbG93X3Bpbi5wbmc=": !binary |-
+  eWVsbG93X3Bpbi5wbmc=
+!binary "YXBwbGljYXRpb24uanM=": !binary |-
+  YXBwbGljYXRpb24uanM=
+!binary "YXBwbGljYXRpb24uY3Nz": !binary |-
+  YXBwbGljYXRpb24uY3Nz
+!binary "Zm9udGF3ZXNvbWUtd2ViZm9udC5lb3Q=": !binary |-
+  Zm9udGF3ZXNvbWUtd2ViZm9udC5lb3Q=
+!binary "Zm9udGF3ZXNvbWUtd2ViZm9udC5zdmc=": !binary |-
+  Zm9udGF3ZXNvbWUtd2ViZm9udC5zdmc=
+!binary "Zm9udGF3ZXNvbWUtd2ViZm9udC50dGY=": !binary |-
+  Zm9udGF3ZXNvbWUtd2ViZm9udC50dGY=
+!binary "Zm9udGF3ZXNvbWUtd2ViZm9udC53b2Zm": !binary |-
+  Zm9udGF3ZXNvbWUtd2ViZm9udC53b2Zm
 ? !binary |-
   dHdpdHRlci9ib290c3RyYXAvZ2x5cGhpY29ucy1oYWxmbGluZ3Mtd2hpdGUu
   cG5n
-: twitter/bootstrap/glyphicons-halflings-white-0d9ce4eb23c7f3ec006607cdaa7017ba.png
-!binary "dHdpdHRlci9ib290c3RyYXAvZ2x5cGhpY29ucy1oYWxmbGluZ3MucG5n": twitter/bootstrap/glyphicons-halflings-9ec9159187f3e873e60be6cf93033e91.png
+: !binary |-
+  dHdpdHRlci9ib290c3RyYXAvZ2x5cGhpY29ucy1oYWxmbGluZ3Mtd2hpdGUu
+  cG5n
+!binary "dHdpdHRlci9ib290c3RyYXAvZ2x5cGhpY29ucy1oYWxmbGluZ3MucG5n": !binary |-
+  dHdpdHRlci9ib290c3RyYXAvZ2x5cGhpY29ucy1oYWxmbGluZ3MucG5n

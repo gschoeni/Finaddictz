@@ -9,16 +9,18 @@ Finaddictz::Application.configure do
   config.action_controller.perform_caching = true
 
   # Disable Rails's static asset server (Apache or nginx will already do this)
-  config.serve_static_assets = false
+  config.serve_static_assets = true
 
   # Compress JavaScripts and CSS
   config.assets.compress = true
 
   # Don't fallback to assets pipeline if a precompiled asset is missed
-  config.assets.compile = false
+  config.assets.compile = true
 
   # Generate digests for assets URLs
-  config.assets.digest = true
+  config.assets.digest = false
+
+  #config.assets.debug = true
 
   # Defaults to Rails.root.join("public/assets")
   # config.assets.manifest = YOUR_PATH
@@ -47,16 +49,17 @@ Finaddictz::Application.configure do
 
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
-  config.action_mailer.perform_deliveries = true 
-  config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.delivery_method = :sendmail  
   config.action_mailer.smtp_settings = {
-    :address              => "smtp.gmail.com",
-    :port                 => 25,
-    :user_name            => 'finaddictz@gmail.com',
-    :password             => 'password123!',
-    :authentication       => :login
+    :address => 'mail.finaddictz.com',
+    :port => 587,
+    :domain => 'finaddictz.com',
+    :authentication => :login,
+    :user_name => 'info@finaddictz.com',
+    :password => 'r1y2a3n4'
   }
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.perform_deliveries = true
 
   # Enable threaded mode
   # config.threadsafe!

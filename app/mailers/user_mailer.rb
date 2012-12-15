@@ -3,7 +3,7 @@ class UserMailer < ActionMailer::Base
 
   def welcome_email(user)
     @user = user
-    @url  = "http://finaddictz.herokuapp.com/users/confirm/#{@user.id}/#{Digest::SHA1.hexdigest(@user.email)}"
+    @url  = "http://www.finaddictz.com/users/confirm/#{@user.id}/#{Digest::SHA1.hexdigest(@user.email)}"
     mail(:to => user.email, :subject => "Welcome to Finaddictz")
   end
 

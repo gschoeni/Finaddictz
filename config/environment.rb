@@ -6,4 +6,3 @@ Finaddictz::Application.initialize!
 
 #Date format default
 Date::DATE_FORMATS.merge!(:default => "%B %d, %Y")
-

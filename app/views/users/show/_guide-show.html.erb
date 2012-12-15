@@ -30,7 +30,7 @@
 			            <ul class="dropdown-menu">
 			              <li><%= link_to 'View Post', guide_post_path(post) %></li>
 			              <li><%= link_to 'Edit Post', edit_guide_post_path(post) %></li>
-			              <li><%= link_to 'Delete Post', edit_guide_post_path(post) %></li>
+			              <li><%= link_to 'Delete Post', post, confirm: 'Are you sure?', method: :delete %></li>
 			            </ul>
 			          </div>
 			      </td>    
